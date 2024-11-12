@@ -9,7 +9,7 @@ export const env = createEnv({
    * isn't built with invalid env vars.
    */
   server: {
-    DATABASE_URL: z.string().url(),
+    DATABASE_URL: z.string().min(1),
     NODE_ENV: zNodeEnv(),
 
     GITHUB_CLIENT_ID: zOptionalWithReplaceMe(),
@@ -21,7 +21,7 @@ export const env = createEnv({
     DISCORD_CLIENT_ID: zOptionalWithReplaceMe(),
     DISCORD_CLIENT_SECRET: zOptionalWithReplaceMe(),
 
-    EMAIL_SERVER: z.string().url(),
+    EMAIL_SERVER: z.string().min(1),
     EMAIL_FROM: z.string(),
     LOGGER_LEVEL: z
       .enum(['trace', 'debug', 'info', 'warn', 'error', 'fatal'])

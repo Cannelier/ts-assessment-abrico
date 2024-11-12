@@ -3,7 +3,7 @@ steps:
     script: |
       #!/usr/bin/env bash
       echo "DATABASE_URL=$$DATABASE_URL" > .env
-      echo "NEXT_PUBLIC_BASE_URL=beta.abrico.eco" >> .env
+      echo "NEXT_PUBLIC_BASE_URL=https://beta.abrico.eco" >> .env
       # FIXME delete the following lines once we use sendgrid
       echo "EMAIL_SERVER=localhost" >> .env
       echo "EMAIL_FROM=support@abrico.eco" >> .env

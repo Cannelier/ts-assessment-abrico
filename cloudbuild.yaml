@@ -46,4 +46,4 @@ images:
 
 options:
   pool:
-    name: 'projects/abrico-418714/locations/europe-west9/workerPools/beasty
+    name: 'projects/abrico-418714/locations/europe-west9/workerPools/beasty'

@@ -6,6 +6,8 @@ ENV PNPM_HOME="/pnpm"
 ENV PATH="$PNPM_HOME:$PATH"
 # Enable supported package managers
 RUN corepack enable
+
+# The /app directory should act as the main application directory
 WORKDIR /app
 COPY . .
 

@@ -1,4 +1,16 @@
 services:
+  cloudsql:
+    build:
+      context: .
+    # binding to 0.0.0.0 is important
+    image: gcr.io/cloud-sql-connectors/cloud-sql-proxy:2.14.0
+    command: --address 0.0.0.0 --port 5432 --credentials-file /abrico-418714-b3dac99adb3b.json abrico-418714:europe-west9:abrico-app-prod  
+    volumes:
+      - type: bind
+        source: ./abrico-418714-b3dac99adb3b.json
+        target: /abrico-418714-b3dac99adb3b.json
+        read_only: true
+  
   postgres:
     image: postgres:16.1
     ports:
@@ -7,3 +19,7 @@ services:
       POSTGRES_DB: $DOCKER_DATABASE_NAME
       POSTGRES_USER: $DOCKER_DATABASE_USERNAME
       POSTGRES_PASSWORD: $DOCKER_DATABASE_PASSWORD
+    depends_on:
+      - cloudsql
+    links:
+      - "cloudsql"

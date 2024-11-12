@@ -5,20 +5,20 @@ steps:
       echo "DATABASE_URL=$$DATABASE_URL" > .env
       echo "NEXT_PUBLIC_BASE_URL=https://beta.abrico.eco" >> .env
       # FIXME delete the following lines once we use sendgrid
-      echo "EMAIL_SERVER=localhost" >> .env
-      echo "EMAIL_FROM=support@abrico.eco" >> .env
+      echo "EMAIL_SERVER=smtp://username:password@localhost:1025" >> .env
+      echo "EMAIL_FROM=Hello <support@abrico.eco>" >> .env
     secretEnv: ['DATABASE_URL']
 
-  # Build the container image
-  - name: 'gcr.io/kaniko-project/executor:latest'
-    args:
-      - --destination=gcr.io/$PROJECT_ID/abrico-app-prod:$COMMIT_SHA
-      - --cache=true
-      - --cache-ttl=48h
-#
-#  - name: 'gcr.io/cloud-builders/docker'
-#    args: [ 'build', '-t', 'gcr.io/$PROJECT_ID/abrico-app-prod:$COMMIT_SHA', '.' ]
-#    env: ['DOCKER_BUILDKIT=1']
+#  # Build the container image with kaniko
+#  - name: 'gcr.io/kaniko-project/executor:latest'
+#    args:
+#      - --destination=gcr.io/$PROJECT_ID/abrico-app-prod:$COMMIT_SHA
+#      - --cache=true
+#      - --cache-ttl=48h
+
+  - name: 'gcr.io/cloud-builders/docker'
+    args: [ 'build', '-t', 'gcr.io/$PROJECT_ID/abrico-app-prod:$COMMIT_SHA', '.' ]
+    env: ['DOCKER_BUILDKIT=1']
 
   # Push the container image to Container Registry
   - name: 'gcr.io/cloud-builders/docker'

@@ -1,17 +1,11 @@
-<h1 align="center"><img src=".github/assets/thumbnail.png" alt="Start UI Web" /></h1>
 
-[![Discord](https://img.shields.io/discord/452798408491663361)](https://go.bearstudio.fr/discord)
+## Abrico app 
+🚀 This app enables artisan & clients to manage their site financing
 
-🚀 Start UI <small>[web]</small> is an opinionated frontend starter repository created & maintained by the [BearStudio Team](https://www.bearstudio.fr/team) and other contributors.
-It represents our team's up-to-date stack that we use when creating web apps for our clients.
+## Info
 
-## Documentation
+This repo is based on  the frontend starter repo Start UI: see the [documentation](https://docs.web.start-ui.com). The documentation contains all the necessary information on installation, usage, and some guides.
 
-For detailed information on how to use this project, please refer to the [documentation](https://docs.web.start-ui.com). The documentation contains all the necessary information on installation, usage, and some guides.
-
-## Demo
-
-A live read-only demonstration of what you will have when starting a project with 🚀 Start UI <small>[web]</small> is available on [demo.start-ui.com](https://demo.start-ui.com).
 
 ## Technologies
 
@@ -27,21 +21,7 @@ A live read-only demonstration of what you will have when starting a project wit
 - [Pnpm](https://pnpm.io/)
 - [Docker](https://www.docker.com/) (or a [PostgreSQL](https://www.postgresql.org/) database)
 
-## Getting Started
 
-```bash
-pnpm create start-ui --web myApp
-```
-
-That will scaffold a new folder with the latest version of 🚀 Start UI <small>[web]</small> 🎉
-
-## Installation
-
-1. Duplicate the `.env.example` file to a new `.env` file, and update the environment variables
-
-```bash
-cp .env.example .env
-```
 
 > [!NOTE]
 > **Quick advices for local development**
@@ -57,10 +37,7 @@ pnpm install
 ```bash
 pnpm dk:init
 ```
-> [!NOTE]
-> **Don't want to use docker?**
->
-> Setup a PostgreSQL database (locally or online) and replace the **DATABASE_URL** environment variable. Then you can run `pnpm db:push` to update your database schema and then run `pnpm db:seed` to seed your database.
+
 
 ## Development
 

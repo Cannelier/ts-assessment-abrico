@@ -8,7 +8,7 @@ export const DEFAULT_MODIFIERS: DayModifiers = {
 
 export const DEFAULT_MODIFIERS_STYLES: ModifiersStyles = {
   today: { fontWeight: 'bold' },
-  selected: { backgroundColor: colors.brand[500] },
+  selected: { backgroundColor: 'brand.500' },
   weekend: { color: 'gray' },
 };
 

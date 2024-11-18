@@ -1,12 +1,14 @@
 import { ReactNode } from 'react';
 
-import { Checkbox, CheckboxProps, Flex, FlexProps } from '@chakra-ui/react';
+import { Flex, FlexProps } from '@chakra-ui/react';
 import {
   Controller,
   ControllerRenderProps,
   FieldPath,
   FieldValues,
 } from 'react-hook-form';
+
+import { Checkbox, CheckboxProps } from '@/components/ui/checkbox';
 
 import { FieldCommonProps } from '../FormFieldController';
 import { FormFieldError } from '../FormFieldError';

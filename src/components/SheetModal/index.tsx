@@ -1,11 +1,12 @@
 import { ComponentProps } from 'react';
 
-import { Box } from '@chakra-ui/react';
+import { Box, DialogRootProps } from '@chakra-ui/react';
 import { Sheet } from 'react-modal-sheet';
 
 import {
   DialogBackdrop,
   DialogBody,
+  DialogCloseTrigger,
   DialogDescription,
   DialogRoot,
 } from '@/components/ui/dialog';
@@ -13,7 +14,7 @@ import {
 export type SheetModalProps = Pick<
   ComponentProps<typeof Sheet>,
   'isOpen' | 'onClose' | 'children'
-> & { size?: DialogContentProps['size'] };
+> & { size?: DialogRootProps['size'] };
 export const SheetModal = (props: SheetModalProps) => {
   return (
     <>
@@ -41,9 +42,6 @@ export const SheetModal = (props: SheetModalProps) => {
             },
           },
         }}
-        open={props.isOpen}
-        onClose={props.onClose}
-        detent="content-height"
       >
         <Sheet.Container>
           <Sheet.Header />
@@ -58,7 +56,7 @@ export const SheetModal = (props: SheetModalProps) => {
       >
         <DialogBackdrop display={{ base: 'none', sm: 'flex' }} />
         <DialogBody display={{ base: 'none', sm: 'flex' }}>
-          <ModalCloseButton />
+          <DialogCloseTrigger />
           <DialogDescription>{props.children}</DialogDescription>
         </DialogBody>
       </DialogRoot>{' '}

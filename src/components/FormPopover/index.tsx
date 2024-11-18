@@ -1,7 +1,7 @@
 import { ElementRef, ReactNode, useRef } from 'react';
 
 import {
-  ButtonGroup,
+  Group,
   Popover,
   PopoverBody,
   PopoverContent,
@@ -76,7 +76,8 @@ export const FormPopover = <TSchema extends z.Schema>(
     values: props.value,
   });
 
-  const handleOnClose = () => {
+  const handleOnClose = (details: OpenChangeDetails) => {
+    if (details.isOpen) return;
     popover.onClose();
     form.reset();
   };
@@ -90,10 +91,10 @@ export const FormPopover = <TSchema extends z.Schema>(
 
   return (
     <PopoverRoot
-      placement="bottom-start"
-      isLazy
-      isOpen={popover.open}
-      onClose={handleOnClose}
+      lazyMount
+      positioning={{ placement: 'bottom-start' }}
+      open={popover.open}
+      onOpenChange={handleOnClose}
     >
       <PopoverTrigger>
         {props.renderTrigger({ onClick: popover.onOpen })}
@@ -108,7 +109,7 @@ export const FormPopover = <TSchema extends z.Schema>(
                   <Stack>
                     {props.children(form)}
 
-                    <ButtonGroup size="sm" justifyContent="end">
+                    <Group size="sm" justifyContent="end">
                       {props.renderFooterSecondaryAction?.({
                         onClose: handleOnClose,
                       })}
@@ -118,7 +119,7 @@ export const FormPopover = <TSchema extends z.Schema>(
                           {t('common:submit')}
                         </Button>
                       )}
-                    </ButtonGroup>
+                    </Group>
                   </Stack>
                 </Form>
               </Portal>

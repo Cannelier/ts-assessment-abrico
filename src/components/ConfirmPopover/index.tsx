@@ -1,32 +1,32 @@
 import React, { ReactElement, ReactNode, useRef } from 'react';
 
+import { Group, Heading, Popover, Portal } from '@chakra-ui/react';
+import FocusLock from 'react-focus-lock';
+import { useTranslation } from 'react-i18next';
+
+import { Button } from '@/components/ui/button';
 import {
-  Button,
-  ButtonGroup,
-  Heading,
-  Popover,
   PopoverArrow,
   PopoverBody,
   PopoverContent,
   PopoverFooter,
-  PopoverProps,
+  PopoverRoot,
   PopoverTrigger,
-  Portal,
-  useDisclosure,
-} from '@chakra-ui/react';
-import FocusLock from 'react-focus-lock';
-import { useTranslation } from 'react-i18next';
+} from '@/components/ui/popover';
+import { useOpen } from '@/hooks/useOpen';
 
-import { PopoverRoot } from '@/components/ui/popover';
-
-type ConfirmPopoverProps = PopoverProps & {
+type ConfirmPopoverProps = Omit<Popover.RootProviderProps, 'value'> & {
   isEnabled?: boolean;
   children: ReactElement;
   title?: ReactNode;
   message?: ReactNode;
   onConfirm(): void;
   confirmText?: ReactNode;
-  confirmVariant?: string;
+  confirmVariant?:
+    | '@primary'
+    | '@secondary'
+    | '@dangerPrimary'
+    | '@dangerSecondary';
   cancelText?: ReactNode;
 };
 
@@ -44,7 +44,7 @@ export const ConfirmPopover: React.FC<
   ...rest
 }) => {
   const { t } = useTranslation(['common', 'components']);
-  const confirmPopover = useDisclosure();
+  const confirmPopover = useOpen();
 
   const displayHeading =
     !title && !message ? t('components:confirmPopover.heading') : title;
@@ -61,11 +61,10 @@ export const ConfirmPopover: React.FC<
   return (
     <>
       <PopoverRoot
-        isLazy
-        isOpen={confirmPopover.open}
-        onClose={confirmPopover.onClose}
-        onOpen={confirmPopover.onOpen}
-        initialFocusRef={initialFocusRef}
+        lazyMount
+        open={confirmPopover.open}
+        onOpenChange={confirmPopover.onOpenChange}
+        initialFocusEl={() => initialFocusRef.current!}
         {...rest}
       >
         <PopoverTrigger>{children}</PopoverTrigger>
@@ -82,21 +81,21 @@ export const ConfirmPopover: React.FC<
                 {message}
               </PopoverBody>
               <PopoverFooter>
-                <ButtonGroup size="sm" justifyContent="space-between" w="full">
-                  <Button onClick={confirmPopover.onClose}>
+                <Group justifyContent="space-between" w="full">
+                  <Button onClick={confirmPopover.closeIt}>
                     {cancelText ?? t('common:actions.cancel')}
                   </Button>
                   <Button
-                    variant={confirmVariant}
+                    visual={confirmVariant}
                     onClick={() => {
                       onConfirm();
-                      confirmPopover.onClose();
+                      confirmPopover.closeIt();
                     }}
                     ref={initialFocusRef}
                   >
                     {confirmText ?? t('components:confirmPopover.confirmText')}
                   </Button>
-                </ButtonGroup>
+                </Group>
               </PopoverFooter>
             </FocusLock>
           </PopoverContent>

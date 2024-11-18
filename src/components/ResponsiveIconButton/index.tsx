@@ -1,11 +1,12 @@
+import { FC, forwardRef } from 'react';
+
 import {
   Button,
   ButtonProps,
   IconButton,
-  ResponsiveValue,
-  forwardRef,
   useBreakpointValue,
 } from '@chakra-ui/react';
+import { ResponsiveValue } from '@chakra-ui/styled-system';
 
 type ResponsiveIconButtonProps = ButtonProps & {
   hideTextBreakpoints?: Omit<ResponsiveValue<boolean>, 'boolean'>;
@@ -14,10 +15,9 @@ type ResponsiveIconButtonProps = ButtonProps & {
   iconPosition?: 'left' | 'right';
 };
 
-export const ResponsiveIconButton = forwardRef<
-  ResponsiveIconButtonProps,
-  'button'
->(
+export const ResponsiveIconButton: FC<
+  React.PropsWithChildren<ResponsiveIconButtonProps>
+> = forwardRef(
   (
     {
       hideTextBreakpoints = {
@@ -37,11 +37,16 @@ export const ResponsiveIconButton = forwardRef<
       iconPosition === 'right' ? { rightIcon: icon } : { leftIcon: icon };
 
     return responsiveStates ? (
-      <IconButton aria-label={children} icon={icon} ref={ref} {...rest} />
+      // @ts-ignore
+      <IconButton aria-label={children} ref={ref} {...rest}>
+        {icon}
+      </IconButton>
     ) : (
+      // @ts-ignore
       <Button ref={ref} {...buttonProps} {...rest}>
         {children}
       </Button>
     );
   }
 );
+ResponsiveIconButton.displayName = 'ResponsiveIconButton';

@@ -1,24 +1,21 @@
+import React from 'react';
+
 import {
-  Avatar,
-  Button,
+  HStack,
   LinkBox,
   LinkOverlay,
-  Menu,
-  MenuButton,
-  MenuItem,
-  MenuList,
   Portal,
   Stack,
-  Tag,
-  TagLabel,
-  TagLeftIcon,
   Text,
-  Wrap,
 } from '@chakra-ui/react';
-import { LuCheck, LuPenLine, LuPlus, LuX } from 'react-icons/lu';
+import { LuCheck, LuChevronDown, LuPenLine, LuPlus, LuX } from 'react-icons/lu';
 
 import { ActionsButton } from '@/components/ActionsButton';
 import { Icon } from '@/components/Icons';
+import { Avatar } from '@/components/ui/avatar';
+import { Button } from '@/components/ui/button';
+import { MenuItem, MenuRoot, MenuTrigger } from '@/components/ui/menu';
+import { Tag } from '@/components/ui/tag';
 
 import {
   DataList,
@@ -165,17 +162,13 @@ export const EmptyState = () => {
       </DataList>
       <DataList>
         <DataListEmptyState>
-          <Wrap spacingX={2} spacingY={1}>
+          <HStack gapX={2} gapY={1}>
             <Text alignSelf="center">Let&apos;s create your first user</Text>
-            <Button
-              variant="ghost"
-              colorScheme="info"
-              size="sm"
-              leftIcon={<LuPlus />}
-            >
+            <Button variant="ghost" colorScheme="info" size="sm">
+              <LuPlus />
               Create User
             </Button>
-          </Wrap>
+          </HStack>
         </DataListEmptyState>
       </DataList>
     </Stack>
@@ -210,32 +203,26 @@ const ExampleStatus = ({ status }: { status: 'active' | 'inactive' }) => {
       gap={1}
       justifyContent="center"
       px={{ base: 0, md: 2 }}
+      startElement={<Icon icon={status === 'active' ? LuCheck : LuX} />}
     >
-      <TagLeftIcon as={status === 'active' ? LuCheck : LuX} mr={0} />
-      <TagLabel
-        lineHeight={1}
-        display={{ base: 'none', md: 'inline' }}
-        whiteSpace="nowrap"
-      >
-        {status === 'active' ? 'Active' : 'Inactive'}
-      </TagLabel>
+      {status === 'active' ? 'Active' : 'Inactive'}
     </Tag>
   );
 };
 
 const ExampleMenu = () => {
   return (
-    <Menu isLazy placement="left-start">
-      <MenuButton as={ActionsButton} />
+    <MenuRoot isLazy placement="left-start">
+      <MenuTrigger asChild>
+        <ActionsButton />
+      </MenuTrigger>
+
       <Portal>
-        <MenuList>
-          <MenuItem
-            icon={<Icon icon={LuPenLine} fontSize="lg" color="gray.400" />}
-          >
-            Edit
-          </MenuItem>
-        </MenuList>
+        <MenuItem value="edit">
+          <Icon icon={LuPenLine} fontSize="lg" color="gray.400" />
+          Edit
+        </MenuItem>
       </Portal>
-    </Menu>
+    </MenuRoot>
   );
 };

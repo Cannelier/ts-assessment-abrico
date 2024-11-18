@@ -102,13 +102,12 @@ export const PaginationButtonPrevPage: FC<
     <IconButton
       onClick={() => setPage(page - 1)}
       aria-label={t('components:pagination.prevPage')}
-      icon={
-        <Icon icon={rtlValue(LuChevronLeft, LuChevronRight)} fontSize="lg" />
-      }
       size="sm"
       disabled={isFirstPage}
       {...rest}
-    />
+    >
+      <Icon icon={rtlValue(LuChevronLeft, LuChevronRight)} fontSize="lg" />
+    </IconButton>
   );
 };
 

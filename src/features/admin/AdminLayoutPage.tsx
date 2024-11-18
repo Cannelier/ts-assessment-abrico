@@ -120,7 +120,7 @@ export const AdminLayoutPageContent = ({
       as={Scrollbars}
       direction="column"
       flex={1}
-      __css={{
+      css={{
         '& > *': {
           display: 'flex',
           flexDirection: 'column',

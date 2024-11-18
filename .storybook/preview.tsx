@@ -1,21 +1,21 @@
 import React, { useEffect } from 'react';
 
-import { Box, useColorMode } from '@chakra-ui/react';
-import { Preview } from '@storybook/react';
+import { Box, ChakraProvider, defaultSystem } from '@chakra-ui/react';
+import { withThemeByClassName } from '@storybook/addon-themes';
+import { Preview, ReactRenderer } from '@storybook/react';
 import { themes } from '@storybook/theming';
 import { useTranslation } from 'react-i18next';
-import { useDarkMode } from 'storybook-dark-mode';
 
-import { Providers } from '../src/app/Providers';
+import { useColorMode } from '@/components/ui/color-mode';
+
 import i18nGlobal from '../src/lib/i18n/client';
 import {
   AVAILABLE_LANGUAGES,
   DEFAULT_LANGUAGE_KEY,
 } from '../src/lib/i18n/constants';
+
 // @ts-ignore don't want to implement a d.ts declaration for storybook only
-import logoReversed from './logo-reversed.svg';
 // @ts-ignore don't want to implement a d.ts declaration for storybook only
-import logo from './logo.svg';
 
 const DocumentationWrapper = ({ children, context, isDarkMode }) => {
   const { i18n } = useTranslation();
@@ -82,19 +82,18 @@ const preview: Preview = {
     backgrounds: { disable: true, grid: { disable: true } },
   },
   decorators: [
-    (story, context) => {
-      const isDarkMode = useDarkMode();
-      return (
-        <Providers>
-          <DocumentationWrapper isDarkMode={isDarkMode} context={context}>
-            {/* Calling as a function to avoid errors. Learn more at:
-             * https://github.com/storybookjs/storybook/issues/15223#issuecomment-1092837912
-             */}
-            {story(context)}
-          </DocumentationWrapper>
-        </Providers>
-      );
-    },
+    withThemeByClassName<ReactRenderer>({
+      defaultTheme: 'light',
+      themes: {
+        light: '',
+        dark: 'dark',
+      },
+    }),
+    (Story) => (
+      <ChakraProvider value={defaultSystem}>
+        <Story />
+      </ChakraProvider>
+    ),
   ],
 };
 

@@ -1,4 +1,4 @@
-import { useEventListener } from '@chakra-ui/react';
+import { useEventListener } from 'usehooks-ts';
 
 type UseDayPickerCalendarFocusController = {
   isCalendarFocused: boolean;

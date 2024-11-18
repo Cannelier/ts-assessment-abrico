@@ -1,16 +1,11 @@
 import React, { FC, ReactNode, useEffect, useMemo, useState } from 'react';
 
+import { MenuRootProps } from '@ark-ui/react';
 import {
-  Button,
   ChakraComponent,
   Flex,
   FlexProps,
-  Menu,
-  MenuButton,
-  MenuGroup,
-  MenuItem,
-  MenuList,
-  MenuProps,
+  Group,
   Portal,
   Stack,
   Text,
@@ -18,7 +13,10 @@ import {
 } from '@chakra-ui/react';
 import { LuChevronDown } from 'react-icons/lu';
 
+import { MenuItem } from '@/components/ConfirmMenuItem';
 import { Icon } from '@/components/Icons';
+import { Button } from '@/components/ui/button';
+import { MenuRoot, MenuTrigger } from '@/components/ui/menu';
 import { useIsHydrated } from '@/hooks/useIsHydrated';
 
 type NavContextValue = {
@@ -34,7 +32,7 @@ const NavContext = React.createContext<NavContextValue>({
 });
 const useNavContext = () => React.useContext(NavContext);
 
-type NavProps = React.PropsWithChildren<MenuProps> & {
+type NavProps = React.PropsWithChildren<MenuRootProps> & {
   breakpoint?: string;
 };
 
@@ -48,7 +46,7 @@ export const Nav = ({ children, breakpoint = 'lg', ...rest }: NavProps) => {
   const [active, setActive] = useState<ReactNode>(<>-</>);
   return (
     <NavContext.Provider value={{ active, setActive, isMenu: !!isMenu }}>
-      <Menu matchWidth {...rest}>
+      <MenuRoot matchWidth {...rest}>
         {!isMenu && (
           <Stack gap="1" opacity={!isHydrated ? 0 : undefined}>
             {children}
@@ -56,21 +54,21 @@ export const Nav = ({ children, breakpoint = 'lg', ...rest }: NavProps) => {
         )}
         {isMenu && (
           <>
-            <MenuButton
-              opacity={!isHydrated ? 0 : undefined}
-              textAlign="left"
-              as={Button}
-              rightIcon={<LuChevronDown />}
-              sx={{ '> *': { minW: 0 } }}
-            >
-              {active}
-            </MenuButton>
-            <Portal>
-              <MenuList>{children}</MenuList>
-            </Portal>
+            <MenuTrigger asChild>
+              <Button
+                opacity={!isHydrated ? 0 : undefined}
+                textAlign="left"
+                css={{ '> *': { minW: 0 } }}
+              >
+                <Icon icon={LuChevronDown} />
+                {active}
+              </Button>
+            </MenuTrigger>
+
+            <Portal>{children}</Portal>
           </>
         )}
-      </Menu>
+      </MenuRoot>
     </NavContext.Provider>
   );
 };
@@ -166,11 +164,8 @@ export const NavGroup: FC<React.PropsWithChildren<FlexProps>> = ({
   const { isMenu } = useNavContext();
 
   if (isMenu) {
-    return (
-      <MenuGroup title={title} {...rest}>
-        {children}
-      </MenuGroup>
-    );
+    // @ts-ignore
+    return <Group {...rest}>{children}</Group>;
   }
   return (
     <Flex direction="column">

@@ -88,7 +88,7 @@ export const DayPickerContent = forwardRef<
           footer: (
             <Button
               onClick={() => handleDaySelect(dayjs().startOf('day').toDate())}
-              variant="@secondary"
+              visual="@secondary"
               size="sm"
               w="full"
               mt="2"

@@ -1,4 +1,4 @@
-import { ButtonGroup, IconButton } from '@chakra-ui/react';
+import { Group, IconButton } from '@chakra-ui/react';
 import { FiChevronLeft, FiChevronRight } from 'react-icons/fi';
 
 type CustomNavbarProps = {
@@ -11,21 +11,23 @@ export const Navbar: React.FC<React.PropsWithChildren<CustomNavbarProps>> = ({
   onNextClick,
 }) => {
   return (
-    <ButtonGroup size="sm" variant="@secondary">
+    <Group>
       <IconButton
+        visual="@secondary"
         aria-label="Mois précédent"
         float="right"
-        onClick={() => onPreviousClick()}
+        onClick={onPreviousClick}
       >
         <FiChevronLeft fontSize="sm" />
       </IconButton>
       <IconButton
+        visual="@secondary"
         aria-label="Mois suivant"
         float="right"
-        onClick={() => onNextClick()}
+        onClick={onNextClick}
       >
         <FiChevronRight fontSize="sm" />
       </IconButton>
-    </ButtonGroup>
+    </Group>
   );
 };

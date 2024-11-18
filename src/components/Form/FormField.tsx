@@ -7,8 +7,7 @@ import {
   useMemo,
 } from 'react';
 
-import { FormControl, FormControlProps } from '@chakra-ui/react';
-
+import { Field, FieldProps } from '@/components/ui/field';
 import { fixedForwardRef } from '@/lib/utils';
 
 type FormFieldSize = 'sm' | 'md' | 'lg';
@@ -16,13 +15,13 @@ type FormFieldSize = 'sm' | 'md' | 'lg';
 type FormFieldProps = {
   id?: string;
   size?: FormFieldSize;
-  formControlProps?: FormControlProps;
+  formControlProps?: FieldProps;
   children?: ReactNode;
 };
 
 const FormFieldComponent = (
   props: FormFieldProps,
-  ref: ElementRef<typeof FormControl>
+  ref: ElementRef<typeof Field>
 ) => {
   const _id = useId();
   const id = props.id ?? _id;
@@ -37,7 +36,8 @@ const FormFieldComponent = (
 
   return (
     <FormFieldContext.Provider value={contextValue}>
-      <FormControl
+      <Field
+        // @ts-ignore
         ref={ref}
         display="flex"
         flexDirection="column"
@@ -46,7 +46,7 @@ const FormFieldComponent = (
         {...props.formControlProps}
       >
         {props.children}
-      </FormControl>
+      </Field>
     </FormFieldContext.Provider>
   );
 };

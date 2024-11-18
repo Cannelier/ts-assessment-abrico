@@ -1,11 +1,10 @@
-import React, { FC } from 'react';
+import React, { FC, forwardRef } from 'react';
 
 import {
   Box,
   BoxProps,
   Icon as ChakraIcon,
   IconProps as ChakraIconProps,
-  forwardRef,
 } from '@chakra-ui/react';
 
 export type IconProps = BoxProps & {
@@ -13,7 +12,7 @@ export type IconProps = BoxProps & {
   iconProps?: ChakraIconProps;
 };
 
-export const Icon = forwardRef<IconProps, 'span'>(
+export const Icon: FC<React.PropsWithChildren<IconProps>> = forwardRef(
   ({ icon: IconEl, iconProps, ...rest }, ref) => {
     return (
       <Box
@@ -43,3 +42,4 @@ export const Icon = forwardRef<IconProps, 'span'>(
     );
   }
 );
+Icon.displayName = 'Icon';

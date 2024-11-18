@@ -1,15 +1,9 @@
 import React, { FC, useRef, useState } from 'react';
 
-import {
-  BoxProps,
-  Input,
-  InputGroup,
-  InputLeftElement,
-  InputProps,
-  Placement,
-} from '@chakra-ui/react';
+import { BoxProps, Input, InputProps } from '@chakra-ui/react';
 import { DayPickerProps as ReactDayPickerProps } from 'react-day-picker';
 import { FiCalendar } from 'react-icons/fi';
+import { PopperProps } from 'react-popper';
 
 import { DayPickerContent } from '@/components/DayPicker/_partials';
 import { DATE_FORMAT } from '@/components/DayPicker/constants';
@@ -17,6 +11,7 @@ import { useDayPickerInputManagement } from '@/components/DayPicker/hooks/useDay
 import { useDayPickerMonthNavigation } from '@/components/DayPicker/hooks/useDayPickerMonthNavigation';
 import { useDayPickerPopperManagement } from '@/components/DayPicker/hooks/useDayPickerPopperManagement';
 import { Icon } from '@/components/Icons';
+import { InputGroup } from '@/components/ui/input-group';
 
 export type DayPickerNavigationMode = 'DAY' | 'MONTH';
 
@@ -29,7 +24,8 @@ export type DayPickerProps = {
   id?: string;
   value?: Date | null;
   onChange(date: Date | null): void;
-  popperPlacement?: Placement;
+  // @ts-ignore
+  popperPlacement?: PopperProps['placement'];
   dateFormat?: string;
   placeholder?: string;
   inputProps?: DayPickerInputProps;
@@ -126,8 +122,10 @@ export const DayPicker: FC<DayPickerProps> = ({
   valueRef.current = value;
 
   return (
-    <InputGroup ref={containerRef} size={size} width={inputProps.width}>
-      <InputLeftElement pointerEvents="none">
+    <InputGroup
+      ref={containerRef}
+      width={inputProps.width}
+      startElement={
         <Icon
           icon={FiCalendar}
           fontSize={size}
@@ -137,33 +135,36 @@ export const DayPicker: FC<DayPickerProps> = ({
             color: disabled ? 'gray.500' : 'gray.300',
           }}
         />
-      </InputLeftElement>
-      <Input
-        ref={inputRef}
-        id={id}
-        value={inputValue}
-        onChange={handleInputChange}
-        placeholder={placeholder}
-        onBlur={(e) => handleInputBlur(e.target.value)}
-        onFocus={() => openPopper()}
-        disabled={disabled}
-        autoFocus={autoFocus}
-        {...inputProps} // We want the style to be applied on the input (like the background)
-      />
-      <DayPickerContent
-        value={value}
-        isCalendarFocused={isCalendarFocused}
-        setIsCalendarFocused={setIsCalendarFocused}
-        buttonRef={buttonRef}
-        hookMonthNavigation={hookMonthNavigation}
-        handleSelectMonth={handleSelectMonth}
-        handleChangeMonth={handleChangeMonth}
-        handleOnTapEnter={() => handleInputBlur(inputValue)}
-        handleDaySelect={handleDaySelect}
-        popperManagement={popperManagement}
-        ref={setPopperElement}
-        {...rest}
-      />
+      }
+    >
+      <>
+        <Input
+          ref={inputRef}
+          id={id}
+          value={inputValue}
+          onChange={handleInputChange}
+          placeholder={placeholder}
+          onBlur={(e) => handleInputBlur(e.target.value)}
+          onFocus={() => openPopper()}
+          disabled={disabled}
+          autoFocus={autoFocus}
+          {...inputProps} // We want the style to be applied on the input (like the background)
+        />
+        <DayPickerContent
+          value={value}
+          isCalendarFocused={isCalendarFocused}
+          setIsCalendarFocused={setIsCalendarFocused}
+          buttonRef={buttonRef}
+          hookMonthNavigation={hookMonthNavigation}
+          handleSelectMonth={handleSelectMonth}
+          handleChangeMonth={handleChangeMonth}
+          handleOnTapEnter={() => handleInputBlur(inputValue)}
+          handleDaySelect={handleDaySelect}
+          popperManagement={popperManagement}
+          ref={setPopperElement}
+          {...rest}
+        />
+      </>
     </InputGroup>
   );
 };

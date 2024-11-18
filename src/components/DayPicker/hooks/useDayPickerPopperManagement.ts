@@ -1,7 +1,9 @@
 import { useEffect, useRef, useState } from 'react';
 
-import { Placement, useEventListener, useOutsideClick } from '@chakra-ui/react';
-import { usePopper } from 'react-popper';
+import { PopperProps, usePopper } from 'react-popper';
+import { useEventListener } from 'usehooks-ts';
+
+import { useOutsideClick } from '@/hooks/useOutsideClick';
 
 export type UseDayPickerPopperManagementValue = {
   popperElement?: HTMLDivElement;
@@ -17,7 +19,8 @@ export type UseDayPickerPopperManagementValue = {
 type UseDayPickerPopperManagementParams = {
   containerRef: React.RefObject<HTMLDivElement>;
   inputRef: React.RefObject<HTMLInputElement>;
-  popperPlacement: Placement;
+  // @ts-ignore
+  popperPlacement: PopperProps['placement'];
   autoFocus: boolean;
   setIsCalendarFocused: (value: boolean) => void;
   onClosePopper: () => void;

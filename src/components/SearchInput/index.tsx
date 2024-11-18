@@ -1,18 +1,17 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { FC, forwardRef, useEffect, useRef, useState } from 'react';
 
 import {
   Box,
   IconButton,
   Input,
-  InputGroup,
   InputProps,
-  InputRightElement,
-  forwardRef,
   useControllableState,
-  useMergeRefs,
 } from '@chakra-ui/react';
 import { useTranslation } from 'react-i18next';
 import { LuSearch, LuX } from 'react-icons/lu';
+
+import { InputGroup } from '@/components/ui/input-group';
+import { useMergeRefs } from '@/hooks/useMergeRefs';
 
 type CustomProps = {
   value?: string;
@@ -24,95 +23,99 @@ type CustomProps = {
 
 type SearchInputProps = Overwrite<InputProps, CustomProps>;
 
-export const SearchInput = forwardRef<SearchInputProps, 'input'>(
-  (
-    {
-      value,
-      defaultValue,
-      onChange,
-      delay = 500,
-      placeholder,
-      clearLabel,
-      disabled = false,
-      ...rest
-    },
-    ref
-  ) => {
-    const { t } = useTranslation(['components']);
+export const SearchInput: FC<React.PropsWithChildren<SearchInputProps>> =
+  forwardRef(
+    (
+      {
+        value,
+        defaultValue,
+        onChange,
+        delay = 500,
+        placeholder,
+        clearLabel,
+        disabled = false,
+        ...rest
+      },
+      ref
+    ) => {
+      const { t } = useTranslation(['components']);
 
-    const [externalValue, setExternalValue] = useControllableState({
-      value,
-      defaultValue,
-      onChange,
-    });
-    const inputRef = useRef<HTMLInputElement>();
-    const refs = useMergeRefs(inputRef, ref);
+      const [externalValue, setExternalValue] = useControllableState({
+        value,
+        defaultValue,
+        onChange,
+      });
+      const inputRef = useRef<HTMLInputElement>();
+      const refs = useMergeRefs(inputRef, ref);
 
-    const [search, setSearch] = useState<string>(externalValue);
+      const [search, setSearch] = useState<string>(externalValue);
 
-    const searchRef = useRef(search);
-    searchRef.current = search;
+      const searchRef = useRef(search);
+      searchRef.current = search;
 
-    const setExternalValueRef = useRef<typeof setExternalValue>();
-    setExternalValueRef.current = setExternalValue;
+      const setExternalValueRef = useRef<typeof setExternalValue>();
+      setExternalValueRef.current = setExternalValue;
 
-    useEffect(() => {
-      const handler = setTimeout(() => {
-        setExternalValueRef.current?.(search);
-      }, delay);
+      useEffect(() => {
+        const handler = setTimeout(() => {
+          setExternalValueRef.current?.(search);
+        }, delay);
 
-      return () => clearTimeout(handler);
-    }, [search, delay]);
+        return () => clearTimeout(handler);
+      }, [search, delay]);
 
-    useEffect(() => {
-      if (externalValue !== searchRef.current) {
-        setSearch(externalValue);
-      }
-    }, [externalValue]);
+      useEffect(() => {
+        if (externalValue !== searchRef.current) {
+          setSearch(externalValue);
+        }
+      }, [externalValue]);
 
-    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-      setSearch(event.target.value);
-    };
+      const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setSearch(event.target.value);
+      };
 
-    const handleClear = () => {
-      setSearch('');
-      inputRef?.current?.focus();
-    };
+      const handleClear = () => {
+        setSearch('');
+        inputRef?.current?.focus();
+      };
 
-    const handleEscape = (event: React.KeyboardEvent<HTMLInputElement>) => {
-      if (event?.key?.toLowerCase() === 'escape') {
-        handleClear();
-      }
-    };
+      const handleEscape = (event: React.KeyboardEvent<HTMLInputElement>) => {
+        if (event?.key?.toLowerCase() === 'escape') {
+          handleClear();
+        }
+      };
 
-    return (
-      <InputGroup {...rest}>
-        <Input
-          ref={refs}
-          onChange={handleChange}
-          value={search || ''}
-          placeholder={placeholder ?? t('components:searchInput.placeholder')}
-          disabled={disabled}
-          onKeyDown={handleEscape}
-        />
-        <InputRightElement pointerEvents="none">
-          {!disabled && search ? (
-            <IconButton
-              onClick={handleClear}
-              variant="@secondary"
-              size="xs"
-              aria-label={clearLabel ?? t('components:searchInput.clear')}
-              pointerEvents="auto"
-            >
-              <LuX />
-            </IconButton>
-          ) : (
-            <Box pointerEvents="none" opacity={disabled ? 0.3 : undefined}>
-              <LuSearch />
-            </Box>
-          )}
-        </InputRightElement>
-      </InputGroup>
-    );
-  }
-);
+      return (
+        <InputGroup
+          {...rest}
+          endElement={
+            !disabled && search ? (
+              <IconButton
+                onClick={handleClear}
+                visual="@secondary"
+                size="xs"
+                aria-label={clearLabel ?? t('components:searchInput.clear')}
+                pointerEvents="auto"
+              >
+                <LuX />
+              </IconButton>
+            ) : (
+              <Box pointerEvents="none" opacity={disabled ? 0.3 : undefined}>
+                <LuSearch />
+              </Box>
+            )
+          }
+        >
+          <Input
+            ref={refs}
+            onChange={handleChange}
+            value={search || ''}
+            placeholder={placeholder ?? t('components:searchInput.placeholder')}
+            disabled={disabled}
+            onKeyDown={handleEscape}
+          />
+        </InputGroup>
+      );
+    }
+  );
+SearchInput.displayName = 'SearchInput';

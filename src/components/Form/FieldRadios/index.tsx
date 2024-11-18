@@ -1,13 +1,6 @@
 import { ReactNode } from 'react';
 
-import {
-  Flex,
-  FlexProps,
-  Radio,
-  RadioGroup,
-  RadioGroupProps,
-  RadioProps,
-} from '@chakra-ui/react';
+import { Flex, FlexProps } from '@chakra-ui/react';
 import {
   Controller,
   ControllerRenderProps,
@@ -18,6 +11,7 @@ import {
 
 import { FieldCommonProps } from '@/components/Form/FormFieldController';
 import { FormFieldError } from '@/components/Form/FormFieldError';
+import { Radio, RadioGroup, RadioProps } from '@/components/ui/radio';
 
 export type FieldRadiosProps<
   TFieldValues extends FieldValues = FieldValues,
@@ -35,13 +29,8 @@ export type FieldRadiosProps<
   >;
   children?: ReactNode;
   radioProps?: Omit<RadioProps, 'value' | 'children'>;
-  radioGroupProps?: RemoveFromType<
-    Omit<RadioGroupProps, 'children'>,
-    ControllerRenderProps
-  >;
   containerProps?: FlexProps;
-} & Pick<RadioGroupProps, 'size'> &
-  FieldCommonProps<TFieldValues, TName>;
+} & FieldCommonProps<TFieldValues, TName>;
 
 export const FieldRadios = <
   TFieldValues extends FieldValues = FieldValues,
@@ -54,12 +43,7 @@ export const FieldRadios = <
       {...props}
       render={({ field: { ref: _ref, ...field } }) => (
         <Flex flexDirection="column" gap={1} flex={1} {...props.containerProps}>
-          <RadioGroup
-            disabled={props.disabled}
-            size={props.size}
-            {...props.radioGroupProps}
-            {...field}
-          >
+          <RadioGroup disabled={props.disabled} size={props.size} {...field}>
             {!!props.options && (
               <Flex
                 columnGap={props.columnGap ?? 4}

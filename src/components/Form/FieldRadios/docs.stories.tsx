@@ -1,7 +1,10 @@
-import { Box, Button, Radio, SimpleGrid, Stack } from '@chakra-ui/react';
+import { Box, SimpleGrid, Stack } from '@chakra-ui/react';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
+
+import { Button } from '@/components/ui/button';
+import { Radio } from '@/components/ui/radio';
 
 import { Form, FormField, FormFieldController, FormFieldLabel } from '../';
 
@@ -199,6 +202,7 @@ export const CustomLayout = () => {
   );
 };
 
+// eslint-disable-next-line sonarjs/no-identical-functions
 export const ChakraProps = () => {
   const form = useForm<FormSchema>(formOptions);
 
@@ -212,9 +216,6 @@ export const ChakraProps = () => {
             control={form.control}
             name="color"
             options={options}
-            radioGroupProps={{
-              colorScheme: 'cyan',
-            }}
           />
         </FormField>
         <Box>

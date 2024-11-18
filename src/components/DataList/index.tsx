@@ -1,21 +1,20 @@
 import { ReactNode } from 'react';
 
 import {
-  Alert,
-  AlertDescription,
-  AlertTitle,
   Box,
-  Button,
   Flex,
   FlexProps,
-  Skeleton,
+  HStack,
   Stack,
   Text,
   TextProps,
-  Wrap,
 } from '@chakra-ui/react';
 import { useTranslation } from 'react-i18next';
 import { LuRefreshCw } from 'react-icons/lu';
+
+import { Alert } from '@/components/ui/alert';
+import { Button } from '@/components/ui/button';
+import { Skeleton } from '@/components/ui/skeleton';
 
 export type DataListProps = FlexProps;
 
@@ -186,30 +185,24 @@ export const DataListErrorState = (props: DataListErrorStateProps) => {
   return (
     <DataListRow>
       <DataListCell>
-        <Alert status="error">
-          <AlertTitle>
-            {props.title ?? t('components:datalist.errorTitle')}
-          </AlertTitle>
-          {(!!props.children || !!props.retry) && (
-            <AlertDescription>
-              <Wrap spacingX={2} spacingY={1}>
-                {!!props.children && (
-                  <Box alignSelf="center">{props.children}</Box>
-                )}
-                {!!props.retry && (
-                  <Button
-                    colorScheme="error"
-                    variant="ghost"
-                    size="sm"
-                    leftIcon={<LuRefreshCw />}
-                    onClick={() => props.retry?.()}
-                  >
-                    {t('components:datalist.retry')}
-                  </Button>
-                )}
-              </Wrap>
-            </AlertDescription>
-          )}
+        <Alert
+          status="error"
+          title={props.title ?? t('components:datalist.errorTitle')}
+        >
+          <HStack gapX={2} gapY={1} wrap="wrap">
+            {!!props.children && <Box alignSelf="center">{props.children}</Box>}
+            {!!props.retry && (
+              <Button
+                colorScheme="error"
+                variant="ghost"
+                size="sm"
+                onClick={() => props.retry?.()}
+              >
+                <LuRefreshCw />
+                {t('components:datalist.retry')}
+              </Button>
+            )}
+          </HStack>
         </Alert>
       </DataListCell>
     </DataListRow>

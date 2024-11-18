@@ -1,19 +1,9 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { FC, forwardRef, useEffect, useRef, useState } from 'react';
 
-import {
-  Flex,
-  HTMLChakraProps,
-  MenuCommand,
-  MenuIcon,
-  MenuItemProps,
-  Text,
-  chakra,
-  createStylesContext,
-  forwardRef,
-  useMenuItem,
-  useMenuState,
-  useMultiStyleConfig,
-} from '@chakra-ui/react';
+import { MenuCommand, MenuIcon, useMenuState } from '@chakra-ui/menu';
+import { MenuItemProps } from '@chakra-ui/react';
+import { Flex, HTMLChakraProps, Text, chakra } from '@chakra-ui/react';
+import { createStylesContext, useMultiStyleConfig } from '@chakra-ui/system';
 import { useTranslation } from 'react-i18next';
 import { LuAlertCircle } from 'react-icons/lu';
 
@@ -23,8 +13,8 @@ export type StyledMenuItemProps = HTMLChakraProps<'button'>;
 
 const [StylesProvider, useStyles] = createStylesContext('Menu');
 
-const StyledMenuItem = forwardRef<StyledMenuItemProps, 'button'>(
-  (props, ref) => {
+const StyledMenuItem: FC<React.PropsWithChildren<StyledMenuItemProps>> =
+  forwardRef((props, ref) => {
     const { type, ...rest } = props;
     const styles = useStyles();
 
@@ -49,56 +39,61 @@ const StyledMenuItem = forwardRef<StyledMenuItemProps, 'button'>(
     };
 
     return (
-      <chakra.button ref={ref} type={btnType} {...rest} __css={buttonStyles} />
+      <chakra.button ref={ref} type={btnType} {...rest} css={buttonStyles} />
+    );
+  });
+
+StyledMenuItem.displayName = 'StyledMenuItem';
+
+export const MenuItem: FC<React.PropsWithChildren<MenuItemProps>> = forwardRef(
+  (props, ref) => {
+    const {
+      icon,
+      iconSpacing = '0.75rem',
+      command,
+      commandSpacing = '0.75rem',
+      children,
+      ...rest
+    } = props;
+
+    const styles = useMultiStyleConfig('Menu', props);
+
+    const menuItemProps = useMenuItem(rest, ref) as MenuItemProps;
+
+    const shouldWrap = icon || command;
+
+    const _children = shouldWrap ? (
+      <chakra.span pointerEvents="none" flex="1">
+        {children}
+      </chakra.span>
+    ) : (
+      children
+    );
+
+    return (
+      <StylesProvider value={styles}>
+        <StyledMenuItem
+          {...menuItemProps}
+          onClick={(e) => {
+            rest?.onClick?.(e);
+          }}
+        >
+          {icon && (
+            <MenuIcon fontSize="0.8em" marginEnd={iconSpacing}>
+              {icon}
+            </MenuIcon>
+          )}
+          {_children}
+          {command && (
+            <MenuCommand marginStart={commandSpacing}>{command}</MenuCommand>
+          )}
+        </StyledMenuItem>
+      </StylesProvider>
     );
   }
 );
 
-export const MenuItem = forwardRef<MenuItemProps, 'button'>((props, ref) => {
-  const {
-    icon,
-    iconSpacing = '0.75rem',
-    command,
-    commandSpacing = '0.75rem',
-    children,
-    ...rest
-  } = props;
-
-  const styles = useMultiStyleConfig('Menu', props);
-
-  const menuItemProps = useMenuItem(rest, ref) as MenuItemProps;
-
-  const shouldWrap = icon || command;
-
-  const _children = shouldWrap ? (
-    <chakra.span pointerEvents="none" flex="1">
-      {children}
-    </chakra.span>
-  ) : (
-    children
-  );
-
-  return (
-    <StylesProvider value={styles}>
-      <StyledMenuItem
-        {...menuItemProps}
-        onClick={(e) => {
-          rest?.onClick?.(e);
-        }}
-      >
-        {icon && (
-          <MenuIcon fontSize="0.8em" marginEnd={iconSpacing}>
-            {icon}
-          </MenuIcon>
-        )}
-        {_children}
-        {command && (
-          <MenuCommand marginStart={commandSpacing}>{command}</MenuCommand>
-        )}
-      </StyledMenuItem>
-    </StylesProvider>
-  );
-});
+MenuItem.displayName = 'MenuItem';
 
 type ConfirmMenuItemProps = MenuItemProps & {
   confirmDelay?: number;
@@ -108,7 +103,9 @@ type ConfirmMenuItemProps = MenuItemProps & {
   confirmIcon?: React.FC<React.PropsWithChildren<unknown>>;
 };
 
-export const ConfirmMenuItem = forwardRef<ConfirmMenuItemProps, 'button'>(
+export const ConfirmMenuItem: FC<
+  React.PropsWithChildren<ConfirmMenuItemProps>
+> = forwardRef(
   (
     {
       children,
@@ -231,3 +228,4 @@ export const ConfirmMenuItem = forwardRef<ConfirmMenuItemProps, 'button'>(
     );
   }
 );
+ConfirmMenuItem.displayName = 'ConfirmMenuItem';

@@ -1,57 +1,60 @@
 import React, { FC } from 'react';
 
-import {
-  Alert,
-  AlertDescription,
-  AlertIcon,
-  AlertTitle,
-  Box,
-  Button,
-  Modal,
-  ModalBody,
-  ModalCloseButton,
-  ModalContent,
-  ModalHeader,
-  ModalOverlay,
-  useDisclosure,
-} from '@chakra-ui/react';
+import { Box, Button, useDisclosure } from '@chakra-ui/react';
 import {
   FallbackProps,
   ErrorBoundary as ReactErrorBoundary,
 } from 'react-error-boundary';
 import { useTranslation } from 'react-i18next';
 
+import { Alert } from '@/components/ui/alert';
+import {
+  DialogBackdrop,
+  DialogCloseTrigger,
+  DialogContent,
+  DialogHeader,
+  DialogRoot,
+} from '@/components/ui/dialog';
+import { useOpen } from '@/hooks/useOpen';
+
 const ErrorFallback = ({ error }: FallbackProps) => {
-  const errorModal = useDisclosure();
+  const errorModal = useOpen();
   const { t } = useTranslation(['components']);
   return (
     <Box p="4" m="auto">
-      <Alert status="error" borderRadius="md">
-        <AlertIcon />
+      <Alert
+        status="error"
+        borderRadius="md"
+        title={t('components:errorBoundary.title')}
+      >
         <Box flex="1">
-          <AlertTitle>{t('components:errorBoundary.title')}</AlertTitle>
-          <AlertDescription display="block" lineHeight="1.4">
+          <Box display="block" lineHeight="1.4">
             <Button
-              variant="link"
+              visual="link"
               size="sm"
               textDecoration="underline"
-              onClick={errorModal.onOpen}
+              onClick={errorModal.openIt}
               color="red.800"
               _dark={{ color: 'red.100' }}
             >
               {t('components:errorBoundary.actions.expand')}
             </Button>
-            <Modal isOpen={errorModal.isOpen} onClose={errorModal.onClose}>
-              <ModalOverlay />
-              <ModalContent>
-                <ModalHeader>{t('components:errorBoundary.title')}</ModalHeader>
-                <ModalCloseButton />
-                <ModalBody>
+            <DialogRoot
+              open={errorModal.open}
+              onOpenChange={errorModal.onOpenChange}
+            >
+              <DialogBackdrop />
+              <DialogContent>
+                <DialogHeader>
+                  {t('components:errorBoundary.title')}
+                </DialogHeader>
+                <DialogCloseTrigger />
+                <DialogContent>
                   <Box fontFamily="monospace">{error.message}</Box>
-                </ModalBody>
-              </ModalContent>
-            </Modal>
-          </AlertDescription>
+                </DialogContent>
+              </DialogContent>
+            </DialogRoot>
+          </Box>
         </Box>
       </Alert>
     </Box>

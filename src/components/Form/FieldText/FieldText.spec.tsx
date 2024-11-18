@@ -76,7 +76,7 @@ test('disabled', async () => {
             type="text"
             control={form.control}
             name="name"
-            isDisabled
+            disabled
           />
         </FormField>
       )}

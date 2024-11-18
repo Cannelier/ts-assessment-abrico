@@ -60,7 +60,7 @@ export const LoginForm = ({
           login.mutate(values);
         }}
       >
-        <Stack spacing={4}>
+        <Stack gap={4}>
           <FormField>
             <FormFieldController
               type="email"

@@ -1,88 +1,94 @@
-import { Button, ButtonGroup, IconButton } from '@chakra-ui/react';
+import { Group, IconButton } from '@chakra-ui/react';
 import { LuMinus, LuPlus } from 'react-icons/lu';
+
+import { Button } from '@/components/ui/button';
 
 export default {
   title: 'StyleGuide/Buttons',
 };
 
 export const Default = () => (
-  <ButtonGroup>
+  <Group>
     <Button>Default Button</Button>
-    <Button isLoading loadingText="Processing...">
+    <Button loading loadingText="Processing...">
       Button
     </Button>
-    <IconButton icon={<LuPlus />} aria-label="Add" />
-    <Button isDisabled>Button</Button>
-  </ButtonGroup>
+    <IconButton aria-label="Add">
+      <LuPlus />
+    </IconButton>
+    <Button disabled>Button</Button>
+  </Group>
 );
 export const Primary = () => (
-  <ButtonGroup>
-    <Button variant="@primary">Primary Button</Button>
-    <Button variant="@primary" isLoading loadingText="Processing...">
+  <Group>
+    <Button visual="@primary">Primary Button</Button>
+    <Button visual="@primary" loading loadingText="Processing...">
       Button
     </Button>
-    <IconButton variant="@primary" icon={<LuPlus />} aria-label="Add" />
-    <Button variant="@primary" isDisabled>
+    <IconButton visual="@primary" aria-label="Add">
+      <LuPlus />
+    </IconButton>
+    <Button visual="@primary" disabled>
       Button
     </Button>
-  </ButtonGroup>
+  </Group>
 );
 
 export const Secondary = () => (
-  <ButtonGroup>
-    <Button variant="@secondary">Secondary Button</Button>
-    <Button variant="@secondary" isLoading loadingText="Processing...">
+  <Group>
+    <Button visual="@secondary">Secondary Button</Button>
+    <Button visual="@secondary" loading loadingText="Processing...">
       Button
     </Button>
-    <IconButton variant="@secondary" icon={<LuPlus />} aria-label="Add" />
-    <Button variant="@secondary" isDisabled>
+    <IconButton visual="@secondary" aria-label="Add">
+      <LuPlus />
+    </IconButton>
+    <Button visual="@secondary" disabled>
       Button
     </Button>
-  </ButtonGroup>
+  </Group>
 );
 export const DangerPrimary = () => (
-  <ButtonGroup>
-    <Button variant="@dangerPrimary">Danger Primary Button</Button>
-    <Button variant="@dangerPrimary" isLoading loadingText="Processing...">
+  <Group>
+    <Button visual="@dangerPrimary">Danger Primary Button</Button>
+    <Button visual="@dangerPrimary" loading loadingText="Processing...">
       Button
     </Button>
-    <IconButton
-      variant="@dangerPrimary"
-      icon={<LuMinus />}
-      aria-label="Remove"
-    />
-    <Button variant="@dangerPrimary" isDisabled>
+    <IconButton visual="@dangerPrimary" aria-label="Remove">
+      <LuMinus />
+    </IconButton>
+    <Button visual="@dangerPrimary" disabled>
       Button
     </Button>
-  </ButtonGroup>
+  </Group>
 );
 
 export const DangerSecondary = () => (
-  <ButtonGroup>
-    <Button variant="@dangerSecondary">Danger Secondary Button</Button>
-    <Button variant="@dangerSecondary" isLoading loadingText="Processing...">
+  <Group>
+    <Button visual="@dangerSecondary">Danger Secondary Button</Button>
+    <Button visual="@dangerSecondary" loading loadingText="Processing...">
       Button
     </Button>
-    <IconButton
-      variant="@dangerSecondary"
-      icon={<LuMinus />}
-      aria-label="Remove"
-    />
-    <Button variant="@dangerSecondary" isDisabled>
+    <IconButton visual="@dangerSecondary" aria-label="Remove">
+      <LuMinus />
+    </IconButton>
+    <Button visual="@dangerSecondary" disabled>
       Button
     </Button>
-  </ButtonGroup>
+  </Group>
 );
 
 export const Link = () => (
-  <ButtonGroup>
-    <Button variant="link">Link Button</Button>
-    <Button variant="link" isLoading loadingText="Processing...">
+  <Group>
+    <Button visual="link">Link Button</Button>
+    <Button visual="link" loading loadingText="Processing...">
       Button
     </Button>
-    <IconButton variant="link" icon={<LuMinus />} aria-label="Remove" />
-    <Button variant="link" isDisabled>
+    <IconButton visual="link" aria-label="Remove">
+      <LuMinus />
+    </IconButton>
+    <Button visual="link" disabled>
       Button
     </Button>
-  </ButtonGroup>
+  </Group>
 );

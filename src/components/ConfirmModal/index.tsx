@@ -1,16 +1,10 @@
 import React, { ReactElement, ReactNode } from 'react';
 
-import {
-  Button,
-  ButtonGroup,
-  Heading,
-  Stack,
-  Text,
-  useDisclosure,
-} from '@chakra-ui/react';
+import { Group, Heading, Stack, Text, useDisclosure } from '@chakra-ui/react';
 import { useTranslation } from 'react-i18next';
 
 import { SheetModal, SheetModalProps } from '@/components/SheetModal';
+import { Button } from '@/components/ui/button';
 
 type ConfirmModalProps = Omit<SheetModalProps, 'isOpen' | 'onClose'> & {
   isEnabled?: boolean;
@@ -19,7 +13,11 @@ type ConfirmModalProps = Omit<SheetModalProps, 'isOpen' | 'onClose'> & {
   message?: ReactNode;
   onConfirm(): void;
   confirmText?: ReactNode;
-  confirmVariant?: string;
+  confirmVariant?:
+    | '@primary'
+    | '@secondary'
+    | '@dangerPrimary'
+    | '@dangerSecondary';
   cancelText?: ReactNode;
 };
 
@@ -57,11 +55,11 @@ export const ConfirmModal: React.FC<
     <>
       {childrenWithOnOpen}
       <SheetModal
-        isOpen={confirmModal.isOpen}
+        isOpen={confirmModal.open}
         onClose={confirmModal.onClose}
         {...rest}
       >
-        <Stack spacing={4}>
+        <Stack gap={4}>
           <Stack>
             {displayHeading && (
               <Heading size="sm" mb={message ? 1 : 0}>
@@ -73,19 +71,17 @@ export const ConfirmModal: React.FC<
             </Text>
           </Stack>
 
-          <ButtonGroup
+          <Group
             justifyContent="space-between"
             w="full"
-            spacing={0}
             gap={4}
-            size={{ base: 'lg', sm: 'md' }}
             flexDirection={{ base: 'column-reverse', sm: 'row' }}
           >
             <Button onClick={confirmModal.onClose}>
               {cancelText ?? t('common:actions.cancel')}
             </Button>
             <Button
-              variant={confirmVariant}
+              visual={confirmVariant}
               onClick={() => {
                 onConfirm();
                 confirmModal.onClose();
@@ -93,7 +89,7 @@ export const ConfirmModal: React.FC<
             >
               {confirmText ?? t('components:confirmModal.confirmText')}
             </Button>
-          </ButtonGroup>
+          </Group>
         </Stack>
       </SheetModal>
     </>

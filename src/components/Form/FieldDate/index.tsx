@@ -46,7 +46,7 @@ export const FieldDate = <
         <Flex flexDirection="column" gap={1} flex={1} {...props.containerProps}>
           <DayPicker
             placeholder={props.placeholder}
-            isDisabled={props.isDisabled}
+            disabled={props.disabled}
             inputProps={{
               size: props.size,
               autoFocus: props.autoFocus,

@@ -110,7 +110,7 @@ export const DataListTextHeader = (props: DataListTextHeaderProps) => {
 export type DataListTextProps = TextProps;
 
 export const DataListText = (props: DataListTextProps) => {
-  return <Text as="div" fontSize="sm" maxW="full" noOfLines={1} {...props} />;
+  return <Text as="div" fontSize="sm" maxW="full" lineClamp={1} {...props} />;
 };
 
 export const DataListLoadingState = () => {
@@ -119,24 +119,24 @@ export const DataListLoadingState = () => {
       <DataListRow>
         <DataListCell>
           <Stack w="full" opacity={0.6} p={2}>
-            <Skeleton w="30%" h={2} noOfLines={1} />
-            <Skeleton w="20%" h={2} noOfLines={1} />
+            <Skeleton w="30%" h={2} lineClamp={1} />
+            <Skeleton w="20%" h={2} lineClamp={1} />
           </Stack>
         </DataListCell>
       </DataListRow>
       <DataListRow>
         <DataListCell>
           <Stack w="full" opacity={0.4} p={2}>
-            <Skeleton w="30%" h={2} noOfLines={1} />
-            <Skeleton w="20%" h={2} noOfLines={1} />
+            <Skeleton w="30%" h={2} lineClamp={1} />
+            <Skeleton w="20%" h={2} lineClamp={1} />
           </Stack>
         </DataListCell>
       </DataListRow>
       <DataListRow>
         <DataListCell>
           <Stack w="full" opacity={0.2} p={2}>
-            <Skeleton w="30%" h={2} noOfLines={1} />
-            <Skeleton w="20%" h={2} noOfLines={1} />
+            <Skeleton w="30%" h={2} lineClamp={1} />
+            <Skeleton w="20%" h={2} lineClamp={1} />
           </Stack>
         </DataListCell>
       </DataListRow>

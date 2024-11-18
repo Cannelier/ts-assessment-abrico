@@ -167,7 +167,7 @@ export const WithFilterClearAndValue = () => {
         </Button>
       )}
       renderFooterPrimaryAction={() => (
-        <Button variant="@primary" type="submit">
+        <Button visual="@primary" type="submit">
           My Custom Button
         </Button>
       )}

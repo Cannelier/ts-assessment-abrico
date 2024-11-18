@@ -1,12 +1,14 @@
 import { ReactNode } from 'react';
 
-import { Flex, FlexProps, Switch, SwitchProps } from '@chakra-ui/react';
+import { Flex, FlexProps } from '@chakra-ui/react';
 import {
   Controller,
   ControllerRenderProps,
   FieldPath,
   FieldValues,
 } from 'react-hook-form';
+
+import { Switch, SwitchProps } from '@/components/ui/switch';
 
 import { FieldCommonProps } from '../FormFieldController';
 import { FormFieldError } from '../FormFieldError';
@@ -21,7 +23,7 @@ export type FieldSwitchProps<
   label?: ReactNode;
   switchProps?: RemoveFromType<
     RemoveFromType<
-      Omit<SwitchProps, 'isChecked' | 'isDisabled' | 'children'>,
+      Omit<SwitchProps, 'checked' | 'disabled' | 'children'>,
       SwitchRootProps
     >,
     ControllerRenderProps
@@ -45,8 +47,8 @@ export const FieldSwitch = <
             display="flex"
             alignItems="center"
             size={props.size}
-            isChecked={!!value}
-            isDisabled={props.isDisabled}
+            checked={!!value}
+            disabled={props.disabled}
             {...props.switchProps}
             {...field}
           >

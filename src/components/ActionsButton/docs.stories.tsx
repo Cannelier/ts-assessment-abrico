@@ -1,18 +1,17 @@
 import React from 'react';
 
-import {
-  Box,
-  Flex,
-  Menu,
-  MenuButton,
-  MenuDivider,
-  MenuItem,
-  MenuList,
-} from '@chakra-ui/react';
+import { Box, Flex } from '@chakra-ui/react';
 import { StoryFn } from '@storybook/react';
 import { LuCopy, LuPenLine, LuTrash2, LuUserPlus } from 'react-icons/lu';
 
 import { Icon } from '@/components/Icons';
+import {
+  MenuContent,
+  MenuItem,
+  MenuRoot,
+  MenuSeparator,
+  MenuTrigger,
+} from '@/components/ui/menu';
 
 import { ActionsButton } from './index';
 
@@ -29,26 +28,28 @@ export const DarkBackground = () => (
 );
 
 export const UsageWithMenu = () => (
-  <Menu isLazy placement="left-start">
-    <MenuButton as={ActionsButton} />
-    <MenuList>
-      <MenuItem icon={<Icon icon={LuPenLine} fontSize="lg" color="gray.400" />}>
+  <MenuRoot lazyMount positioning={{ placement: 'left-start' }}>
+    <MenuTrigger as={ActionsButton} />
+    <MenuContent>
+      <MenuItem value="edit">
+        <Icon icon={LuPenLine} fontSize="lg" color="gray.400" />
         Edit
       </MenuItem>
-      <MenuItem icon={<Icon icon={LuCopy} fontSize="lg" color="gray.400" />}>
+      <MenuItem value="duplicate">
+        <Icon icon={LuCopy} fontSize="lg" color="gray.400" />
         Duplicate
       </MenuItem>
-      <MenuItem
-        icon={<Icon icon={LuUserPlus} fontSize="lg" color="gray.400" />}
-      >
+      <MenuItem value="share">
+        <Icon icon={LuUserPlus} fontSize="lg" color="gray.400" />
         Share
       </MenuItem>
-      <MenuDivider />
-      <MenuItem icon={<Icon icon={LuTrash2} fontSize="lg" color="gray.400" />}>
+      <MenuSeparator />
+      <MenuItem value="delete">
+        <Icon icon={LuTrash2} fontSize="lg" color="gray.400" />
         Delete
       </MenuItem>
-    </MenuList>
-  </Menu>
+    </MenuContent>
+  </MenuRoot>
 );
 UsageWithMenu.decorators = [
   (Story: StoryFn) => (

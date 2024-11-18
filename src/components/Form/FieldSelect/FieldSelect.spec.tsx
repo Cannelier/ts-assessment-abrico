@@ -96,7 +96,7 @@ test('disabled', async () => {
             type="select"
             control={form.control}
             name="color"
-            isDisabled
+            disabled
             options={options}
           />
         </FormField>

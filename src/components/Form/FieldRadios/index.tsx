@@ -55,7 +55,7 @@ export const FieldRadios = <
       render={({ field: { ref: _ref, ...field } }) => (
         <Flex flexDirection="column" gap={1} flex={1} {...props.containerProps}>
           <RadioGroup
-            isDisabled={props.isDisabled}
+            disabled={props.disabled}
             size={props.size}
             {...props.radioGroupProps}
             {...field}

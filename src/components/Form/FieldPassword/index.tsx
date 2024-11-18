@@ -48,7 +48,7 @@ export const FieldPassword = <
         <Flex flexDirection="column" gap={1} flex={1} {...props.containerProps}>
           <InputGroup size={props.size}>
             <Input
-              isDisabled={props.isDisabled}
+              disabled={props.disabled}
               type={showPassword ? 'text' : 'password'}
               placeholder={props.placeholder}
               autoFocus={props.autoFocus}
@@ -57,7 +57,7 @@ export const FieldPassword = <
             />
             <InputLeftElement>
               <IconButton
-                isDisabled={props.isDisabled}
+                disabled={props.disabled}
                 onClick={() => setShowPassword((x) => !x)}
                 aria-label={
                   showPassword
@@ -67,9 +67,10 @@ export const FieldPassword = <
                 display="flex"
                 size="xs"
                 fontSize="lg"
-                icon={showPassword ? <RiEyeLine /> : <RiEyeCloseLine />}
-                variant="unstyled"
-              />
+                visual="unstyled"
+              >
+                {showPassword ? <RiEyeLine /> : <RiEyeCloseLine />}
+              </IconButton>
             </InputLeftElement>
             {!!props.endElement && (
               <InputRightElement>{props.endElement}</InputRightElement>

@@ -5,15 +5,20 @@ import {
   Box,
   Button,
   HStack,
-  Menu,
   MenuButton,
-  MenuItem,
   MenuList,
   Portal,
 } from '@chakra-ui/react';
 import { LuActivity, LuChevronDown, LuTrash2 } from 'react-icons/lu';
 
 import { Icon } from '@/components/Icons';
+import {
+  MenuContent,
+  MenuItem,
+  MenuRoot,
+  MenuSeparator,
+  MenuTrigger,
+} from '@/components/ui/menu';
 
 import { ConfirmMenuItem } from './';
 
@@ -23,7 +28,7 @@ export default {
 
 export const Default = () => {
   return (
-    <Menu>
+    <MenuRoot>
       <MenuButton as={Button} rightIcon={<Icon icon={LuChevronDown} />}>
         Actions
       </MenuButton>
@@ -40,13 +45,13 @@ export const Default = () => {
           <MenuItem>Action</MenuItem>
         </MenuList>
       </Portal>
-    </Menu>
+    </MenuRoot>
   );
 };
 
 export const MenuItemLongText = () => {
   return (
-    <Menu>
+    <MenuRoot>
       <MenuButton as={Button} rightIcon={<Icon icon={LuChevronDown} />}>
         Actions
       </MenuButton>
@@ -61,13 +66,13 @@ export const MenuItemLongText = () => {
           <MenuItem>Action</MenuItem>
         </MenuList>
       </Portal>
-    </Menu>
+    </MenuRoot>
   );
 };
 
 export const ConfirmText = () => {
   return (
-    <Menu>
+    <MenuRoot>
       <MenuButton as={Button} rightIcon={<Icon icon={LuChevronDown} />}>
         Actions
       </MenuButton>
@@ -80,13 +85,13 @@ export const ConfirmText = () => {
           <MenuItem>Action</MenuItem>
         </MenuList>
       </Portal>
-    </Menu>
+    </MenuRoot>
   );
 };
 
 export const ConfirmTextLong = () => {
   return (
-    <Menu>
+    <MenuRoot>
       <MenuButton as={Button} rightIcon={<Icon icon={LuChevronDown} />}>
         Actions
       </MenuButton>
@@ -102,13 +107,13 @@ export const ConfirmTextLong = () => {
           <MenuItem>Action</MenuItem>
         </MenuList>
       </Portal>
-    </Menu>
+    </MenuRoot>
   );
 };
 
 export const ConfirmMenuItemIcon = () => {
   return (
-    <Menu>
+    <MenuRoot>
       <MenuButton as={Button} rightIcon={<Icon icon={LuChevronDown} />}>
         Actions
       </MenuButton>
@@ -123,13 +128,13 @@ export const ConfirmMenuItemIcon = () => {
           <MenuItem>Action</MenuItem>
         </MenuList>
       </Portal>
-    </Menu>
+    </MenuRoot>
   );
 };
 
 export const ConfirmIcon = () => {
   return (
-    <Menu>
+    <MenuRoot>
       <MenuButton as={Button} rightIcon={<Icon icon={LuChevronDown} />}>
         Actions
       </MenuButton>
@@ -142,13 +147,13 @@ export const ConfirmIcon = () => {
           <MenuItem>Action</MenuItem>
         </MenuList>
       </Portal>
-    </Menu>
+    </MenuRoot>
   );
 };
 
 export const ConfirmContent = () => {
   return (
-    <Menu>
+    <MenuRoot>
       <MenuButton as={Button} rightIcon={<Icon icon={LuChevronDown} />}>
         Actions
       </MenuButton>
@@ -168,13 +173,13 @@ export const ConfirmContent = () => {
           <MenuItem>Action</MenuItem>
         </MenuList>
       </Portal>
-    </Menu>
+    </MenuRoot>
   );
 };
 
 export const ConfirmColorScheme = () => {
   return (
-    <Menu>
+    <MenuRoot>
       <MenuButton as={Button} rightIcon={<Icon icon={LuChevronDown} />}>
         Actions
       </MenuButton>
@@ -187,13 +192,13 @@ export const ConfirmColorScheme = () => {
           <MenuItem>Action</MenuItem>
         </MenuList>
       </Portal>
-    </Menu>
+    </MenuRoot>
   );
 };
 
 export const ConfirmDelay = () => {
   return (
-    <Menu>
+    <MenuRoot>
       <MenuButton as={Button} rightIcon={<Icon icon={LuChevronDown} />}>
         Actions
       </MenuButton>
@@ -204,6 +209,6 @@ export const ConfirmDelay = () => {
           <MenuItem>Action</MenuItem>
         </MenuList>
       </Portal>
-    </Menu>
+    </MenuRoot>
   );
 };

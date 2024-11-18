@@ -93,7 +93,7 @@ export const FieldNumber = <
               max={props.max}
               step={props.step}
               bigStep={props.bigStep}
-              isDisabled={props.isDisabled}
+              disabled={props.disabled}
               isInvalid={!!fieldState.error}
               {...props.inputNumberProps}
               {...field}

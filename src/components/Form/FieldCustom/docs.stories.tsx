@@ -33,7 +33,7 @@ export const Default = () => {
 
   return (
     <Form {...form} onSubmit={(values) => console.log(values)}>
-      <Stack spacing={4}>
+      <Stack gap={4}>
         <FormField>
           <Flex align="center" gap={4}>
             <FormFieldLabel>Label</FormFieldLabel>
@@ -57,7 +57,7 @@ export const Default = () => {
           </Flex>
         </FormField>
         <Box>
-          <Button type="submit" variant="@primary">
+          <Button type="submit" visual="@primary">
             Submit
           </Button>
         </Box>
@@ -76,7 +76,7 @@ export const DefaultValue = () => {
 
   return (
     <Form {...form} onSubmit={(values) => console.log(values)}>
-      <Stack spacing={4}>
+      <Stack gap={4}>
         <FormField>
           <Flex align="center" gap={4}>
             <FormFieldLabel>Label</FormFieldLabel>
@@ -100,7 +100,7 @@ export const DefaultValue = () => {
           </Flex>
         </FormField>
         <Box>
-          <Button type="submit" variant="@primary">
+          <Button type="submit" visual="@primary">
             Submit
           </Button>
         </Box>
@@ -114,7 +114,7 @@ export const Disabled = () => {
 
   return (
     <Form {...form} onSubmit={(values) => console.log(values)}>
-      <Stack spacing={4}>
+      <Stack gap={4}>
         <FormField>
           <Flex align="center" gap={4}>
             <FormFieldLabel>Label</FormFieldLabel>
@@ -127,7 +127,7 @@ export const Disabled = () => {
               type="custom"
               render={({ field }) => (
                 <>
-                  <Input isDisabled w={24} size="sm" {...field} />
+                  <Input disabled w={24} size="sm" {...field} />
                   <FormFieldError />
                 </>
               )}
@@ -138,7 +138,7 @@ export const Disabled = () => {
           </Flex>
         </FormField>
         <Box>
-          <Button type="submit" variant="@primary">
+          <Button type="submit" visual="@primary">
             Submit
           </Button>
         </Box>

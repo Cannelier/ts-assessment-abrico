@@ -25,10 +25,9 @@ export const AdminBackButton = (props: AdminBackButtonProps) => {
       confirmText={t('common:confirmDiscardChanges.confirmText')}
       cancelText={t('common:confirmDiscardChanges.cancelText')}
     >
-      <IconButton
-        aria-label={t('common:actions.back')}
-        icon={rtlValue(<LuArrowLeft />, <LuArrowRight />)}
-      />
+      <IconButton aria-label={t('common:actions.back')}>
+        {rtlValue(<LuArrowLeft />, <LuArrowRight />)}
+      </IconButton>
     </ConfirmModal>
   );
 };

@@ -38,7 +38,7 @@ export type FieldCommonProps<
 > = Omit<FieldCustomProps<TFieldValues, TName>, 'render' | 'type'> & {
   size?: FormFieldSize;
   displayError?: boolean;
-  isDisabled?: boolean;
+  disabled?: boolean;
 };
 
 export type FormFieldControllerProps<

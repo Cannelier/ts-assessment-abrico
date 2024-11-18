@@ -1,10 +1,12 @@
-export const pinInputTheme = {
-  defaultProps: {
-    focusBorderColor: 'brand.500',
+import { defineRecipe } from '@chakra-ui/react';
+
+export const pinInputRecipe = defineRecipe({
+  base: {
+    _focus: { borderColor: 'brand.500' },
   },
   variants: {
-    outline: () => {
-      return {
+    visual: {
+      outline: {
         bg: 'white',
         borderColor: 'gray.200',
         boxShadow: 'sm',
@@ -12,7 +14,7 @@ export const pinInputTheme = {
           bg: 'whiteAlpha.50',
           borderColor: 'whiteAlpha.100',
         },
-      };
+      },
     },
   },
-};
+});

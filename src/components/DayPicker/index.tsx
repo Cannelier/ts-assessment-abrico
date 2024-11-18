@@ -37,7 +37,7 @@ export type DayPickerProps = {
   required?: boolean;
   arePastDaysDisabled?: boolean;
   hasTodayButton?: boolean;
-  isDisabled?: boolean;
+  disabled?: boolean;
   usePortal?: boolean;
   autoFocus?: boolean;
   onClose?(day?: Date | null): void;
@@ -53,7 +53,7 @@ export const DayPicker: FC<DayPickerProps> = ({
   dateFormat = DATE_FORMAT,
   placeholder = 'JJ/MM/AAAA',
   inputProps = {},
-  isDisabled = false,
+  disabled = false,
   autoFocus = false,
   onMonthChange = () => {},
   ...rest
@@ -132,9 +132,9 @@ export const DayPicker: FC<DayPickerProps> = ({
           icon={FiCalendar}
           fontSize={size}
           transform="scale(1.2)"
-          color={isDisabled ? 'gray.300' : 'gray.400'}
+          color={disabled ? 'gray.300' : 'gray.400'}
           _dark={{
-            color: isDisabled ? 'gray.500' : 'gray.300',
+            color: disabled ? 'gray.500' : 'gray.300',
           }}
         />
       </InputLeftElement>
@@ -146,7 +146,7 @@ export const DayPicker: FC<DayPickerProps> = ({
         placeholder={placeholder}
         onBlur={(e) => handleInputBlur(e.target.value)}
         onFocus={() => openPopper()}
-        isDisabled={isDisabled}
+        disabled={disabled}
         autoFocus={autoFocus}
         {...inputProps} // We want the style to be applied on the input (like the background)
       />

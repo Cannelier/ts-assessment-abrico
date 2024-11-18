@@ -36,7 +36,7 @@ export const DemoModalInterceptor = ({ onClose }: { onClose: () => void }) => {
         <ModalCloseButton />
         <ModalHeader>👋 Demo Mode</ModalHeader>
         <ModalBody>
-          <Stack spacing={4}>
+          <Stack gap={4}>
             <Text>
               This is a <strong>read-only demo</strong>, this action is
               disabled.
@@ -80,12 +80,12 @@ export const DemoModalInterceptor = ({ onClose }: { onClose: () => void }) => {
                     </Link>
                     , we will be happy to help you!{' '}
                   </Text>
-                  <HStack spacing={4}>
+                  <HStack gap={4}>
                     <Button
                       as="a"
                       href="mailto:start-ui@bearstudio.fr"
                       size="sm"
-                      variant="@primary"
+                      visual="@primary"
                     >
                       Get in touch
                     </Button>

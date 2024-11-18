@@ -37,13 +37,13 @@ export const Default = () => {
 
   return (
     <Form {...form} onSubmit={(values) => console.log(values)}>
-      <Stack spacing={4} maxW="20rem">
+      <Stack gap={4} maxW="20rem">
         <FormField>
           <FormFieldLabel>Code</FormFieldLabel>
           <FormFieldController type="otp" control={form.control} name="code" />
         </FormField>
         <Box>
-          <Button type="submit" variant="@primary">
+          <Button type="submit" visual="@primary">
             Submit
           </Button>
         </Box>
@@ -62,13 +62,13 @@ export const DefaultValue = () => {
 
   return (
     <Form {...form} onSubmit={(values) => console.log(values)}>
-      <Stack spacing={4} maxW="20rem">
+      <Stack gap={4} maxW="20rem">
         <FormField>
           <FormFieldLabel>Code</FormFieldLabel>
           <FormFieldController type="otp" control={form.control} name="code" />
         </FormField>
         <Box>
-          <Button type="submit" variant="@primary">
+          <Button type="submit" visual="@primary">
             Submit
           </Button>
         </Box>
@@ -82,18 +82,18 @@ export const Disabled = () => {
 
   return (
     <Form {...form} onSubmit={(values) => console.log(values)}>
-      <Stack spacing={4} maxW="20rem">
+      <Stack gap={4} maxW="20rem">
         <FormField>
           <FormFieldLabel>Code</FormFieldLabel>
           <FormFieldController
             type="otp"
             control={form.control}
             name="code"
-            isDisabled
+            disabled
           />
         </FormField>
         <Box>
-          <Button type="submit" variant="@primary">
+          <Button type="submit" visual="@primary">
             Submit
           </Button>
         </Box>
@@ -110,7 +110,7 @@ export const CustomLength = () => {
 
   return (
     <Form {...form} onSubmit={(values) => console.log(values)}>
-      <Stack spacing={4} maxW="12rem">
+      <Stack gap={4} maxW="12rem">
         <FormField>
           <FormFieldLabel>Code</FormFieldLabel>
           <FormFieldController
@@ -121,7 +121,7 @@ export const CustomLength = () => {
           />
         </FormField>
         <Box>
-          <Button type="submit" variant="@primary">
+          <Button type="submit" visual="@primary">
             Submit
           </Button>
         </Box>
@@ -135,7 +135,7 @@ export const AutoSubmit = () => {
 
   return (
     <Form {...form} onSubmit={(values) => console.log(values)}>
-      <Stack spacing={4} maxW="20rem">
+      <Stack gap={4} maxW="20rem">
         <FormField>
           <FormFieldLabel>Code</FormFieldLabel>
           <FormFieldController
@@ -146,7 +146,7 @@ export const AutoSubmit = () => {
           />
         </FormField>
         <Box>
-          <Button type="submit" variant="@primary">
+          <Button type="submit" visual="@primary">
             Submit
           </Button>
         </Box>
@@ -160,7 +160,7 @@ export const ChakraProps = () => {
 
   return (
     <Form {...form} onSubmit={(values) => console.log(values)}>
-      <Stack spacing={4} maxW="20rem">
+      <Stack gap={4} maxW="20rem">
         <FormField>
           <FormFieldLabel>Code</FormFieldLabel>
           <FormFieldController
@@ -177,7 +177,7 @@ export const ChakraProps = () => {
         </FormField>
 
         <Box>
-          <Button type="submit" variant="@primary">
+          <Button type="submit" visual="@primary">
             Submit
           </Button>
         </Box>

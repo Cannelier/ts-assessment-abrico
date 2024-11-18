@@ -12,7 +12,7 @@ export const Default = () => {
   const [selectedDay, setSelectedDay] = useState<Date | null>();
 
   return (
-    <Stack spacing={2}>
+    <Stack gap={2}>
       <Text>Date : {JSON.stringify(selectedDay)}</Text>
       <DayPicker
         value={selectedDay}
@@ -33,7 +33,7 @@ export const WithDefaultValue = () => {
   const [selectedDay, setSelectedDay] = useState<Date | null>(new Date());
 
   return (
-    <Stack spacing={2}>
+    <Stack gap={2}>
       <Text>Date : {JSON.stringify(selectedDay)}</Text>
       <DayPicker value={selectedDay} onChange={setSelectedDay} />
     </Stack>
@@ -44,20 +44,20 @@ export const AutoFocus = () => {
   const [selectedDay, setSelectedDay] = useState<Date | null>(new Date());
 
   return (
-    <Stack spacing={2}>
+    <Stack gap={2}>
       <Text>Date : {JSON.stringify(selectedDay)}</Text>
       <DayPicker value={selectedDay} onChange={setSelectedDay} autoFocus />
     </Stack>
   );
 };
 
-export const IsDisabled = () => {
+export const disabled = () => {
   const [selectedDay, setSelectedDay] = useState<Date | null>(new Date());
 
   return (
-    <Stack spacing={2}>
+    <Stack gap={2}>
       <Text>Date : {JSON.stringify(selectedDay)}</Text>
-      <DayPicker value={selectedDay} onChange={setSelectedDay} isDisabled />
+      <DayPicker value={selectedDay} onChange={setSelectedDay} disabled />
     </Stack>
   );
 };
@@ -66,7 +66,7 @@ export const WithPastDaysDisabled = () => {
   const [selectedDay, setSelectedDay] = useState<Date | null>(new Date());
 
   return (
-    <Stack spacing={2}>
+    <Stack gap={2}>
       <Text>Date : {JSON.stringify(selectedDay)}</Text>
       <DayPicker
         value={selectedDay}
@@ -81,7 +81,7 @@ export const WithoutPortal = () => {
   const [selectedDay, setSelectedDay] = useState<Date | null>(new Date());
 
   return (
-    <Stack spacing={2}>
+    <Stack gap={2}>
       <Text>Date : {JSON.stringify(selectedDay)}</Text>
       <DayPicker
         value={selectedDay}
@@ -97,7 +97,7 @@ export const Format = () => {
   const [defaultDay, setDefaultDay] = useState<Date | null>(new Date());
 
   return (
-    <Stack spacing={2}>
+    <Stack gap={2}>
       <Text>Date : {JSON.stringify(selectedDay)}</Text>
       <DayPicker
         value={selectedDay}

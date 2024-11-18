@@ -75,7 +75,7 @@ export default function PageAdminRepositoryCreate() {
               <AdminCancelButton withConfirm={form.formState.isDirty} />
               <Button
                 type="submit"
-                variant="@primary"
+                visual="@primary"
                 isLoading={
                   createRepository.isLoading || createRepository.isSuccess
                 }

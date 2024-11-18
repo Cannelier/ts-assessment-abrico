@@ -59,7 +59,7 @@ export const FieldMultiSelect = <
               value={selectValues}
               menuPortalTarget={document.body}
               options={props.options}
-              isDisabled={props.isDisabled}
+              disabled={props.disabled}
               onChange={(options) =>
                 // @ts-expect-error TODO should fix the typing. This error pops when
                 // we propagate the `selectProps`

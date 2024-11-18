@@ -87,15 +87,15 @@ export const AdminLayoutPageTopBar = ({
         {...containerProps}
       >
         <Box w="full" h="0" pb="safe-top" />
-        <HStack w="full" spacing="4" justifyContent="center">
+        <HStack w="full" gap="4" justifyContent="center">
           {!!leftActions && (
-            <ButtonGroup size="sm" spacing={3}>
+            <ButtonGroup size="sm" gap={3}>
               {leftActions}
             </ButtonGroup>
           )}
           <Box flex="1">{children}</Box>
           {!!rightActions && (
-            <ButtonGroup size="sm" spacing={3}>
+            <ButtonGroup size="sm" gap={3}>
               {rightActions}
             </ButtonGroup>
           )}
@@ -132,7 +132,7 @@ export const AdminLayoutPageContent = ({
       <PageContainer pb={16} py={4} {...containerProps}>
         <Stack
           direction={{ base: 'column', lg: 'row' }}
-          spacing={{ base: '4', lg: '8' }}
+          gap={{ base: '4', lg: '8' }}
           flex="1"
         >
           {nav && (

@@ -82,13 +82,13 @@ export const PaginationButtonFirstPage: FC<
     <IconButton
       onClick={() => setPage(firstPage)}
       aria-label={t('components:pagination.firstPage')}
-      icon={
-        <Icon icon={rtlValue(LuChevronsLeft, LuChevronsRight)} fontSize="lg" />
-      }
       size="sm"
-      isDisabled={isFirstPage}
+      disabled={isFirstPage}
       {...rest}
-    />
+    >
+      {' '}
+      <Icon icon={rtlValue(LuChevronsLeft, LuChevronsRight)} fontSize="lg" />
+    </IconButton>
   );
 };
 
@@ -106,7 +106,7 @@ export const PaginationButtonPrevPage: FC<
         <Icon icon={rtlValue(LuChevronLeft, LuChevronRight)} fontSize="lg" />
       }
       size="sm"
-      isDisabled={isFirstPage}
+      disabled={isFirstPage}
       {...rest}
     />
   );
@@ -122,13 +122,12 @@ export const PaginationButtonLastPage: FC<
     <IconButton
       onClick={() => setPage(lastPage)}
       aria-label={t('components:pagination.lastPage')}
-      icon={
-        <Icon icon={rtlValue(LuChevronsRight, LuChevronsLeft)} fontSize="lg" />
-      }
       size="sm"
-      isDisabled={isLastPage}
+      disabled={isLastPage}
       {...rest}
-    />
+    >
+      <Icon icon={rtlValue(LuChevronsRight, LuChevronsLeft)} fontSize="lg" />
+    </IconButton>
   );
 };
 
@@ -142,13 +141,12 @@ export const PaginationButtonNextPage: FC<
     <IconButton
       onClick={() => setPage(page + 1)}
       aria-label={t('components:pagination.nextPage')}
-      icon={
-        <Icon icon={rtlValue(LuChevronRight, LuChevronLeft)} fontSize="lg" />
-      }
       size="sm"
-      isDisabled={isLastPage}
+      disabled={isLastPage}
       {...rest}
-    />
+    >
+      <Icon icon={rtlValue(LuChevronRight, LuChevronLeft)} fontSize="lg" />
+    </IconButton>
   );
 };
 
@@ -171,7 +169,7 @@ export const PaginationInfo = ({ ...rest }) => {
   };
   return (
     <HStack
-      spacing="1"
+      gap="1"
       align="center"
       textAlign="center"
       justify="center"

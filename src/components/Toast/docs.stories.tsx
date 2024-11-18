@@ -1,10 +1,11 @@
 import React from 'react';
 
-import { Box, Button, Flex } from '@chakra-ui/react';
+import { Box, Flex } from '@chakra-ui/react';
 import { Meta } from '@storybook/react';
 import { toast } from 'sonner';
 
 import { toastCustom } from '@/components/Toast';
+import { Button } from '@/components/ui/button';
 
 export default {
   title: 'Components/Toast',

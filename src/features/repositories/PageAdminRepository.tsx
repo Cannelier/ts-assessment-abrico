@@ -68,7 +68,7 @@ export default function PageAdminRepository() {
               href={ROUTES_REPOSITORIES.admin.update({
                 id: params?.id?.toString() ?? 'unknown',
               })}
-              isDisabled={!params?.id}
+              disabled={!params?.id}
               icon={<LuPenLine />}
             >
               {t('common:actions.edit')}
@@ -91,14 +91,14 @@ export default function PageAdminRepository() {
               <IconButton
                 aria-label={t('common:actions.delete')}
                 icon={<LuTrash2 />}
-                isDisabled={!repository.data}
+                disabled={!repository.data}
                 isLoading={repositoryRemove.isLoading}
               />
             </ConfirmModal>
           </>
         }
       >
-        {repository.isLoading && <SkeletonText maxW="6rem" noOfLines={2} />}
+        {repository.isLoading && <SkeletonText maxW="6rem" lineClamp={2} />}
         {repository.isSuccess && (
           <Heading size="sm">{repository.data?.name}</Heading>
         )}
@@ -109,7 +109,7 @@ export default function PageAdminRepository() {
         {repository.isSuccess && (
           <Card>
             <CardBody>
-              <Stack spacing={4}>
+              <Stack gap={4}>
                 <Box>
                   <Text fontSize="sm" fontWeight="bold">
                     {t('repositories:data.name.label')}

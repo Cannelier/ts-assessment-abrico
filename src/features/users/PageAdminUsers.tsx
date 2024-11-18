@@ -59,8 +59,8 @@ export default function PageAdminUsers() {
   return (
     <AdminLayoutPage containerMaxWidth="container.xl" nav={<AdminNav />}>
       <AdminLayoutPageContent>
-        <Stack spacing={4}>
-          <HStack spacing={4} alignItems={{ base: 'end', md: 'center' }}>
+        <Stack gap={4}>
+          <HStack gap={4} alignItems={{ base: 'end', md: 'center' }}>
             <Flex
               direction={{ base: 'column', md: 'row' }}
               rowGap={2}
@@ -82,7 +82,7 @@ export default function PageAdminUsers() {
             <ResponsiveIconButton
               as={Link}
               href={ROUTES_USERS.admin.create()}
-              variant="@primary"
+              visual="@primary"
               size="sm"
               icon={<LuPlus />}
             >
@@ -146,7 +146,7 @@ export default function PageAdminUsers() {
                           key={authorization}
                           lineHeight={1}
                         >
-                          <chakra.span noOfLines={1}>
+                          <chakra.span lineClamp={1}>
                             {t(
                               `users:data.authorizations.options.${authorization}`
                             )}
@@ -159,7 +159,7 @@ export default function PageAdminUsers() {
                     display={{ base: 'none', md: 'flex' }}
                   >
                     <DataListText
-                      noOfLines={2}
+                      lineClamp={2}
                       pointerEvents="auto"
                       color="text-dimmed"
                     >
@@ -190,7 +190,7 @@ export default function PageAdminUsers() {
                     size="sm"
                     onClick={() => users.fetchNextPage()}
                     isLoading={users.isFetchingNextPage}
-                    isDisabled={!users.hasNextPage}
+                    disabled={!users.hasNextPage}
                   >
                     {t('users:list.loadMore.button')}
                   </Button>

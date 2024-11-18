@@ -30,8 +30,8 @@ export default function PageLogin() {
   };
 
   return (
-    <Stack spacing={6}>
-      <Stack spacing={1}>
+    <Stack gap={6}>
+      <Stack gap={1}>
         <Heading size="md">{t('auth:login.appTitle')}</Heading>
         <Button
           as={Link}

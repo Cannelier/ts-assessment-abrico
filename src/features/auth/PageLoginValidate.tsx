@@ -77,7 +77,7 @@ export default function PageLoginValidate() {
   });
 
   return (
-    <Stack spacing={6}>
+    <Stack gap={6}>
       <Button
         me="auto"
         size="sm"

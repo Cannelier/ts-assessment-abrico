@@ -91,7 +91,7 @@ export default function PageAdminUserUpdate() {
               <AdminCancelButton withConfirm={form.formState.isDirty} />
               <Button
                 type="submit"
-                variant="@primary"
+                visual="@primary"
                 isLoading={userUpdate.isLoading || userUpdate.isSuccess}
               >
                 {t('users:update.action.save')}
@@ -100,7 +100,7 @@ export default function PageAdminUserUpdate() {
           }
         >
           {user.isLoading || user.isError ? (
-            <SkeletonText maxW="6rem" noOfLines={2} />
+            <SkeletonText maxW="6rem" lineClamp={2} />
           ) : (
             <Flex
               flexDirection={{ base: 'column', md: 'row' }}

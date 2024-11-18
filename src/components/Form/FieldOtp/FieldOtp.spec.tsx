@@ -102,7 +102,7 @@ test('disabled', async () => {
             type="otp"
             control={form.control}
             name="code"
-            isDisabled
+            disabled
           />
         </FormField>
       )}

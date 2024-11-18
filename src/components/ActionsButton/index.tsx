@@ -1,6 +1,6 @@
-import React, { FC } from 'react';
+import React, { FC, forwardRef } from 'react';
 
-import { IconButton, IconButtonProps, forwardRef } from '@chakra-ui/react';
+import { IconButton, IconButtonProps } from '@chakra-ui/react';
 import { useTranslation } from 'react-i18next';
 import { LuMoreVertical } from 'react-icons/lu';
 
@@ -13,6 +13,7 @@ export const ActionsButton: FC<React.PropsWithChildren<ActionsButtonProps>> =
     const { t } = useTranslation(['components']);
     return (
       <IconButton
+        // @ts-expect-error
         ref={ref}
         display="inline-flex"
         borderRadius="full"
@@ -24,10 +25,11 @@ export const ActionsButton: FC<React.PropsWithChildren<ActionsButtonProps>> =
         _hover={{ opacity: 1, bg: 'rgba(0, 0, 0, 0.05)' }}
         _focusVisible={{ opacity: 1, boxShadow: 'outline' }}
         _active={{ bg: 'rgba(0, 0, 0, 0.1)' }}
-        icon={<LuMoreVertical />}
         aria-label={label ?? t('components:actionsButton.label')}
         {...rest}
-      />
+      >
+        <LuMoreVertical />
+      </IconButton>
     );
   });
 

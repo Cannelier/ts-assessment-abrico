@@ -42,7 +42,7 @@ export const FieldTextarea = <
             placeholder={props.placeholder}
             autoFocus={props.autoFocus}
             rows={props.rows}
-            isDisabled={props.isDisabled}
+            disabled={props.disabled}
             {...props.textareaProps}
             {...field}
           />

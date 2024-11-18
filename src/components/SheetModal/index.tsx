@@ -1,26 +1,25 @@
 import { ComponentProps } from 'react';
 
-import {
-  Box,
-  Modal,
-  ModalBody,
-  ModalCloseButton,
-  ModalContent,
-  ModalOverlay,
-  ModalProps,
-} from '@chakra-ui/react';
+import { Box } from '@chakra-ui/react';
 import { Sheet } from 'react-modal-sheet';
+
+import {
+  DialogBackdrop,
+  DialogBody,
+  DialogDescription,
+  DialogRoot,
+} from '@/components/ui/dialog';
 
 export type SheetModalProps = Pick<
   ComponentProps<typeof Sheet>,
   'isOpen' | 'onClose' | 'children'
-> & { size?: ModalProps['size'] };
+> & { size?: DialogContentProps['size'] };
 export const SheetModal = (props: SheetModalProps) => {
   return (
     <>
       <Box
         as={Sheet}
-        __css={{
+        css={{
           '.react-modal-sheet-backdrop': {
             display: { base: 'flex', sm: 'none !important' },
             backdropFilter: 'blur(4px)',
@@ -42,7 +41,7 @@ export const SheetModal = (props: SheetModalProps) => {
             },
           },
         }}
-        isOpen={props.isOpen}
+        open={props.isOpen}
         onClose={props.onClose}
         detent="content-height"
       >
@@ -52,17 +51,17 @@ export const SheetModal = (props: SheetModalProps) => {
         </Sheet.Container>
         <Sheet.Backdrop />
       </Box>
-      <Modal
+      <DialogRoot
         size={props.size ?? 'xs'}
-        isOpen={props.isOpen}
-        onClose={props.onClose}
+        open={props.isOpen}
+        onOpenChange={props.isOpen ? undefined : props.onClose}
       >
-        <ModalOverlay display={{ base: 'none', sm: 'flex' }} />
-        <ModalContent display={{ base: 'none', sm: 'flex' }}>
+        <DialogBackdrop display={{ base: 'none', sm: 'flex' }} />
+        <DialogBody display={{ base: 'none', sm: 'flex' }}>
           <ModalCloseButton />
-          <ModalBody>{props.children}</ModalBody>
-        </ModalContent>
-      </Modal>{' '}
+          <DialogDescription>{props.children}</DialogDescription>
+        </DialogBody>
+      </DialogRoot>{' '}
     </>
   );
 };

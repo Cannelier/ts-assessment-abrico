@@ -23,7 +23,7 @@ const Color = ({ children, ...rest }: FlexProps) => (
 
 const Colors = ({ colorScheme = 'gray', ...rest }) => (
   <HStack
-    spacing="0"
+    gap="0"
     overflow="hidden"
     boxShadow="lg"
     color={`${colorScheme}.700`}

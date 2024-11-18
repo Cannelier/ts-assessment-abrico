@@ -166,7 +166,7 @@ export const InputNumber = forwardRef<InputNumberProps, 'input'>(
             }}
           >
             <Button
-              isDisabled={max !== undefined && (value ?? 0) >= max}
+              disabled={max !== undefined && (value ?? 0) >= max}
               onClick={() => {
                 onChange(clamp((value ?? 0) + step, { min, max }));
               }}
@@ -189,7 +189,7 @@ export const InputNumber = forwardRef<InputNumberProps, 'input'>(
               }}
             />
             <Button
-              isDisabled={min !== undefined && (value ?? 0) <= min}
+              disabled={min !== undefined && (value ?? 0) <= min}
               onClick={() => {
                 onChange(clamp((value ?? 0) - step, { min, max }));
               }}

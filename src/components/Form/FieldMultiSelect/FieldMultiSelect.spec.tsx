@@ -98,7 +98,7 @@ test('disabled', async () => {
             type="multi-select"
             control={form.control}
             name="colors"
-            isDisabled
+            disabled
             options={options}
           />
         </FormField>

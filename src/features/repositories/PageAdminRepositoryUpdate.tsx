@@ -93,7 +93,7 @@ export default function PageAdminRepositoryUpdate() {
               <AdminCancelButton withConfirm={form.formState.isDirty} />
               <Button
                 type="submit"
-                variant="@primary"
+                visual="@primary"
                 isLoading={
                   updateRepository.isLoading || updateRepository.isSuccess
                 }
@@ -103,8 +103,8 @@ export default function PageAdminRepositoryUpdate() {
             </>
           }
         >
-          <Stack flex={1} spacing={0}>
-            {repository.isLoading && <SkeletonText maxW="6rem" noOfLines={2} />}
+          <Stack flex={1} gap={0}>
+            {repository.isLoading && <SkeletonText maxW="6rem" lineClamp={2} />}
             {repository.isSuccess && (
               <Heading size="sm">{repository.data?.name}</Heading>
             )}

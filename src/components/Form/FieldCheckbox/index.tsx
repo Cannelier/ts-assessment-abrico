@@ -21,7 +21,7 @@ export type FieldCheckboxProps<
   label?: ReactNode;
   checkboxProps?: RemoveFromType<
     RemoveFromType<
-      Omit<CheckboxProps, 'isChecked' | 'isDisabled' | 'children'>,
+      Omit<CheckboxProps, 'checked' | 'disabled' | 'children'>,
       CheckboxRootProps
     >,
     ControllerRenderProps
@@ -43,8 +43,8 @@ export const FieldCheckbox = <
         <Flex flexDirection="column" gap={1} flex={1} {...props.containerProps}>
           <Checkbox
             size={props.size}
-            isChecked={!!value}
-            isDisabled={props.isDisabled}
+            checked={!!value}
+            disabled={props.disabled}
             {...props.checkboxProps}
             {...field}
           >

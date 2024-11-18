@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Button, Flex, Stack } from '@chakra-ui/react';
+import { Flex, Stack } from '@chakra-ui/react';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { parseAsString, useQueryStates } from 'nuqs';
 import { SubmitHandler, useForm, useWatch } from 'react-hook-form';
@@ -15,6 +15,7 @@ import {
 } from '@/components/Form';
 import { LoaderFull } from '@/components/LoaderFull';
 import { toastCustom } from '@/components/Toast';
+import { Button } from '@/components/ui/button';
 import { EmailVerificationCodeModale } from '@/features/account/EmailVerificationCodeModal';
 import {
   FormFieldsAccountEmail,
@@ -67,9 +68,9 @@ export const AccountEmailForm = () => {
       {account.isLoading && <LoaderFull />}
       {account.isError && <ErrorPage />}
       {account.isSuccess && (
-        <Stack spacing={4}>
+        <Stack gap={4}>
           <Form {...form} onSubmit={onSubmit}>
-            <Stack spacing={4}>
+            <Stack gap={4}>
               <FormField>
                 <FormFieldLabel>{t('account:data.email.label')}</FormFieldLabel>
                 <FormFieldController
@@ -81,9 +82,9 @@ export const AccountEmailForm = () => {
               <Flex alignItems="center" gap={4}>
                 <Button
                   type="submit"
-                  variant="@primary"
-                  isDisabled={account.data.email === email}
-                  isLoading={updateEmail.isLoading}
+                  visual="@primary"
+                  disabled={account.data.email === email}
+                  loading={updateEmail.isLoading}
                 >
                   {t('account:email.actions.update')}
                 </Button>

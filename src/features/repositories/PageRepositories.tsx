@@ -31,7 +31,7 @@ export default function PageRepositories() {
 
   return (
     <AppLayoutPage>
-      <Stack flex={1} spacing={4}>
+      <Stack flex={1} gap={4}>
         <Heading size="md">{t('repositories:list.title')}</Heading>
 
         {repositories.isLoading && <LoaderFull />}

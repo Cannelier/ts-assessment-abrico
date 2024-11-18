@@ -44,7 +44,7 @@ export const Default = () => {
 
   return (
     <Form {...form} onSubmit={onSubmit}>
-      <Stack spacing={4}>
+      <Stack gap={4}>
         <FormField>
           <FormFieldLabel>Name</FormFieldLabel>
           <FormFieldController control={form.control} type="text" name="name" />
@@ -100,7 +100,7 @@ export const Default = () => {
         </FormField>
 
         <Box>
-          <Button type="submit" variant="@primary">
+          <Button type="submit" visual="@primary">
             Submit
           </Button>
         </Box>
@@ -128,7 +128,7 @@ export const NoHtmlForm = () => {
   return (
     <Form {...form} noHtmlForm>
       <form noValidate onSubmit={form.handleSubmit(onSubmit)}>
-        <Stack spacing={4}>
+        <Stack gap={4}>
           <FormField>
             <FormFieldLabel>Name</FormFieldLabel>
             <FormFieldController
@@ -188,7 +188,7 @@ export const NoHtmlForm = () => {
           </FormField>
 
           <Box>
-            <Button type="submit" variant="@primary">
+            <Button type="submit" visual="@primary">
               Submit
             </Button>
           </Box>

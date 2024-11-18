@@ -1,39 +1,25 @@
-import { StyleFunctionProps, Styles } from '@chakra-ui/theme-tools';
+import { SystemStyleObject } from '@chakra-ui/react';
 
-import * as externals from './externals';
-
-const externalsStyles = (props: StyleFunctionProps) =>
-  Object.values(externals).reduce(
-    (acc: object, cur) => ({
-      ...acc,
-      ...(typeof cur === 'function' ? cur(props) : cur),
-    }),
-    {}
-  );
-
-export const styles: Styles = {
-  global: (props) => ({
-    html: {
+export const styles: Record<string, SystemStyleObject> = {
+  html: {
+    bg: 'gray.900',
+  },
+  body: {
+    WebkitTapHighlightColor: 'transparent',
+    bg: 'white',
+    _dark: {
       bg: 'gray.900',
     },
-    body: {
-      WebkitTapHighlightColor: 'transparent',
-      bg: 'white',
-      _dark: {
-        bg: 'gray.900',
-      },
-    },
-    '#chakra-toast-portal > *': {
-      pt: 'safe-top',
-      pl: 'safe-left',
-      pr: 'safe-right',
-      pb: 'safe-bottom',
-    },
-    form: {
-      display: 'flex',
-      flexDir: 'column',
-      flex: 1,
-    },
-    ...externalsStyles(props),
-  }),
+  },
+  '#chakra-toast-portal > *': {
+    pt: 'safe-top',
+    pl: 'safe-left',
+    pr: 'safe-right',
+    pb: 'safe-bottom',
+  },
+  form: {
+    display: 'flex',
+    flexDir: 'column',
+    flex: 1,
+  },
 };

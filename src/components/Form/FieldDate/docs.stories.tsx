@@ -25,13 +25,13 @@ export const Default = () => {
 
   return (
     <Form {...form} onSubmit={(values) => console.log(values)}>
-      <Stack spacing={4}>
+      <Stack gap={4}>
         <FormField>
           <FormFieldLabel>Date</FormFieldLabel>
           <FormFieldController control={form.control} type="date" name="date" />
         </FormField>
         <Box>
-          <Button type="submit" variant="@primary">
+          <Button type="submit" visual="@primary">
             Submit
           </Button>
         </Box>
@@ -50,13 +50,13 @@ export const DefaultValue = () => {
 
   return (
     <Form {...form} onSubmit={(values) => console.log(values)}>
-      <Stack spacing={4}>
+      <Stack gap={4}>
         <FormField>
           <FormFieldLabel>Date</FormFieldLabel>
           <FormFieldController control={form.control} type="date" name="date" />
         </FormField>
         <Box>
-          <Button type="submit" variant="@primary">
+          <Button type="submit" visual="@primary">
             Submit
           </Button>
         </Box>
@@ -70,18 +70,18 @@ export const Disabled = () => {
 
   return (
     <Form {...form} onSubmit={(values) => console.log(values)}>
-      <Stack spacing={4}>
+      <Stack gap={4}>
         <FormField>
           <FormFieldLabel>Date</FormFieldLabel>
           <FormFieldController
             control={form.control}
             type="date"
             name="date"
-            isDisabled
+            disabled
           />
         </FormField>
         <Box>
-          <Button type="submit" variant="@primary">
+          <Button type="submit" visual="@primary">
             Submit
           </Button>
         </Box>
@@ -95,7 +95,7 @@ export const ChakraProps = () => {
 
   return (
     <Form {...form} onSubmit={(values) => console.log(values)}>
-      <Stack spacing={4}>
+      <Stack gap={4}>
         <FormField>
           <FormFieldLabel>Date</FormFieldLabel>
           <FormFieldController
@@ -111,7 +111,7 @@ export const ChakraProps = () => {
           />
         </FormField>
         <Box>
-          <Button type="submit" variant="@primary">
+          <Button type="submit" visual="@primary">
             Submit
           </Button>
         </Box>

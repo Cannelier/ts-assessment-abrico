@@ -2,27 +2,29 @@ import React from 'react';
 
 import {
   Box,
-  Button,
-  Modal,
-  ModalBody,
-  ModalCloseButton,
   ModalContent,
-  ModalFooter,
-  ModalHeader,
-  ModalOverlay,
-  Popover,
-  PopoverArrow,
-  PopoverBody,
-  PopoverCloseButton,
-  PopoverContent,
-  PopoverHeader,
-  PopoverTrigger,
   Portal,
   Stack,
   useDisclosure,
 } from '@chakra-ui/react';
 import { Meta } from '@storybook/react';
 import { Options } from 'chakra-react-select';
+
+import { Button } from '@/components/ui/button';
+import {
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogRoot,
+} from '@/components/ui/dialog';
+import {
+  PopoverArrow,
+  PopoverBody,
+  PopoverContent,
+  PopoverHeader,
+  PopoverRoot,
+  PopoverTrigger,
+} from '@/components/ui/popover';
 
 import { Select } from '.';
 
@@ -45,7 +47,7 @@ const selectOptions = [
 
 export const Default = () => {
   return (
-    <Stack spacing={2}>
+    <Stack gap={2}>
       <Select size="sm" options={selectOptions} />
       <Select size="md" options={selectOptions} />
       <Select size="lg" options={selectOptions} />
@@ -67,7 +69,7 @@ export const SelectWithPlaceholder = () => {
 };
 
 export const DisabledSelect = () => {
-  return <Select isDisabled />;
+  return <Select disabled />;
 };
 
 export const IsErrorSelect = () => {
@@ -177,7 +179,7 @@ export const SelectWithSomeDisabledOptions = () => {
     <Select
       options={[
         { value: 1, label: 'Option 1' },
-        { value: 2, label: 'Option 2', isDisabled: true },
+        { value: 2, label: 'Option 2', disabled: true },
         { value: 3, label: 'Option 3' },
       ]}
     />
@@ -186,7 +188,7 @@ export const SelectWithSomeDisabledOptions = () => {
 
 export const SelectInPopover = () => {
   return (
-    <Popover>
+    <PopoverRoot>
       <PopoverTrigger>
         <Button>Trigger</Button>
       </PopoverTrigger>
@@ -200,7 +202,7 @@ export const SelectInPopover = () => {
           </PopoverBody>
         </PopoverContent>
       </Portal>
-    </Popover>
+    </PopoverRoot>
   );
 };
 
@@ -210,22 +212,22 @@ export const SelectInModal = () => {
     <>
       <Button onClick={modal.onOpen}>Open Modal</Button>
 
-      <Modal isOpen={modal.isOpen} onClose={modal.onClose}>
+      <DialogRoot isOpen={modal.open} onClose={modal.onClose}>
         <ModalOverlay />
         <ModalContent>
-          <ModalHeader>Modal Title</ModalHeader>
+          <DialogHeader>Modal Title</DialogHeader>
           <ModalCloseButton />
-          <ModalBody>
+          <DialogDescription>
             <Select options={selectOptions} />
-          </ModalBody>
+          </DialogDescription>
 
-          <ModalFooter>
-            <Button variant="@primary" onClick={modal.onClose}>
+          <DialogFooter>
+            <Button visual="@primary" onClick={modal.onClose}>
               Close
             </Button>
-          </ModalFooter>
+          </DialogFooter>
         </ModalContent>
-      </Modal>
+      </DialogRoot>
     </>
   );
 };

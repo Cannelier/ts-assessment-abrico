@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { FC, forwardRef } from 'react';
 
-import { Text, TextProps, forwardRef } from '@chakra-ui/react';
+import { Text, TextProps } from '@chakra-ui/react';
 import { useTranslation } from 'react-i18next';
 import { numericFormatter } from 'react-number-format';
 
@@ -16,49 +16,52 @@ export type TextCurrencyProps = TextProps & {
   fixedDecimals?: boolean;
 };
 
-export const TextCurrency = forwardRef<TextCurrencyProps, 'span'>(
-  (
-    {
-      value,
-      locale,
-      currency = 'EUR',
-      prefix = '',
-      suffix = '',
-      decimals = 2,
-      fixedDecimals = true,
-      ...rest
-    },
-    ref
-  ) => {
-    const { i18n } = useTranslation();
-    const {
-      decimalsSeparator,
-      groupSeparator,
-      currencyPrefix,
-      currencySuffix,
-    } = getNumberFormatInfo({
-      locale: locale ?? i18n.language,
-      currency,
-    });
+export const TextCurrency: FC<React.PropsWithChildren<TextCurrencyProps>> =
+  forwardRef(
+    (
+      {
+        value,
+        locale,
+        currency = 'EUR',
+        prefix = '',
+        suffix = '',
+        decimals = 2,
+        fixedDecimals = true,
+        ...rest
+      },
+      ref
+    ) => {
+      const { i18n } = useTranslation();
+      const {
+        decimalsSeparator,
+        groupSeparator,
+        currencyPrefix,
+        currencySuffix,
+      } = getNumberFormatInfo({
+        locale: locale ?? i18n.language,
+        currency,
+      });
 
-    return (
-      <Text
-        ref={ref}
-        sx={{ fontVariantNumeric: 'tabular-nums' }}
-        opacity={value === null ? 0.6 : undefined}
-        {...rest}
-      >
-        {value !== null
-          ? numericFormatter(String(value), {
-              decimalScale: decimals,
-              fixedDecimalScale: fixedDecimals,
-              decimalSeparator: decimalsSeparator ?? '.',
-              thousandSeparator: groupSeparator ?? ',',
-              suffix: `${currencySuffix}${suffix}`,
-              prefix: `${currencyPrefix}${prefix}`,
-            })
-          : 'N/A'}
-      </Text>
-    );
-  }
-);
+      return (
+        <Text
+          // @ts-expect-error
+          ref={ref}
+          sx={{ fontVariantNumeric: 'tabular-nums' }}
+          opacity={value === null ? 0.6 : undefined}
+          {...rest}
+        >
+          {value !== null
+            ? numericFormatter(String(value), {
+                decimalScale: decimals,
+                fixedDecimalScale: fixedDecimals,
+                decimalSeparator: decimalsSeparator ?? '.',
+                thousandSeparator: groupSeparator ?? ',',
+                suffix: `${currencySuffix}${suffix}`,
+                prefix: `${currencyPrefix}${prefix}`,
+              })
+            : 'N/A'}
+        </Text>
+      );
+    }
+  );
+TextCurrency.displayName = 'TextCurrency';

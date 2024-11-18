@@ -29,7 +29,7 @@ export default function PageAdminDashboard() {
         <Heading size="md" mb="4">
           {t('adminDashboard:title')}
         </Heading>
-        <Stack spacing={4}>
+        <Stack gap={4}>
           <Alert status="success" colorScheme="brand" borderRadius="md">
             <AlertIcon />
             <Box flex="1">
@@ -45,7 +45,7 @@ export default function PageAdminDashboard() {
               </AlertDescription>
             </Box>
           </Alert>
-          <Wrap spacing={2}>
+          <Wrap gap={2}>
             <Button
               size="sm"
               as="a"

@@ -1,23 +1,22 @@
+import { Portal } from '@chakra-ui/react';
+
+import { Button } from '@/components/ui/button';
 import {
-  Button,
-  ButtonGroup,
-  Popover,
   PopoverArrow,
   PopoverBody,
-  PopoverCloseButton,
   PopoverContent,
   PopoverFooter,
   PopoverHeader,
+  PopoverRoot,
   PopoverTrigger,
-  Portal,
-} from '@chakra-ui/react';
+} from '@/components/ui/popover';
 
 export default {
   title: 'StyleGuide/Popovers',
 };
 
 export const Default = () => (
-  <Popover>
+  <PopoverRoot>
     <PopoverTrigger>
       <Button>Trigger</Button>
     </PopoverTrigger>
@@ -30,16 +29,16 @@ export const Default = () => (
         <PopoverFooter>
           <ButtonGroup size="sm" justifyContent="space-between" w="full">
             <Button>Cancel</Button>
-            <Button variant="@primary">Action</Button>
+            <Button visual="@primary">Action</Button>
           </ButtonGroup>
         </PopoverFooter>
       </PopoverContent>
     </Portal>
-  </Popover>
+  </PopoverRoot>
 );
 
 export const WithoutHeader = () => (
-  <Popover>
+  <PopoverRoot>
     <PopoverTrigger>
       <Button>Trigger</Button>
     </PopoverTrigger>
@@ -50,16 +49,16 @@ export const WithoutHeader = () => (
         <PopoverFooter>
           <ButtonGroup size="sm" justifyContent="space-between" w="full">
             <Button>Cancel</Button>
-            <Button variant="@primary">Action</Button>
+            <Button visual="@primary">Action</Button>
           </ButtonGroup>
         </PopoverFooter>
       </PopoverContent>
     </Portal>
-  </Popover>
+  </PopoverRoot>
 );
 
 export const WithoutBody = () => (
-  <Popover>
+  <PopoverRoot>
     <PopoverTrigger>
       <Button>Trigger</Button>
     </PopoverTrigger>
@@ -71,16 +70,16 @@ export const WithoutBody = () => (
         <PopoverFooter>
           <ButtonGroup size="sm" justifyContent="space-between" w="full">
             <Button>Cancel</Button>
-            <Button variant="@primary">Action</Button>
+            <Button visual="@primary">Action</Button>
           </ButtonGroup>
         </PopoverFooter>
       </PopoverContent>
     </Portal>
-  </Popover>
+  </PopoverRoot>
 );
 
 export const WithoutFooter = () => (
-  <Popover>
+  <PopoverRoot>
     <PopoverTrigger>
       <Button>Trigger</Button>
     </PopoverTrigger>
@@ -92,11 +91,11 @@ export const WithoutFooter = () => (
         <PopoverBody>Are you sure you want to have that milkshake?</PopoverBody>
       </PopoverContent>
     </Portal>
-  </Popover>
+  </PopoverRoot>
 );
 
 export const BodyOnly = () => (
-  <Popover>
+  <PopoverRoot>
     <PopoverTrigger>
       <Button>Trigger</Button>
     </PopoverTrigger>
@@ -107,5 +106,5 @@ export const BodyOnly = () => (
         <PopoverBody>Are you sure you want to have that milkshake?</PopoverBody>
       </PopoverContent>
     </Portal>
-  </Popover>
+  </PopoverRoot>
 );

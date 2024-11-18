@@ -33,7 +33,7 @@ export const SearchInput = forwardRef<SearchInputProps, 'input'>(
       delay = 500,
       placeholder,
       clearLabel,
-      isDisabled = false,
+      disabled = false,
       ...rest
     },
     ref
@@ -92,11 +92,11 @@ export const SearchInput = forwardRef<SearchInputProps, 'input'>(
           onChange={handleChange}
           value={search || ''}
           placeholder={placeholder ?? t('components:searchInput.placeholder')}
-          isDisabled={isDisabled}
+          disabled={disabled}
           onKeyDown={handleEscape}
         />
         <InputRightElement pointerEvents="none">
-          {!isDisabled && search ? (
+          {!disabled && search ? (
             <IconButton
               onClick={handleClear}
               variant="@secondary"
@@ -107,7 +107,7 @@ export const SearchInput = forwardRef<SearchInputProps, 'input'>(
               <LuX />
             </IconButton>
           ) : (
-            <Box pointerEvents="none" opacity={isDisabled ? 0.3 : undefined}>
+            <Box pointerEvents="none" opacity={disabled ? 0.3 : undefined}>
               <LuSearch />
             </Box>
           )}

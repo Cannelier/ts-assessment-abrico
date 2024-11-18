@@ -17,7 +17,7 @@ export const UserForm = () => {
   const form = useFormContext<FormFieldUser>();
 
   return (
-    <Stack spacing={4}>
+    <Stack gap={4}>
       <FormField>
         <FormFieldLabel>{t('users:data.name.label')}</FormFieldLabel>
         <FormFieldController control={form.control} type="text" name="name" />

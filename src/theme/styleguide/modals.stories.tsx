@@ -36,7 +36,7 @@ export const Default = () =>
             <ModalFooter>
               <ButtonGroup justifyContent="space-between" w="full">
                 <Button onClick={modal.onClose}>Cancel</Button>
-                <Button variant="@primary" onClick={modal.onClose}>
+                <Button visual="@primary" onClick={modal.onClose}>
                   Action
                 </Button>
               </ButtonGroup>
@@ -66,7 +66,7 @@ export const WithoutHeader = () =>
             <ModalFooter>
               <ButtonGroup justifyContent="space-between" w="full">
                 <Button onClick={modal.onClose}>Cancel</Button>
-                <Button variant="@primary" onClick={modal.onClose}>
+                <Button visual="@primary" onClick={modal.onClose}>
                   Action
                 </Button>
               </ButtonGroup>
@@ -92,7 +92,7 @@ export const WithoutBody = () =>
             <ModalFooter>
               <ButtonGroup justifyContent="space-between" w="full">
                 <Button onClick={modal.onClose}>Cancel</Button>
-                <Button variant="@primary" onClick={modal.onClose}>
+                <Button visual="@primary" onClick={modal.onClose}>
                   Action
                 </Button>
               </ButtonGroup>
@@ -171,7 +171,7 @@ export const Full = () =>
             <ModalFooter>
               <ButtonGroup justifyContent="space-between" w="full">
                 <Button onClick={modal.onClose}>Cancel</Button>
-                <Button variant="@primary" onClick={modal.onClose}>
+                <Button visual="@primary" onClick={modal.onClose}>
                   Action
                 </Button>
               </ButtonGroup>

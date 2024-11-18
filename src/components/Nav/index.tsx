@@ -50,7 +50,7 @@ export const Nav = ({ children, breakpoint = 'lg', ...rest }: NavProps) => {
     <NavContext.Provider value={{ active, setActive, isMenu: !!isMenu }}>
       <Menu matchWidth {...rest}>
         {!isMenu && (
-          <Stack spacing="1" opacity={!isHydrated ? 0 : undefined}>
+          <Stack gap="1" opacity={!isHydrated ? 0 : undefined}>
             {children}
           </Stack>
         )}
@@ -102,7 +102,7 @@ export const NavItem: ChakraComponent<'span', NavItemProps> = ({
             _dark={{ color: isActive ? 'brand.300' : 'gray.400' }}
           />
         )}
-        <Text as="span" noOfLines={isMenu ? 1 : 2}>
+        <Text as="span" lineClamp={isMenu ? 1 : 2}>
           {children}
         </Text>
       </Flex>
@@ -185,7 +185,7 @@ export const NavGroup: FC<React.PropsWithChildren<FlexProps>> = ({
       >
         {title}
       </Flex>
-      <Stack spacing="1">{children}</Stack>
+      <Stack gap="1">{children}</Stack>
     </Flex>
   );
 };

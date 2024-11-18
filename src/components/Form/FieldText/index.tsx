@@ -52,7 +52,7 @@ export const FieldText = <
           <InputGroup size={props.size}>
             <Input
               isInvalid={!!fieldState.error}
-              isDisabled={props.isDisabled}
+              disabled={props.disabled}
               type={props.type}
               placeholder={props.placeholder}
               autoFocus={props.autoFocus}

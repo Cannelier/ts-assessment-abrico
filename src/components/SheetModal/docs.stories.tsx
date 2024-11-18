@@ -15,7 +15,7 @@ export const Default = () => {
     <>
       <Button onClick={() => setOpen(true)}>Open</Button>
       <SheetModal isOpen={isOpen} onClose={() => setOpen(false)}>
-        <Stack spacing={4}>
+        <Stack gap={4}>
           <Heading size="sm">Sheet on mobile</Heading>
           <Button onClick={() => setOpen(false)}>Close</Button>
         </Stack>

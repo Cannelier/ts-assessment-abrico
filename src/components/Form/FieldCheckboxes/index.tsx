@@ -56,7 +56,7 @@ export const FieldCheckboxes = <
         <Flex flexDirection="column" gap={1} flex={1} {...props.containerProps}>
           <CheckboxGroup
             size={props.size}
-            isDisabled={props.isDisabled}
+            disabled={props.disabled}
             {...field}
             {...props.checkboxGroupProps}
           >

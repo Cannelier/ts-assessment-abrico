@@ -107,7 +107,7 @@ export const WithHook = () => {
             type="number"
           />
         </FormField>
-        <Button type="submit" variant="@primary">
+        <Button type="submit" visual="@primary">
           Submit
         </Button>
       </Stack>
@@ -171,7 +171,7 @@ export const WithoutHook = () => {
             type="number"
           />
         </FormField>
-        <Button type="submit" variant="@primary">
+        <Button type="submit" visual="@primary">
           Submit
         </Button>
       </Stack>

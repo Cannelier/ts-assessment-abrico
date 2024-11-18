@@ -1,14 +1,6 @@
 import { ReactNode } from 'react';
 
-import {
-  Box,
-  ButtonGroup,
-  Card,
-  CardBody,
-  Flex,
-  Heading,
-  IconButton,
-} from '@chakra-ui/react';
+import { Box, Card, Flex, Group, Heading, IconButton } from '@chakra-ui/react';
 import i18n from 'i18next';
 import { LuCheckCircle2, LuInfo, LuX, LuXCircle } from 'react-icons/lu';
 import { ExternalToast, toast } from 'sonner';
@@ -41,14 +33,15 @@ export const toastCustom = (params: {
           zIndex={1}
           size="xs"
           aria-label={i18n.t('components:toast.closeToast')}
-          icon={<LuX />}
           onClick={() => toast.dismiss(t)}
           position="absolute"
           top={-2.5}
           right={-2.5}
           borderRadius="full"
-        />
-        <Card
+        >
+          <LuX />
+        </IconButton>
+        <Card.Root
           w="356px"
           position="relative"
           overflow="hidden"
@@ -62,7 +55,7 @@ export const toastCustom = (params: {
             w="3px"
             bg={`${status}.600`}
           />
-          <CardBody
+          <Card.Body
             display="flex"
             flexDirection="column"
             gap={1.5}
@@ -84,9 +77,7 @@ export const toastCustom = (params: {
                 )}
                 {params.title}
               </Heading>
-              {!!params.actions && (
-                <ButtonGroup size="xs">{params.actions}</ButtonGroup>
-              )}
+              {!!params.actions && <Group>{params.actions}</Group>}
             </Flex>
             {!!params.description && (
               <Flex
@@ -98,8 +89,8 @@ export const toastCustom = (params: {
                 {params.description}
               </Flex>
             )}
-          </CardBody>
-        </Card>
+          </Card.Body>
+        </Card.Root>
       </Flex>
     ),
     options

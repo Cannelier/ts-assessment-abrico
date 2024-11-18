@@ -116,7 +116,7 @@ test('disabled', async () => {
             type="switch"
             control={form.control}
             name="doit"
-            isDisabled
+            disabled
             label="Yes, do it!"
           />
         </FormField>

@@ -62,7 +62,7 @@ import buildInfo from '../../../scripts/.build-info.json';
 const AdminNavBarMainMenu = ({ ...rest }: StackProps) => {
   const { t } = useTranslation(['admin']);
   return (
-    <Stack direction="row" spacing="1" {...rest}>
+    <Stack direction="row" gap="1" {...rest}>
       <AdminNavBarMainMenuItem href={ROUTES_ADMIN_DASHBOARD.admin.root()}>
         {t('admin:layout.mainMenu.dashboard')}
       </AdminNavBarMainMenuItem>
@@ -98,7 +98,7 @@ const AdminNavBarAccountMenu = ({ ...rest }: Omit<MenuProps, 'children'>) => {
         <MenuList maxW="12rem" overflow="hidden">
           <MenuGroup
             title={account.data?.name ?? account.data?.email ?? ''}
-            noOfLines={1}
+            lineClamp={1}
           >
             <MenuItem
               as={Link}
@@ -366,7 +366,7 @@ const AdminNavBarAccountMenuVersion = ({ ...rest }) => {
             ? t('admin:layout.accountMenu.version.copied')
             : t('admin:layout.accountMenu.version.copy')}
         </Flex>
-        <Text as="span" noOfLines={2}>
+        <Text as="span" lineClamp={2}>
           {t('admin:layout.accountMenu.version.label')}{' '}
           <strong>{buildInfo?.display ?? buildInfo?.version}</strong>
         </Text>

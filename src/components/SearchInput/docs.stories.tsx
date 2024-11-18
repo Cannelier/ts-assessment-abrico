@@ -16,7 +16,7 @@ export const Controlled = () => {
   const [value, setValue] = useState<string | undefined>('');
 
   return (
-    <Stack spacing={4}>
+    <Stack gap={4}>
       <SearchInput value={value} onChange={setValue} />
       <Text>{value}</Text>
     </Stack>
@@ -26,13 +26,13 @@ export const Controlled = () => {
 export const Disabled = () => {
   const [value, setValue] = useState<string | undefined>('Search term');
 
-  return <SearchInput value={value} onChange={setValue} isDisabled />;
+  return <SearchInput value={value} onChange={setValue} disabled />;
 };
 
 export const DebounceDelay = () => {
   const [value, setValue] = useState<string | undefined>('');
   return (
-    <Stack spacing={4}>
+    <Stack gap={4}>
       <SearchInput value={value} onChange={setValue} delay={1000} />
       <Text>{value}</Text>
     </Stack>

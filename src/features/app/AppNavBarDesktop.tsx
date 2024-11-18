@@ -32,11 +32,11 @@ export const AppNavBarDesktop = (props: BoxProps) => {
       <Box w="full" h="0" pb="safe-top" />
       <Flex align="center" pt={6} pb={2}>
         <Container maxW="container.md">
-          <HStack spacing={4}>
+          <HStack gap={4}>
             <Box as={Link} href="/">
               <Logo />
             </Box>
-            <HStack flex={1} spacing={0}>
+            <HStack flex={1} gap={0}>
               <AppNavBarDesktopMainMenuItem
                 href={ROUTES_APP.root()}
                 isExact

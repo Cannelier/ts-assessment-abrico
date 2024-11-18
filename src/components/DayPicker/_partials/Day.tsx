@@ -50,7 +50,7 @@ export const Day = ({ displayMonth, date }: CustomDayProps) => {
       shadow="none"
       p={5}
       boxSize={8}
-      isDisabled={activeModifiers.disabled}
+      disabled={activeModifiers.disabled}
       fontWeight={activeModifiers.today ? 'bold' : 'normal'}
       bg={activeModifiers.selected ? 'brand.600' : 'transparent'}
       color={activeModifiers.selected ? 'gray.100' : undefined}

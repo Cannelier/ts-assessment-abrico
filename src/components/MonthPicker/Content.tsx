@@ -1,10 +1,6 @@
-import {
-  Button,
-  Grid,
-  GridItem,
-  GridProps,
-  HTMLChakraProps,
-} from '@chakra-ui/react';
+import { Grid, GridItem, GridProps, HTMLChakraProps } from '@chakra-ui/react';
+
+import { Button } from '@/components/ui/button';
 
 import { MonthCaption } from './MonthCaption';
 import { useMonthPickerContext } from './MonthPickerContext';

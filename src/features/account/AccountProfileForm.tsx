@@ -65,9 +65,9 @@ export const AccountProfileForm = () => {
       {account.isLoading && <LoaderFull />}
       {account.isError && <ErrorPage />}
       {account.isSuccess && (
-        <Stack spacing={4}>
+        <Stack gap={4}>
           <Form {...form} onSubmit={onSubmit}>
-            <Stack spacing={4}>
+            <Stack gap={4}>
               <FormField>
                 <FormFieldLabel>{t('account:data.name.label')}</FormFieldLabel>
                 <FormFieldController
@@ -91,10 +91,10 @@ export const AccountProfileForm = () => {
                 />
               </FormField>
 
-              <ButtonGroup spacing={3}>
+              <ButtonGroup gap={3}>
                 <Button
                   type="submit"
-                  variant="@primary"
+                  visual="@primary"
                   isLoading={updateAccount.isLoading}
                 >
                   {t('account:profile.actions.update')}

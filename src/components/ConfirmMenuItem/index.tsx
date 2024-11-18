@@ -220,7 +220,7 @@ export const ConfirmMenuItem = forwardRef<ConfirmMenuItemProps, 'button'>(
             ) : (
               <>
                 <Icon icon={confirmIcon} me={1} />{' '}
-                <Text noOfLines={1} as="span">
+                <Text lineClamp={1} as="span">
                   {confirmText ?? t('components:confirmMenuItem.confirmText')}
                 </Text>
               </>

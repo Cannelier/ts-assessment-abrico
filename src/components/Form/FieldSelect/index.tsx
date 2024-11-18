@@ -59,7 +59,7 @@ export const FieldSelect = <
               placeholder={props.placeholder}
               autoFocus={props.autoFocus}
               value={selectValue}
-              isDisabled={props.isDisabled}
+              disabled={props.disabled}
               // @ts-expect-error should fix the typing. This error pops when
               // we propagate the `selectProps`
               onChange={(option) => onChange(option?.value)}

@@ -15,7 +15,9 @@
     ],
     "sonarjs/no-duplicate-string": "off",
     "sonarjs/cognitive-complexity": ["warn", 50],
-    "sonarjs/prefer-immediate-return": "warn"
+    "sonarjs/prefer-immediate-return": "warn",
+    "@typescript-eslint/no-empty-object-type": "off",
+    "@typescript-eslint/ban-ts-comment": "warn"
   },
   "overrides": [
     {

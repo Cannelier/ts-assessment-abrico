@@ -81,7 +81,7 @@ test('disabled', async () => {
             type="date"
             control={form.control}
             name="date"
-            isDisabled
+            disabled
           />
         </FormField>
       )}

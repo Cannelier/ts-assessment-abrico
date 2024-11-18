@@ -49,8 +49,8 @@ export default function PageAdminRepositories() {
   return (
     <AdminLayoutPage>
       <AdminLayoutPageContent>
-        <Stack spacing={4}>
-          <HStack spacing={4} alignItems={{ base: 'end', md: 'center' }}>
+        <Stack gap={4}>
+          <HStack gap={4} alignItems={{ base: 'end', md: 'center' }}>
             <Flex
               direction={{ base: 'column', md: 'row' }}
               rowGap={2}
@@ -71,7 +71,7 @@ export default function PageAdminRepositories() {
             <ResponsiveIconButton
               as={Link}
               href={ROUTES_REPOSITORIES.admin.create()}
-              variant="@primary"
+              visual="@primary"
               size="sm"
               icon={<LuPlus />}
             >
@@ -117,7 +117,7 @@ export default function PageAdminRepositories() {
                     </DataListText>
                   </DataListCell>
                   <DataListCell flex={2} display={{ base: 'none', md: 'flex' }}>
-                    <DataListText noOfLines={2} color="text-dimmed">
+                    <DataListText lineClamp={2} color="text-dimmed">
                       {repository.description}
                     </DataListText>
                   </DataListCell>
@@ -133,7 +133,7 @@ export default function PageAdminRepositories() {
                     size="sm"
                     onClick={() => repositories.fetchNextPage()}
                     isLoading={repositories.isFetchingNextPage}
-                    isDisabled={!repositories.hasNextPage}
+                    disabled={!repositories.hasNextPage}
                   >
                     {t('repositories:list.loadMore.button')}
                   </Button>

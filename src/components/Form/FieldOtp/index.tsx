@@ -34,7 +34,7 @@ export type FieldOtpProps<
   autoSubmit?: boolean;
   pinInputProps?: RemoveFromType<
     RemoveFromType<
-      Omit<PinInputProps, 'isDisabled' | 'isInvalid' | 'children'>,
+      Omit<PinInputProps, 'disabled' | 'isInvalid' | 'children'>,
       PinInputRootProps
     >,
     ControllerRenderProps
@@ -79,7 +79,7 @@ export const FieldOtp = <
               size={props.size}
               placeholder="·"
               isInvalid={fieldState.invalid}
-              isDisabled={props.isDisabled}
+              disabled={props.disabled}
               otp
               type="alphanumeric"
               id={id}

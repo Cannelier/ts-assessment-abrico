@@ -35,7 +35,7 @@ export const ErrorPage = ({ errorCode }: { errorCode?: number }) => {
       <Stack
         direction={{ base: 'column-reverse', md: 'row' }}
         align="center"
-        spacing={4}
+        gap={4}
       >
         {illustration}
         <Stack

@@ -1,8 +1,9 @@
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC, forwardRef, useEffect, useState } from 'react';
 
-import { Tooltip, TooltipProps, forwardRef } from '@chakra-ui/react';
 import dayjs from 'dayjs';
 import { useTranslation } from 'react-i18next';
+
+import { Tooltip, TooltipProps } from '@/components/ui/tooltip';
 
 const ONE_SECOND = 1000;
 const ONE_MINUTE = ONE_SECOND * 60;
@@ -16,7 +17,7 @@ const getDelay = (diff: number) => {
   return ONE_HOUR;
 };
 
-export type DateAgoProps = Omit<TooltipProps, 'children'> & {
+export type DateAgoProps = Omit<TooltipProps, 'children' | 'content'> & {
   date?: string | Date | dayjs.Dayjs;
   format?: string;
 };
@@ -45,6 +46,7 @@ export const DateAgo: FC<React.PropsWithChildren<DateAgoProps>> = forwardRef(
 
     return (
       <Tooltip
+        // @ts-expect-error
         ref={ref}
         label={dayjsDate.format(format ?? t('components:dateAgo.format'))}
         placement="top-start"

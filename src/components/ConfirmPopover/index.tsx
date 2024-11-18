@@ -17,6 +17,8 @@ import {
 import FocusLock from 'react-focus-lock';
 import { useTranslation } from 'react-i18next';
 
+import { PopoverRoot } from '@/components/ui/popover';
+
 type ConfirmPopoverProps = PopoverProps & {
   isEnabled?: boolean;
   children: ReactElement;
@@ -58,9 +60,9 @@ export const ConfirmPopover: React.FC<
 
   return (
     <>
-      <Popover
+      <PopoverRoot
         isLazy
-        isOpen={confirmPopover.isOpen}
+        isOpen={confirmPopover.open}
         onClose={confirmPopover.onClose}
         onOpen={confirmPopover.onOpen}
         initialFocusRef={initialFocusRef}
@@ -99,7 +101,7 @@ export const ConfirmPopover: React.FC<
             </FocusLock>
           </PopoverContent>
         </Portal>
-      </Popover>
+      </PopoverRoot>
     </>
   );
 };

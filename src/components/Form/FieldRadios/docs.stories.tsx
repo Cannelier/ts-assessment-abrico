@@ -31,7 +31,7 @@ export const Default = () => {
 
   return (
     <Form {...form} onSubmit={(values) => console.log(values)}>
-      <Stack spacing={4}>
+      <Stack gap={4}>
         <FormField>
           <FormFieldLabel>Color</FormFieldLabel>
           <FormFieldController
@@ -42,7 +42,7 @@ export const Default = () => {
           />
         </FormField>
         <Box>
-          <Button type="submit" variant="@primary">
+          <Button type="submit" visual="@primary">
             Submit
           </Button>
         </Box>
@@ -61,7 +61,7 @@ export const DefaultValue = () => {
 
   return (
     <Form {...form} onSubmit={(values) => console.log(values)}>
-      <Stack spacing={4}>
+      <Stack gap={4}>
         <FormField>
           <FormFieldLabel>Color</FormFieldLabel>
           <FormFieldController
@@ -72,7 +72,7 @@ export const DefaultValue = () => {
           />
         </FormField>
         <Box>
-          <Button type="submit" variant="@primary">
+          <Button type="submit" visual="@primary">
             Submit
           </Button>
         </Box>
@@ -86,7 +86,7 @@ export const Disabled = () => {
 
   return (
     <Form {...form} onSubmit={(values) => console.log(values)}>
-      <Stack spacing={4}>
+      <Stack gap={4}>
         <FormField>
           <FormFieldLabel>Color</FormFieldLabel>
           <FormFieldController
@@ -94,11 +94,11 @@ export const Disabled = () => {
             control={form.control}
             name="color"
             options={options}
-            isDisabled
+            disabled
           />
         </FormField>
         <Box>
-          <Button type="submit" variant="@primary">
+          <Button type="submit" visual="@primary">
             Submit
           </Button>
         </Box>
@@ -121,7 +121,7 @@ export const Optional = () => {
 
   return (
     <Form {...form} onSubmit={(values) => console.log(values)}>
-      <Stack spacing={4}>
+      <Stack gap={4}>
         <FormField>
           <FormFieldLabel optionalityHint="optional">Color</FormFieldLabel>
           <FormFieldController
@@ -132,7 +132,7 @@ export const Optional = () => {
           />
         </FormField>
         <Box>
-          <Button type="submit" variant="@primary">
+          <Button type="submit" visual="@primary">
             Submit
           </Button>
         </Box>
@@ -146,7 +146,7 @@ export const Row = () => {
 
   return (
     <Form {...form} onSubmit={(values) => console.log(values)}>
-      <Stack spacing={4}>
+      <Stack gap={4}>
         <FormField>
           <FormFieldLabel>Color</FormFieldLabel>
           <FormFieldController
@@ -158,7 +158,7 @@ export const Row = () => {
           />
         </FormField>
         <Box>
-          <Button type="submit" variant="@primary">
+          <Button type="submit" visual="@primary">
             Submit
           </Button>
         </Box>
@@ -172,7 +172,7 @@ export const CustomLayout = () => {
 
   return (
     <Form {...form} onSubmit={(values) => console.log(values)}>
-      <Stack spacing={4}>
+      <Stack gap={4}>
         <FormField>
           <FormFieldLabel>Color</FormFieldLabel>
           <FormFieldController
@@ -190,7 +190,7 @@ export const CustomLayout = () => {
           </FormFieldController>
         </FormField>
         <Box>
-          <Button type="submit" variant="@primary">
+          <Button type="submit" visual="@primary">
             Submit
           </Button>
         </Box>
@@ -204,7 +204,7 @@ export const ChakraProps = () => {
 
   return (
     <Form {...form} onSubmit={(values) => console.log(values)}>
-      <Stack spacing={4}>
+      <Stack gap={4}>
         <FormField>
           <FormFieldLabel>Color</FormFieldLabel>
           <FormFieldController
@@ -218,7 +218,7 @@ export const ChakraProps = () => {
           />
         </FormField>
         <Box>
-          <Button type="submit" variant="@primary">
+          <Button type="submit" visual="@primary">
             Submit
           </Button>
         </Box>

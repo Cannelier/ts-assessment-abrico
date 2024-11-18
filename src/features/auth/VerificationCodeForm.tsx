@@ -39,7 +39,7 @@ export const VerificationCodeForm = ({
   const form = useFormContext<FormFieldsVerificationCode>();
 
   return (
-    <Stack spacing="4">
+    <Stack gap="4">
       <Stack>
         <Heading size="md">{t('auth:validate.title')}</Heading>
         <Text fontSize="sm">
@@ -70,7 +70,7 @@ export const VerificationCodeForm = ({
           {t('auth:data.verificationCode.helper')}
         </FormFieldHelper>
       </FormField>
-      <HStack spacing={8}>
+      <HStack gap={8}>
         <Button
           size="lg"
           isLoading={isLoading}

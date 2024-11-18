@@ -66,8 +66,8 @@ export default function PageRegister() {
   }, [i18n, language]);
 
   return (
-    <Stack spacing={6}>
-      <Stack spacing={1}>
+    <Stack gap={6}>
+      <Stack gap={1}>
         <Heading size="md">{t('auth:register.title')}</Heading>
         <Button
           as={Link}
@@ -101,7 +101,7 @@ export default function PageRegister() {
           register.mutate(values);
         }}
       >
-        <Stack spacing="4">
+        <Stack gap="4">
           <FormField>
             <FormFieldLabel>{t('auth:data.language.label')}</FormFieldLabel>
             <FormFieldController
@@ -137,7 +137,7 @@ export default function PageRegister() {
             <Button
               isLoading={register.isLoading}
               type="submit"
-              variant="@primary"
+              visual="@primary"
               flex={1}
               size="lg"
             >

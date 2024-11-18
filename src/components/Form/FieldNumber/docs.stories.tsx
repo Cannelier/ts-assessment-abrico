@@ -28,7 +28,7 @@ export const Default = () => {
 
   return (
     <Form {...form} onSubmit={(values) => console.log(values)}>
-      <Stack spacing={4}>
+      <Stack gap={4}>
         <FormField>
           <FormFieldLabel>Balance</FormFieldLabel>
           <FormFieldController
@@ -39,7 +39,7 @@ export const Default = () => {
           />
         </FormField>
         <Box>
-          <Button type="submit" variant="@primary">
+          <Button type="submit" visual="@primary">
             Submit
           </Button>
         </Box>
@@ -56,7 +56,7 @@ export const DefaultValue = () => {
 
   return (
     <Form {...form} onSubmit={(values) => console.log(values)}>
-      <Stack spacing={4}>
+      <Stack gap={4}>
         <FormField>
           <FormFieldLabel>Balance</FormFieldLabel>
           <FormFieldController
@@ -67,7 +67,7 @@ export const DefaultValue = () => {
           />
         </FormField>
         <Box>
-          <Button type="submit" variant="@primary">
+          <Button type="submit" visual="@primary">
             Submit
           </Button>
         </Box>
@@ -81,7 +81,7 @@ export const InCents = () => {
 
   return (
     <Form {...form} onSubmit={(values) => console.log(values)}>
-      <Stack spacing={4}>
+      <Stack gap={4}>
         <FormField>
           <FormFieldLabel>Balance</FormFieldLabel>
           <FormFieldController
@@ -93,7 +93,7 @@ export const InCents = () => {
           />
         </FormField>
         <Box>
-          <Button type="submit" variant="@primary">
+          <Button type="submit" visual="@primary">
             Submit
           </Button>
         </Box>
@@ -107,7 +107,7 @@ export const LocaleFr = () => {
 
   return (
     <Form {...form} onSubmit={(values) => console.log(values)}>
-      <Stack spacing={4}>
+      <Stack gap={4}>
         <FormField>
           <FormFieldLabel>Balance</FormFieldLabel>
           <FormFieldController
@@ -119,7 +119,7 @@ export const LocaleFr = () => {
           />
         </FormField>
         <Box>
-          <Button type="submit" variant="@primary">
+          <Button type="submit" visual="@primary">
             Submit
           </Button>
         </Box>
@@ -133,7 +133,7 @@ export const LocaleNoDecimals = () => {
 
   return (
     <Form {...form} onSubmit={(values) => console.log(values)}>
-      <Stack spacing={4}>
+      <Stack gap={4}>
         <FormField>
           <FormFieldLabel>Balance</FormFieldLabel>
           <FormFieldController
@@ -145,7 +145,7 @@ export const LocaleNoDecimals = () => {
           />
         </FormField>
         <Box>
-          <Button type="submit" variant="@primary">
+          <Button type="submit" visual="@primary">
             Submit
           </Button>
         </Box>
@@ -159,7 +159,7 @@ export const Disabled = () => {
 
   return (
     <Form {...form} onSubmit={(values) => console.log(values)}>
-      <Stack spacing={4}>
+      <Stack gap={4}>
         <FormField>
           <FormFieldLabel>Balance</FormFieldLabel>
           <FormFieldController
@@ -167,11 +167,11 @@ export const Disabled = () => {
             control={form.control}
             name="balance"
             placeholder={12}
-            isDisabled
+            disabled
           />
         </FormField>
         <Box>
-          <Button type="submit" variant="@primary">
+          <Button type="submit" visual="@primary">
             Submit
           </Button>
         </Box>
@@ -185,7 +185,7 @@ export const StartElement = () => {
 
   return (
     <Form {...form} onSubmit={(values) => console.log(values)}>
-      <Stack spacing={4}>
+      <Stack gap={4}>
         <FormField>
           <FormFieldLabel>Balance</FormFieldLabel>
           <FormFieldController
@@ -197,7 +197,7 @@ export const StartElement = () => {
           />
         </FormField>
         <Box>
-          <Button type="submit" variant="@primary">
+          <Button type="submit" visual="@primary">
             Submit
           </Button>
         </Box>
@@ -211,7 +211,7 @@ export const ChakraProps = () => {
 
   return (
     <Form {...form} onSubmit={(values) => console.log(values)}>
-      <Stack spacing={4}>
+      <Stack gap={4}>
         <FormField>
           <FormFieldLabel>Balance</FormFieldLabel>
           <FormFieldController
@@ -225,7 +225,7 @@ export const ChakraProps = () => {
           />
         </FormField>
         <Box>
-          <Button type="submit" variant="@primary">
+          <Button type="submit" visual="@primary">
             Submit
           </Button>
         </Box>

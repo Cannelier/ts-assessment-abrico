@@ -178,7 +178,7 @@ test('disabled', async () => {
             control={form.control}
             name="balance"
             currency="EUR"
-            isDisabled
+            disabled
           />
         </FormField>
       )}

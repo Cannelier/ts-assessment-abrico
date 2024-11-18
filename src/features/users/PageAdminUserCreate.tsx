@@ -72,7 +72,7 @@ export default function PageAdminUserCreate() {
               <AdminCancelButton withConfirm={form.formState.isDirty} />
               <Button
                 type="submit"
-                variant="@primary"
+                visual="@primary"
                 isLoading={createUser.isLoading || createUser.isSuccess}
               >
                 {t('users:create.action.save')}

@@ -31,7 +31,7 @@ export const Default = () => {
 
   return (
     <Form {...form} onSubmit={(values) => console.log(values)}>
-      <Stack spacing={4}>
+      <Stack gap={4}>
         <FormField>
           <FormFieldLabel>Should I do something?</FormFieldLabel>
           <FormFieldController
@@ -43,7 +43,7 @@ export const Default = () => {
           <FormFieldHelper>Helper</FormFieldHelper>
         </FormField>
         <Box>
-          <Button type="submit" variant="@primary">
+          <Button type="submit" visual="@primary">
             Submit
           </Button>
         </Box>
@@ -62,7 +62,7 @@ export const DefaultValues = () => {
 
   return (
     <Form {...form} onSubmit={(values) => console.log(values)}>
-      <Stack spacing={4}>
+      <Stack gap={4}>
         <FormField>
           <FormFieldLabel>Should I do something?</FormFieldLabel>
           <FormFieldController
@@ -74,7 +74,7 @@ export const DefaultValues = () => {
           <FormFieldHelper>Helper</FormFieldHelper>
         </FormField>
         <Box>
-          <Button type="submit" variant="@primary">
+          <Button type="submit" visual="@primary">
             Submit
           </Button>
         </Box>
@@ -88,20 +88,20 @@ export const Disabled = () => {
 
   return (
     <Form {...form} onSubmit={(values) => console.log(values)}>
-      <Stack spacing={4}>
+      <Stack gap={4}>
         <FormField>
           <FormFieldLabel>Should I do something?</FormFieldLabel>
           <FormFieldController
             control={form.control}
             type="switch"
             name="doit"
-            isDisabled
+            disabled
             label="Yes, do it!"
           />
           <FormFieldHelper>Helper</FormFieldHelper>
         </FormField>
         <Box>
-          <Button type="submit" variant="@primary">
+          <Button type="submit" visual="@primary">
             Submit
           </Button>
         </Box>
@@ -120,20 +120,20 @@ export const DisabledDefaultValues = () => {
 
   return (
     <Form {...form} onSubmit={(values) => console.log(values)}>
-      <Stack spacing={4}>
+      <Stack gap={4}>
         <FormField>
           <FormFieldLabel>Should I do something?</FormFieldLabel>
           <FormFieldController
             control={form.control}
             type="switch"
             name="doit"
-            isDisabled
+            disabled
             label="Yes, do it!"
           />
           <FormFieldHelper>Helper</FormFieldHelper>
         </FormField>
         <Box>
-          <Button type="submit" variant="@primary">
+          <Button type="submit" visual="@primary">
             Submit
           </Button>
         </Box>

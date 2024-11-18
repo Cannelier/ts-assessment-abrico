@@ -83,7 +83,7 @@ test('disabled', async () => {
             type="textarea"
             control={form.control}
             name="description"
-            isDisabled
+            disabled
           />
         </FormField>
       )}

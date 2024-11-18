@@ -38,7 +38,7 @@ export default function PageHome() {
 
   return (
     <AppLayoutPage>
-      <Stack spacing={6} divider={<Divider />}>
+      <Stack gap={6} divider={<Divider />}>
         <Heading size="md">
           <Icon icon={LuUser} mr={2} opacity={0.6} />
           {t('account:title')}
@@ -82,7 +82,7 @@ export default function PageHome() {
           <Heading size="sm" flex={0.5}>
             {t('account:preferences.title')}
           </Heading>
-          <Stack flex={1} divider={<Divider />} spacing={4}>
+          <Stack flex={1} divider={<Divider />} gap={4}>
             <DarkModeSwitch />
           </Stack>
         </Stack>
@@ -138,7 +138,7 @@ const DarkModeSwitch = () => {
         <Switch
           colorScheme="brand"
           id={id}
-          isChecked={colorMode === 'dark'}
+          checked={colorMode === 'dark'}
           onChange={(e) => setColorMode(e.target.checked ? 'dark' : 'light')}
         />
         <FormLabel

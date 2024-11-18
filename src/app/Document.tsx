@@ -2,7 +2,6 @@
 
 import { ReactNode } from 'react';
 
-import { ColorModeScript } from '@chakra-ui/react';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 
 import { Providers } from '@/app/Providers';
@@ -10,7 +9,6 @@ import { Viewport } from '@/components/Viewport';
 import { EnvHint } from '@/features/devtools/EnvHint';
 import { useLocale } from '@/lib/i18n/useLocale';
 import { TrpcProvider } from '@/lib/trpc/TrpcProvider';
-import theme, { COLOR_MODE_STORAGE_KEY } from '@/theme';
 
 export const Document = ({ children }: { children: ReactNode }) => {
   const locale = useLocale();
@@ -57,11 +55,6 @@ export const Document = ({ children }: { children: ReactNode }) => {
         <meta name="theme-color" content={theme.colors.gray?.['800']} />
       </head>
       <body>
-        {/* https://github.com/chakra-ui/chakra-ui/issues/7040 */}
-        <ColorModeScript
-          initialColorMode={theme.config.initialColorMode}
-          storageKey={COLOR_MODE_STORAGE_KEY}
-        />
         <Providers>
           <TrpcProvider>
             <Viewport>{children}</Viewport>

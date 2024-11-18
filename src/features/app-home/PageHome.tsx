@@ -34,7 +34,7 @@ export default function PageHome() {
 
   return (
     <AppLayoutPage>
-      <Stack flex={1} spacing={6}>
+      <Stack flex={1} gap={6}>
         <Flex
           display={{ base: 'flex', md: 'none' }}
           py={2}
@@ -55,7 +55,7 @@ export default function PageHome() {
           </Text>
         </Stack>
 
-        <Wrap spacing="2">
+        <Wrap gap="2">
           <Button
             size="sm"
             as="a"

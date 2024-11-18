@@ -1,7 +1,6 @@
 import { ElementRef, ReactNode, useRef } from 'react';
 
 import {
-  Button,
   ButtonGroup,
   Popover,
   PopoverBody,
@@ -20,6 +19,8 @@ import { useTranslation } from 'react-i18next';
 import { z } from 'zod';
 
 import { Form } from '@/components/Form';
+import { Button } from '@/components/ui/button';
+import { PopoverRoot } from '@/components/ui/popover';
 
 export type FormPopoverProps<TSchema extends z.Schema> = {
   /**
@@ -88,10 +89,10 @@ export const FormPopover = <TSchema extends z.Schema>(
   const popoverBodyRef = useRef<ElementRef<'div'>>(null);
 
   return (
-    <Popover
+    <PopoverRoot
       placement="bottom-start"
       isLazy
-      isOpen={popover.isOpen}
+      isOpen={popover.open}
       onClose={handleOnClose}
     >
       <PopoverTrigger>
@@ -113,7 +114,7 @@ export const FormPopover = <TSchema extends z.Schema>(
                       })}
                       {props.renderFooterPrimaryAction?.()}
                       {!props.renderFooterPrimaryAction && (
-                        <Button type="submit" variant="@primary">
+                        <Button type="submit" visual="@primary">
                           {t('common:submit')}
                         </Button>
                       )}
@@ -125,6 +126,6 @@ export const FormPopover = <TSchema extends z.Schema>(
           </FocusLock>
         </PopoverContent>
       </Portal>
-    </Popover>
+    </PopoverRoot>
   );
 };

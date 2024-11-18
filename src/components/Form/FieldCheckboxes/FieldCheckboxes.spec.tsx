@@ -101,7 +101,7 @@ test('disabled', async () => {
             type="checkboxes"
             control={form.control}
             name="colors"
-            isDisabled
+            disabled
             options={options}
           />
         </FormField>

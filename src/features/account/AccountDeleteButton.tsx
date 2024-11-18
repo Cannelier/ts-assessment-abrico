@@ -52,7 +52,8 @@ export const AccountDeleteButton = () => {
         confirmText={t('account:deleteAccount.confirm.button')}
         confirmVariant="@dangerPrimary"
       >
-        <Button variant="@dangerPrimary" leftIcon={<LuTrash2 />}>
+        <Button visual="@dangerPrimary">
+          <LuTrash2 />
           {t('account:deleteAccount.button')}
         </Button>
       </ConfirmModal>

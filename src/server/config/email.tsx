@@ -1,29 +1,49 @@
 import { ReactElement } from 'react';
 
 import { render } from '@react-email/render';
+import sgMail from '@sendgrid/mail';
 import nodemailer from 'nodemailer';
-import { MailOptions } from 'nodemailer/lib/sendmail-transport';
 
 import { env } from '@/env.mjs';
 import { DEFAULT_LANGUAGE_KEY } from '@/lib/i18n/constants';
 
-const transport = nodemailer.createTransport(env.EMAIL_SERVER);
+if (env.SENDGRID_API_KEY) {
+  sgMail.setApiKey(env.SENDGRID_API_KEY);
+}
 
 export const sendEmail = async ({
   template,
   ...options
-}: Omit<MailOptions, 'html'> &
-  Required<Pick<MailOptions, 'subject'>> & { template: ReactElement }) => {
+}: { subject: string; to: string } & {
+  template: ReactElement;
+}): Promise<void> => {
   if (env.NEXT_PUBLIC_IS_DEMO) {
     return;
   }
 
   const html = await render(template);
-  return transport.sendMail({
-    from: env.EMAIL_FROM,
-    html,
-    ...options,
-  });
+
+  if (env.NODE_ENV === 'production') {
+    await sgMail.send({
+      from: {
+        name: 'Abrico',
+        email: env.EMAIL_FROM as string,
+      },
+      to: options.to as string,
+      html,
+      subject: options.subject,
+    });
+  } else {
+    const transport = nodemailer.createTransport(
+      'smtp://username:password@0.0.0.0:1025'
+    );
+
+    await transport.sendMail({
+      from: env.EMAIL_FROM,
+      html,
+      ...options,
+    });
+  }
 };
 
 export const previewEmailRoute = async (

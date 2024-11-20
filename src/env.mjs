@@ -12,16 +12,7 @@ export const env = createEnv({
     DATABASE_URL: z.string().min(1),
     NODE_ENV: zNodeEnv(),
 
-    GITHUB_CLIENT_ID: zOptionalWithReplaceMe(),
-    GITHUB_CLIENT_SECRET: zOptionalWithReplaceMe(),
-
-    GOOGLE_CLIENT_ID: zOptionalWithReplaceMe(),
-    GOOGLE_CLIENT_SECRET: zOptionalWithReplaceMe(),
-
-    DISCORD_CLIENT_ID: zOptionalWithReplaceMe(),
-    DISCORD_CLIENT_SECRET: zOptionalWithReplaceMe(),
-
-    EMAIL_SERVER: z.string().min(1),
+    SENDGRID_API_KEY: zOptionalWithReplaceMe(),
     EMAIL_FROM: z.string(),
     LOGGER_LEVEL: z
       .enum(['trace', 'debug', 'info', 'warn', 'error', 'fatal'])
@@ -79,18 +70,9 @@ export const env = createEnv({
     DATABASE_URL: process.env.DATABASE_URL,
     NODE_ENV: process.env.NODE_ENV,
     EMAIL_FROM: process.env.EMAIL_FROM,
-    EMAIL_SERVER: process.env.EMAIL_SERVER,
+    SENDGRID_API_KEY: process.env.SENDGRID_API_KEY,
     LOGGER_LEVEL: process.env.LOGGER_LEVEL,
     LOGGER_PRETTY: process.env.LOGGER_PRETTY,
-
-    GITHUB_CLIENT_ID: process.env.GITHUB_CLIENT_ID,
-    GITHUB_CLIENT_SECRET: process.env.GITHUB_CLIENT_SECRET,
-
-    GOOGLE_CLIENT_ID: process.env.GOOGLE_CLIENT_ID,
-    GOOGLE_CLIENT_SECRET: process.env.GOOGLE_CLIENT_SECRET,
-
-    DISCORD_CLIENT_ID: process.env.DISCORD_CLIENT_ID,
-    DISCORD_CLIENT_SECRET: process.env.DISCORD_CLIENT_SECRET,
 
     NEXT_PUBLIC_BASE_URL: process.env.NEXT_PUBLIC_VERCEL_URL
       ? `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`

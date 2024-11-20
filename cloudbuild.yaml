@@ -37,9 +37,9 @@ steps:
 
 availableSecrets:
   secretManager:
-    - versionName: projects/abrico-418714/secrets/abrico-db-prod-rw-uri/versions/1
+    - versionName: projects/abrico-418714/secrets/abrico-db-prod-rw-uri/versions/latest
       env: 'DATABASE_URL'
-    - versionName: projects/abrico-418714/secrets/abrico-sendgrid-api-key/versions/1
+    - versionName: projects/abrico-418714/secrets/abrico-sendgrid-api-key/versions/latest
       env: 'SENDGRID_API_KEY'
 
 images:

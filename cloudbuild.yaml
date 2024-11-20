@@ -6,7 +6,7 @@ steps:
       echo "SENDGRID_API_KEY=$$SENDGRID_API_KEY" >> .env
       echo "NEXT_PUBLIC_BASE_URL=https://beta.abrico.eco" >> .env
       echo "EMAIL_FROM=support@abrico.eco" >> .env
-    secretEnv: ['DATABASE_URL']
+    secretEnv: ['DATABASE_URL', 'SENDGRID_API_KEY']
 
 #  # Build the container image with kaniko
 #  - name: 'gcr.io/kaniko-project/executor:latest'

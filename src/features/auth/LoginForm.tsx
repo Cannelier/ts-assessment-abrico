@@ -18,12 +18,10 @@ type LoginFormProps = BoxProps & {
     data: RouterOutputs['auth']['login'],
     variables: RouterInputs['auth']['login']
   ) => void;
-  buttonVisual?: ButtonProps['visual'];
 };
 
 export const LoginForm = ({
   onSuccess = () => undefined,
-  buttonVisual = '@primary',
   ...rest
 }: LoginFormProps) => {
   const { t } = useTranslation(['auth']);
@@ -68,7 +66,6 @@ export const LoginForm = ({
             <Button
               loading={login.isLoading || login.isSuccess}
               type="submit"
-              visual={buttonVisual}
               size="lg"
               flex={1}
             >

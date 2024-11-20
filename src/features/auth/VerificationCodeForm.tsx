@@ -22,7 +22,6 @@ export type VerificationCodeFormProps = {
   email: string;
   isLoading?: boolean;
   confirmText?: ReactNode;
-  confirmVariant?: '@primary' | '@dangerPrimary';
   autoSubmit?: boolean;
 };
 
@@ -30,7 +29,6 @@ export const VerificationCodeForm = ({
   email,
   isLoading,
   confirmText,
-  confirmVariant,
   autoSubmit = true,
 }: VerificationCodeFormProps) => {
   const ref = useRef<HTMLDivElement>(null);
@@ -92,13 +90,7 @@ export const VerificationCodeForm = ({
       </Field>
 
       <HStack gap={8}>
-        <Button
-          size="lg"
-          loading={isLoading}
-          type="submit"
-          visual={confirmVariant || '@primary'}
-          flex={1}
-        >
+        <Button size="lg" loading={isLoading} type="submit" flex={1}>
           {confirmText || t('auth:validate.actions.confirm')}
         </Button>
       </HStack>

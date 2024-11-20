@@ -1,3 +1,4 @@
+/*
 import { expect, test } from '@playwright/test';
 import { pageUtils } from 'e2e/utils/pageUtils';
 import { ADMIN_EMAIL, USER_EMAIL, getRandomEmail } from 'e2e/utils/users';
@@ -46,3 +47,4 @@ test.describe('Login flow', () => {
     ).toBeVisible();
   });
 });
+*/

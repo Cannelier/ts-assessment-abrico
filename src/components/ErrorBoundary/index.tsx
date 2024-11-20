@@ -30,7 +30,6 @@ const ErrorFallback = ({ error }: FallbackProps) => {
         <Box flex="1">
           <Box display="block" lineHeight="1.4">
             <Button
-              visual="link"
               size="sm"
               textDecoration="underline"
               onClick={errorModal.openIt}

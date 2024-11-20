@@ -55,7 +55,9 @@ export const previewEmailRoute = async (
     });
   }
 
-  const html = render(<Email language={language ?? 'en'} {...searchQuery} />);
+  const html = await render(
+    <Email language={language ?? 'en'} {...searchQuery} />
+  );
 
   return new Response(html, {
     status: 200,

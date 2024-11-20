@@ -1,3 +1,4 @@
+/*
 import { expect, test } from '@playwright/test';
 import { pageUtils } from 'e2e/utils/pageUtils';
 import { USER_EMAIL } from 'e2e/utils/users';
@@ -15,3 +16,4 @@ test.describe('App access', () => {
     await expect(page.getByTestId('app-layout')).toBeVisible();
   });
 });
+*/

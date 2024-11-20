@@ -8,6 +8,7 @@ ENV PNPM_HOME="/pnpm"
 ENV PATH="$PNPM_HOME:$PATH"
 # Enable supported package managers
 RUN corepack enable
+RUN corepack enable pnpm
 
 # The /app directory should act as the main application directory
 WORKDIR /app
@@ -26,8 +27,8 @@ RUN addgroup --system --gid 1001 nodejs
 RUN adduser --system --uid 1001 nextjs
 RUN mkdir .next
 RUN chown nextjs:nodejs .next
-COPY --from=build /app/node_modules /app/node_modules
-COPY --from=build /app/.next /app/.next
+COPY --from=build --chown=nextjs:nodejs /app/node_modules /app/node_modules
+COPY --from=build --chown=nextjs:nodejs /app/.next /app/.next
 
 USER nextjs
 WORKDIR /app
@@ -39,4 +40,4 @@ ENV PORT 3000
 # Learn more here: https://nextjs.org/telemetry
 ENV NEXT_TELEMETRY_DISABLED 1
 
-CMD ["pnpm", "start"]
+CMD ["npm", "start"]

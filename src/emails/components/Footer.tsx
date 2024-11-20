@@ -5,11 +5,9 @@ import { styles } from '@/emails/styles';
 export const Footer = () => {
   return (
     <Section style={styles.footer}>
-      <Link style={styles.link} href="https://start-ui.com" target="_blank">
-        🚀 Start UI
+      <Link style={styles.link} href="https://abrico.com" target="_blank">
+        Abrico
       </Link>
-      <br />
-      Opinionated UI starters
     </Section>
   );
 };

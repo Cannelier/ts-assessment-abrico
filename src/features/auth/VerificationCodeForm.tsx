@@ -2,6 +2,7 @@ import { ReactNode, useRef } from 'react';
 
 import { HStack, Heading, Stack, Text } from '@chakra-ui/react';
 import { TRPCClientErrorLike } from '@trpc/client';
+import { useSearchParams } from 'next/navigation';
 import { parseAsInteger, useQueryState } from 'nuqs';
 import { Controller, useFormContext } from 'react-hook-form';
 import { Trans, useTranslation } from 'react-i18next';
@@ -34,6 +35,10 @@ export const VerificationCodeForm = ({
 }: VerificationCodeFormProps) => {
   const ref = useRef<HTMLDivElement>(null);
   const { t } = useTranslation(['auth']);
+  const searchParams = useSearchParams();
+
+  const codeFromURL = searchParams.get('code');
+
   const form = useFormContext<FormFieldsVerificationCode>();
 
   return (
@@ -66,12 +71,11 @@ export const VerificationCodeForm = ({
           name="code"
           render={({ field }) => (
             <PinInput
-              value={field.value}
               count={6}
-              onValueChange={(e) => {
-                field.onChange(e.value);
-              }}
+              defaultValue={codeFromURL?.split('')}
+              autoFocus
               onValueComplete={(e) => {
+                field.onChange(e.value);
                 // Only auto submit on first try
                 if (!form.formState.isSubmitted && autoSubmit) {
                   const button = document.createElement('button');

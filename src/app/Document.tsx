@@ -14,7 +14,7 @@ export const Document = ({ children }: { children: ReactNode }) => {
   // const locale = useLocale();
 
   return (
-    <html suppressHydrationWarning={true}>
+    <html suppressHydrationWarning>
       <head>
         <meta
           name="viewport"

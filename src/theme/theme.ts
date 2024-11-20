@@ -5,9 +5,10 @@ import { shadows } from '@/theme/foundations/shadows';
 import { spacing } from '@/theme/foundations/spacing';
 import { typography } from '@/theme/foundations/typography';
 import { zIndex } from '@/theme/foundations/z-index';
+import { styles } from '@/theme/styles';
 
 const customConfig = defineConfig({
-  // globalCss: styles,
+  globalCss: styles,
   theme: {
     tokens: {
       colors,

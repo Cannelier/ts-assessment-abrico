@@ -57,7 +57,7 @@ export const styles = {
     margin: '8px 0',
     fontSize: '32px',
     fontFamily: theme.fontFamily.code,
-    backgroundColor: '#f4f4f4',
+    backgroundColor: '#ffd1bf',
     borderRadius: '5px',
     border: '1px solid #eee',
     color: theme.colors.text,

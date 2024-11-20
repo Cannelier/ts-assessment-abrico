@@ -9,7 +9,7 @@ import { DEFAULT_LANGUAGE_KEY } from '@/lib/i18n/constants';
 
 const transport = nodemailer.createTransport(env.EMAIL_SERVER);
 
-export const sendEmail = ({
+export const sendEmail = async ({
   template,
   ...options
 }: Omit<MailOptions, 'html'> &
@@ -18,7 +18,7 @@ export const sendEmail = ({
     return;
   }
 
-  const html = render(template);
+  const html = await render(template);
   return transport.sendMail({
     from: env.EMAIL_FROM,
     html,

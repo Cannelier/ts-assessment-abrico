@@ -16,6 +16,7 @@ import { LuHome } from 'react-icons/lu';
 import { Icon } from '@/components/Icons';
 import { Logo } from '@/components/Logo';
 import { ROUTES_APP } from '@/features/app/routes';
+import { ROUTES_AUTH } from '@/features/auth/routes';
 
 export const AppNavBarDesktop = (props: BoxProps) => {
   const { t } = useTranslation(['app']);
@@ -26,7 +27,7 @@ export const AppNavBarDesktop = (props: BoxProps) => {
       <Flex align="center" pt={6} pb={2}>
         <Container maxW="container.md">
           <HStack gap={4}>
-            <Logo />
+            <Logo maxW={100} />
             <HStack flex={1} gap={0}>
               <AppNavBarDesktopMainMenuItem
                 href={ROUTES_APP.root()}
@@ -35,6 +36,7 @@ export const AppNavBarDesktop = (props: BoxProps) => {
               >
                 {t('app:layout.mainMenu.home')}
               </AppNavBarDesktopMainMenuItem>
+              <NextLink href={ROUTES_AUTH.logout()}>Logout</NextLink>
             </HStack>
           </HStack>
         </Container>

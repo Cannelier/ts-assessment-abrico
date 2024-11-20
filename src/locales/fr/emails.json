@@ -3,10 +3,11 @@
     "hello": "Content de vous revoir {{name}},",
     "ignoreHelper": "Si vous n'avez pas essayé de vous connecter, vous pouvez ignorer cet email en toute sécurité.",
     "intro": "Voici votre code de vérification :",
-    "preview": "Code de vérification pour vous connecter",
-    "subject": "Code de vérification de connexion",
+    "preview": "Code de vérification pour vous connecter : {{code}}",
+    "subject": "\uD83C\uDF51 Abrico — connexion : {{code}}",
     "title": "Code de vérification de connexion",
-    "validityTime": "Ce code ne sera valable que pour les {{expiration}} prochaines minutes."
+    "validityTime": "Ce code ne sera valable que pour les {{expiration}} prochaines minutes.",
+    "openApp": "Ouvrir Abrico"
   },
   "loginNotFound": {
     "button": "Essayez un autre email",

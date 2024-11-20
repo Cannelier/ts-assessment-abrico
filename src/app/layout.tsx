@@ -9,7 +9,7 @@ import { getEnvHintTitlePrefix } from '@/features/devtools/EnvHint';
 export const metadata: Metadata = {
   title: {
     template: `${getEnvHintTitlePrefix()} %s`,
-    default: `${getEnvHintTitlePrefix()} Start UI [web]`,
+    default: `${getEnvHintTitlePrefix()} Abrico [web]`,
   },
   applicationName: 'Start UI [web]',
   description: 'Opinionated UI starter',
@@ -20,10 +20,13 @@ export default async function RootLayout({
 }: {
   children: ReactNode;
 }) {
+  console.log('render');
   return (
-    <Document>
-      <NextLoader />
-      {children}
-    </Document>
+    <>
+      <Document>
+        <NextLoader />
+        {children}
+      </Document>
+    </>
   );
 }

@@ -56,7 +56,7 @@ export const LoginForm = ({
     <Box {...rest}>
       <form onSubmit={onSubmit}>
         <Stack gap={4}>
-          <Field label={'Email'} invalid={!!errors.email}>
+          <Field invalid={!!errors.email}>
             <Input
               {...register('email')}
               type="email"

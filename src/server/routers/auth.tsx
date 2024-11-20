@@ -132,12 +132,17 @@ export const authRouter = createTRPCRouter({
       ctx.logger.info('Send email with code');
       await sendEmail({
         to: input.email,
-        subject: i18n.t('emails:loginCode.subject', { lng: user.language }),
+        subject: i18n.t('emails:loginCode.subject', {
+          lng: user.language,
+          code: code.readable,
+        }),
         template: (
           <EmailLoginCode
             language={user.language}
             name={user.name ?? ''}
             code={code.readable}
+            token={token}
+            email={user.email ?? ''}
           />
         ),
       });

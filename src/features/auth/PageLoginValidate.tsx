@@ -1,10 +1,12 @@
+import { useEffect, useState } from 'react';
+
 import { Button, Stack } from '@chakra-ui/react';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useQueryClient } from '@tanstack/react-query';
 import { useParams, useRouter, useSearchParams } from 'next/navigation';
-import { FormProvider, SubmitHandler, useForm } from 'react-hook-form';
+import { FormProvider, useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
-import { LuArrowLeft, LuArrowRight } from 'react-icons/lu';
+import { LuArrowLeft } from 'react-icons/lu';
 
 import { ROUTES_APP } from '@/features/app/routes';
 import {
@@ -66,6 +68,15 @@ export default function PageLoginValidate() {
   const onSubmit = form.handleSubmit((data) =>
     validate.mutate({ ...data, token })
   );
+
+  const code = searchParams.get('code');
+  const [hasBeenAutoLogged, setHasBeenAutoLogged] = useState(false);
+  useEffect(() => {
+    if (code && !hasBeenAutoLogged) {
+      setHasBeenAutoLogged(true);
+      validate.mutate({ code: code.split(''), token });
+    }
+  }, [code, hasBeenAutoLogged, token, validate]);
 
   return (
     <Stack gap={6}>

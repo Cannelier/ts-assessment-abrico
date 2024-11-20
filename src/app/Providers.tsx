@@ -10,9 +10,11 @@ export const Providers: FC<React.PropsWithChildren<unknown>> = ({
   children,
 }) => {
   return (
-    <Provider>
-      {children}
-      <Toaster position="top-right" offset={16} />
-    </Provider>
+    <>
+      <Provider>
+        {children}
+        <Toaster position="top-right" offset={16} />
+      </Provider>
+    </>
   );
 };

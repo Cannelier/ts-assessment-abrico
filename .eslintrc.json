@@ -1,7 +1,6 @@
 {
   "extends": [
     "plugin:@typescript-eslint/recommended",
-    "plugin:sonarjs/recommended",
     "next/core-web-vitals",
     "plugin:storybook/recommended"
   ],
@@ -13,9 +12,6 @@
         "argsIgnorePattern": "^_"
       }
     ],
-    "sonarjs/no-duplicate-string": "off",
-    "sonarjs/cognitive-complexity": ["warn", 50],
-    "sonarjs/prefer-immediate-return": "warn",
     "@typescript-eslint/no-empty-object-type": "off",
     "@typescript-eslint/ban-ts-comment": "warn"
   },

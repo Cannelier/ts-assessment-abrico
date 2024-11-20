@@ -1,5 +1,6 @@
 import React, { FC } from 'react';
 
+import { NuqsAdapter } from 'nuqs/adapters/next/app';
 import { Toaster } from 'sonner';
 
 import { Provider } from '@/components/ui/provider';
@@ -12,7 +13,7 @@ export const Providers: FC<React.PropsWithChildren<unknown>> = ({
   return (
     <>
       <Provider>
-        {children}
+        <NuqsAdapter>{children}</NuqsAdapter>
         <Toaster position="top-right" offset={16} />
       </Provider>
     </>

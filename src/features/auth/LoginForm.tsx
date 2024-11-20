@@ -64,7 +64,7 @@ export const LoginForm = ({
           </Field>
           <Flex>
             <Button
-              loading={login.isLoading || login.isSuccess}
+              loading={login.isPending || login.isSuccess}
               type="submit"
               size="lg"
               flex={1}

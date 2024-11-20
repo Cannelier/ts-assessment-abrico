@@ -1,17 +1,25 @@
-import { Field as ChakraField } from "@chakra-ui/react"
-import * as React from "react"
+import * as React from 'react';
 
-export interface FieldProps extends Omit<ChakraField.RootProps, "label"> {
-  label?: React.ReactNode
-  helperText?: React.ReactNode
-  errorText?: React.ReactNode
-  optionalText?: React.ReactNode
+import { Field as ChakraField, Flex } from '@chakra-ui/react';
+import { SlideFade } from '@chakra-ui/transition';
+import { LuAlertCircle } from 'react-icons/lu';
+
+import { Icon } from '@/components/Icons';
+
+export interface FieldProps extends Omit<ChakraField.RootProps, 'label'> {
+  label?: React.ReactNode;
+  helperText?: React.ReactNode;
+  errorText?: React.ReactNode;
+  optionalText?: React.ReactNode;
 }
 
 export const Field = React.forwardRef<HTMLDivElement, FieldProps>(
   function Field(props, ref) {
     const { label, children, helperText, errorText, optionalText, ...rest } =
-      props
+      props;
+
+    console.log({ errorText });
+
     return (
       <ChakraField.Root ref={ref} {...rest}>
         {label && (
@@ -25,9 +33,14 @@ export const Field = React.forwardRef<HTMLDivElement, FieldProps>(
           <ChakraField.HelperText>{helperText}</ChakraField.HelperText>
         )}
         {errorText && (
-          <ChakraField.ErrorText>{errorText}</ChakraField.ErrorText>
+          <SlideFade in offsetY={-6}>
+            <Flex fontSize="sm" color="error.500" ref={ref}>
+              <Icon icon={LuAlertCircle} me="2" />
+              <ChakraField.ErrorText>{errorText}</ChakraField.ErrorText>
+            </Flex>
+          </SlideFade>
         )}
       </ChakraField.Root>
-    )
-  },
-)
+    );
+  }
+);

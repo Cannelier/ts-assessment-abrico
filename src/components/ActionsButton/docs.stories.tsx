@@ -51,10 +51,3 @@ export const UsageWithMenu = () => (
     </MenuContent>
   </MenuRoot>
 );
-UsageWithMenu.decorators = [
-  (Story: StoryFn) => (
-    <Flex h="12rem" justify="flex-end">
-      <Story />
-    </Flex>
-  ),
-];

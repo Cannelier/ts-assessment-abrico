@@ -1,23 +1,10 @@
 import { useId } from 'react';
 
-import { HTMLChakraProps, chakra } from '@chakra-ui/react';
-
-export const Illustration404 = ({
-  colorScheme = 'gray',
-  ...rest
-}: HTMLChakraProps<'svg'> & {
-  colorScheme?: 'gray' | 'todo finish this migration';
-}) => {
+export const Illustration404 = () => {
   const clipPathId01 = useId();
   const clipPathId02 = useId();
   return (
-    <chakra.svg
-      width={300}
-      maxW="full"
-      viewBox="0 0 200 200"
-      fill="none"
-      {...rest}
-    >
+    <svg viewBox="0 0 200 200">
       <g clipPath={`url(#${clipPathId01})`}>
         <g clipPath={`url(#${clipPathId02})`}>
           <path
@@ -403,6 +390,6 @@ export const Illustration404 = ({
           />
         </clipPath>
       </defs>
-    </chakra.svg>
+    </svg>
   );
 };

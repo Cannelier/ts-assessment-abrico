@@ -19,10 +19,14 @@ export const zVerificationCodeValidate = () =>
   z.object({
     token: z.string().uuid(),
     code: z
-      .string({
-        invalid_type_error: t('auth:data.verificationCode.invalid'),
-        required_error: t('auth:data.verificationCode.required'),
-      })
+      .array(
+        z
+          .string({
+            invalid_type_error: t('auth:data.verificationCode.invalid'),
+            required_error: t('auth:data.verificationCode.required'),
+          })
+          .length(1)
+      )
       .length(6, t('auth:data.verificationCode.invalid')),
   });
 

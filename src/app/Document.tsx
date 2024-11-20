@@ -7,14 +7,14 @@ import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { Providers } from '@/app/Providers';
 import { Viewport } from '@/components/Viewport';
 import { EnvHint } from '@/features/devtools/EnvHint';
-import { useLocale } from '@/lib/i18n/useLocale';
+// import { useLocale } from '@/lib/i18n/useLocale';
 import { TrpcProvider } from '@/lib/trpc/TrpcProvider';
 
 export const Document = ({ children }: { children: ReactNode }) => {
-  const locale = useLocale();
+  // const locale = useLocale();
 
   return (
-    <html lang={locale?.lang} dir={locale?.dir}>
+    <html suppressHydrationWarning={true}>
       <head>
         <meta
           name="viewport"
@@ -43,16 +43,9 @@ export const Document = ({ children }: { children: ReactNode }) => {
           href="/favicon-16x16.png"
         />
         <link rel="manifest" href="/site.webmanifest" />
-        <link
-          rel="mask-icon"
-          href="/safari-pinned-tab.svg"
-          color={theme.colors.gray?.['800']}
-        />
-        <meta
-          name="msapplication-TileColor"
-          content={theme.colors.gray?.['800']}
-        />
-        <meta name="theme-color" content={theme.colors.gray?.['800']} />
+        <link rel="mask-icon" href="/safari-pinned-tab.svg" />
+        <meta name="msapplication-TileColor" content="gray.800" />
+        <meta name="theme-color" />
       </head>
       <body>
         <Providers>

@@ -1,17 +1,14 @@
-import { ReactNode } from 'react';
+import { ReactNode, useRef } from 'react';
 
-import { Button, HStack, Heading, Stack, Text } from '@chakra-ui/react';
+import { HStack, Heading, Stack, Text } from '@chakra-ui/react';
 import { TRPCClientErrorLike } from '@trpc/client';
 import { parseAsInteger, useQueryState } from 'nuqs';
-import { useFormContext } from 'react-hook-form';
+import { Controller, useFormContext } from 'react-hook-form';
 import { Trans, useTranslation } from 'react-i18next';
 
-import {
-  FormField,
-  FormFieldController,
-  FormFieldHelper,
-  FormFieldLabel,
-} from '@/components/Form';
+import { Button } from '@/components/ui/button';
+import { Field } from '@/components/ui/field';
+import { PinInput } from '@/components/ui/pin-input';
 import { FormFieldsVerificationCode } from '@/features/auth/schemas';
 import {
   VALIDATION_TOKEN_EXPIRATION_IN_MINUTES,
@@ -24,7 +21,7 @@ export type VerificationCodeFormProps = {
   email: string;
   isLoading?: boolean;
   confirmText?: ReactNode;
-  confirmVariant?: string;
+  confirmVariant?: '@primary' | '@dangerPrimary';
   autoSubmit?: boolean;
 };
 
@@ -35,11 +32,12 @@ export const VerificationCodeForm = ({
   confirmVariant,
   autoSubmit = true,
 }: VerificationCodeFormProps) => {
+  const ref = useRef<HTMLDivElement>(null);
   const { t } = useTranslation(['auth']);
   const form = useFormContext<FormFieldsVerificationCode>();
 
   return (
-    <Stack gap="4">
+    <Stack gap="4" ref={ref}>
       <Stack>
         <Heading size="md">{t('auth:validate.title')}</Heading>
         <Text fontSize="sm">
@@ -56,26 +54,45 @@ export const VerificationCodeForm = ({
           />
         </Text>
       </Stack>
-      <FormField>
-        <FormFieldLabel>{t('auth:data.verificationCode.label')}</FormFieldLabel>
-        <FormFieldController
-          type="otp"
+
+      <Field
+        label={t('auth:data.verificationCode.label')}
+        helperText={t('auth:data.verificationCode.helper')}
+        invalid={!!form.formState.errors.code}
+        errorText={form.formState.errors.code?.message}
+      >
+        <Controller
           control={form.control}
           name="code"
-          size="lg"
-          autoSubmit={autoSubmit}
-          autoFocus
+          render={({ field }) => (
+            <PinInput
+              value={field.value}
+              count={6}
+              onValueChange={(e) => {
+                field.onChange(e.value);
+              }}
+              onValueComplete={(e) => {
+                // Only auto submit on first try
+                if (!form.formState.isSubmitted && autoSubmit) {
+                  const button = document.createElement('button');
+                  button.type = 'submit';
+                  button.style.display = 'none';
+                  ref.current?.append(button);
+                  button.click();
+                  button.remove();
+                }
+              }}
+            />
+          )}
         />
-        <FormFieldHelper>
-          {t('auth:data.verificationCode.helper')}
-        </FormFieldHelper>
-      </FormField>
+      </Field>
+
       <HStack gap={8}>
         <Button
           size="lg"
-          isLoading={isLoading}
+          loading={isLoading}
           type="submit"
-          variant={confirmVariant || '@primary'}
+          visual={confirmVariant || '@primary'}
           flex={1}
         >
           {confirmText || t('auth:validate.actions.confirm')}

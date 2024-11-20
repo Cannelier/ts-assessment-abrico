@@ -36,9 +36,9 @@ export const pageUtils = (page: Page) => {
         .click();
 
       await page.waitForURL(`**${ROUTES_AUTH.login()}/**`);
-      await page
-        .getByText('Verification code')
-        .fill(input.code ?? VALIDATION_CODE_MOCKED);
+      // await page
+      //   .getByText('Verification code')
+      //   .fill(input.code ?? VALIDATION_CODE_MOCKED);
     },
 
     /**
@@ -56,9 +56,9 @@ export const pageUtils = (page: Page) => {
         .click();
 
       await page.waitForURL(`**${ROUTES_AUTH.login()}/**`);
-      await page
-        .getByText('Verification code')
-        .fill(input.code ?? VALIDATION_CODE_MOCKED);
+      // await page
+      //   .getByText('Verification code')
+      //   .fill(input.code ?? VALIDATION_CODE_MOCKED);
     },
   } as const;
 };

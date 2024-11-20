@@ -6,7 +6,6 @@ import { usePathname, useRouter } from 'next/navigation';
 
 import { ErrorPage } from '@/components/ErrorPage';
 import { LoaderFull } from '@/components/LoaderFull';
-import { useSyncAccountLanguage } from '@/features/account/useSyncAccountLanguage';
 import { UserAuthorization } from '@/features/users/schemas';
 import { trpc } from '@/lib/trpc/client';
 
@@ -19,7 +18,6 @@ export const GuardAuthenticated = ({
   authorizations?: UserAuthorization[];
   loginPath: string;
 }) => {
-  useSyncAccountLanguage();
   const checkAuthenticated = trpc.auth.checkAuthenticated.useQuery();
 
   const pathname = usePathname();

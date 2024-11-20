@@ -1,4 +1,4 @@
-export const VALIDATION_CODE_MOCKED = '000000';
+export const VALIDATION_CODE_MOCKED = ['0', '0', '0', '0', '0', '0'];
 export const VALIDATION_CODE_ALLOWED_CHARACTERS =
   'abcdefghjkmnpqrstuvwxyz23456789ABCDEFGHJKLMNPQRSTUVWXYZ';
 export const VALIDATION_RETRY_DELAY_IN_SECONDS = 2;

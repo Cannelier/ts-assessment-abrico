@@ -1,19 +1,13 @@
 import React from 'react';
 
-import {
-  Box,
-  BoxProps,
-  Button,
-  ButtonProps,
-  Flex,
-  Stack,
-} from '@chakra-ui/react';
+import { Box, BoxProps, Flex, Input, Stack } from '@chakra-ui/react';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
-import { Form, FormField, FormFieldController } from '@/components/Form';
 import { toastCustom } from '@/components/Toast';
+import { Button, ButtonProps } from '@/components/ui/button';
+import { Field } from '@/components/ui/field';
 import { FormFieldsLogin, zFormFieldsLogin } from '@/features/auth/schemas';
 import { LoginHint } from '@/features/devtools/LoginHint';
 import { trpc } from '@/lib/trpc/client';
@@ -24,12 +18,12 @@ type LoginFormProps = BoxProps & {
     data: RouterOutputs['auth']['login'],
     variables: RouterInputs['auth']['login']
   ) => void;
-  buttonVariant?: ButtonProps['variant'];
+  buttonVisual?: ButtonProps['visual'];
 };
 
 export const LoginForm = ({
   onSuccess = () => undefined,
-  buttonVariant = '@primary',
+  buttonVisual = '@primary',
   ...rest
 }: LoginFormProps) => {
   const { t } = useTranslation(['auth']);
@@ -44,7 +38,11 @@ export const LoginForm = ({
     },
   });
 
-  const form = useForm<FormFieldsLogin>({
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<FormFieldsLogin>({
     mode: 'onBlur',
     resolver: zodResolver(zFormFieldsLogin()),
     defaultValues: {
@@ -52,29 +50,25 @@ export const LoginForm = ({
     },
   });
 
+  const onSubmit = handleSubmit((data) => login.mutate(data));
+
   return (
     <Box {...rest}>
-      <Form
-        {...form}
-        onSubmit={(values) => {
-          login.mutate(values);
-        }}
-      >
+      <form onSubmit={onSubmit}>
         <Stack gap={4}>
-          <FormField>
-            <FormFieldController
+          <Field label={'Email'} invalid={!!errors.email}>
+            <Input
+              {...register('email')}
               type="email"
-              control={form.control}
-              name="email"
               size="lg"
               placeholder={t('auth:data.email.label')}
             />
-          </FormField>
+          </Field>
           <Flex>
             <Button
-              isLoading={login.isLoading || login.isSuccess}
+              loading={login.isLoading || login.isSuccess}
               type="submit"
-              variant={buttonVariant}
+              visual={buttonVisual}
               size="lg"
               flex={1}
             >
@@ -84,7 +78,7 @@ export const LoginForm = ({
 
           <LoginHint />
         </Stack>
-      </Form>
+      </form>
     </Box>
   );
 };

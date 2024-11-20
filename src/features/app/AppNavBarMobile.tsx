@@ -1,15 +1,12 @@
 import React, { ReactNode } from 'react';
 
 import { Box, BoxProps, Container, Flex } from '@chakra-ui/react';
-import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useTranslation } from 'react-i18next';
-import { LuFolderGit2, LuHome, LuUser } from 'react-icons/lu';
+import { LuHome, LuUser } from 'react-icons/lu';
 
 import { Icon } from '@/components/Icons';
-import { ROUTES_ACCOUNT } from '@/features/account/routes';
 import { ROUTES_APP } from '@/features/app/routes';
-import { ROUTES_REPOSITORIES } from '@/features/repositories/routes';
 
 const HEIGHT = 'calc(60px + env(safe-area-inset-bottom))';
 
@@ -47,16 +44,7 @@ export const AppNavBarMobile = (props: BoxProps) => {
           >
             {t('app:layout.mainMenu.home')}
           </AppNavBarMobileMainMenuItem>
-          <AppNavBarMobileMainMenuItem
-            href={ROUTES_REPOSITORIES.app.root()}
-            icon={LuFolderGit2}
-          >
-            {t('app:layout.mainMenu.repositories')}
-          </AppNavBarMobileMainMenuItem>
-          <AppNavBarMobileMainMenuItem
-            icon={LuUser}
-            href={ROUTES_ACCOUNT.app.root()}
-          >
+          <AppNavBarMobileMainMenuItem icon={LuUser} href={'/'}>
             {t('app:layout.mainMenu.account')}
           </AppNavBarMobileMainMenuItem>
         </Container>
@@ -81,8 +69,6 @@ const AppNavBarMobileMainMenuItem = ({
 
   return (
     <Flex
-      as={Link}
-      href={href}
       direction="column"
       justifyContent="center"
       position="relative"

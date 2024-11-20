@@ -9,7 +9,6 @@ import { TRPCClientError, httpBatchLink, loggerLink } from '@trpc/client';
 import superjson from 'superjson';
 
 import { env } from '@/env.mjs';
-import { DemoModalInterceptor } from '@/features/demo-mode/DemoModalInterceptor';
 
 import { trpc } from './client';
 
@@ -67,9 +66,6 @@ export function TrpcProvider(props: { children: React.ReactNode }) {
     <trpc.Provider client={trpcClient} queryClient={queryClient}>
       <QueryClientProvider client={queryClient}>
         {props.children}
-        {showDemo && (
-          <DemoModalInterceptor onClose={() => setShowDemo(false)} />
-        )}
       </QueryClientProvider>
     </trpc.Provider>
   );

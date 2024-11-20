@@ -67,7 +67,7 @@ export const AppLayout: FC<React.PropsWithChildren<unknown>> = ({
         <Flex flex="1" direction="column">
           {children}
         </Flex>
-        {navDisplayed === true && <AppNavBarMobile />}
+        {/*{navDisplayed === true && <AppNavBarMobile />}*/}
       </Viewport>
     </AppLayoutContext.Provider>
   );

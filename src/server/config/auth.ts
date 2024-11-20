@@ -22,9 +22,9 @@ import { lucia } from './lucia';
  */
 export const getServerAuthSession = cache(async () => {
   const sessionId =
-    headers().get('Authorization')?.split('Bearer ')[1] ??
+    (await headers()).get('Authorization')?.split('Bearer ')[1] ??
     // Get Session from cookies
-    cookies().get(lucia.sessionCookieName)?.value;
+    (await cookies()).get(lucia.sessionCookieName)?.value;
 
   if (!sessionId)
     return {
@@ -43,7 +43,7 @@ export const getServerAuthSession = cache(async () => {
   try {
     if (session?.fresh) {
       const sessionCookie = lucia.createSessionCookie(session.id);
-      cookies().set(
+      (await cookies()).set(
         sessionCookie.name,
         sessionCookie.value,
         sessionCookie.attributes
@@ -52,7 +52,7 @@ export const getServerAuthSession = cache(async () => {
 
     if (!session) {
       const sessionCookie = lucia.createBlankSessionCookie();
-      cookies().set(
+      (await cookies()).set(
         sessionCookie.name,
         sessionCookie.value,
         sessionCookie.attributes
@@ -71,7 +71,7 @@ export const getServerAuthSession = cache(async () => {
 export async function generateCode() {
   const code =
     env.NODE_ENV === 'development' || env.NEXT_PUBLIC_IS_DEMO
-      ? VALIDATION_CODE_MOCKED
+      ? VALIDATION_CODE_MOCKED.join('')
       : generateRandomString(6, VALIDATION_CODE_ALLOWED_CHARACTERS);
   return {
     hashed: await bcrypt.hash(code, 12),
@@ -85,7 +85,7 @@ export async function validateCode({
   token,
 }: {
   ctx: AppContext;
-  code: string;
+  code: string[];
   token: string;
 }): Promise<{ verificationToken: VerificationToken }> {
   ctx.logger.info('Removing expired verification tokens from database');
@@ -126,7 +126,10 @@ export async function validateCode({
   }
 
   ctx.logger.info('Checking code');
-  const isCodeValid = await bcrypt.compare(code, verificationToken.code);
+  const isCodeValid = await bcrypt.compare(
+    code.join(''),
+    verificationToken.code
+  );
 
   if (!isCodeValid) {
     ctx.logger.warn('Invalid code');
@@ -187,7 +190,7 @@ export async function createSession(userId: string) {
 
   const sessionCookie = lucia.createSessionCookie(session.id);
 
-  cookies().set(
+  (await cookies()).set(
     sessionCookie.name,
     sessionCookie.value,
     sessionCookie.attributes
@@ -201,7 +204,7 @@ export async function deleteSession(sessionId: string) {
 
   const sessionCookie = lucia.createBlankSessionCookie();
 
-  cookies().set(
+  (await cookies()).set(
     sessionCookie.name,
     sessionCookie.value,
     sessionCookie.attributes

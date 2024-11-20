@@ -2,12 +2,10 @@ import { Button, Stack } from '@chakra-ui/react';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useQueryClient } from '@tanstack/react-query';
 import { useParams, useRouter, useSearchParams } from 'next/navigation';
-import { SubmitHandler, useForm } from 'react-hook-form';
+import { FormProvider, SubmitHandler, useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { LuArrowLeft, LuArrowRight } from 'react-icons/lu';
 
-import { Form } from '@/components/Form';
-import { ROUTES_ADMIN } from '@/features/admin/routes';
 import { ROUTES_APP } from '@/features/app/routes';
 import {
   VerificationCodeForm,
@@ -17,12 +15,10 @@ import {
   FormFieldsVerificationCode,
   zFormFieldsVerificationCode,
 } from '@/features/auth/schemas';
-import { useRtl } from '@/hooks/useRtl';
 import { trpc } from '@/lib/trpc/client';
 
 export default function PageLoginValidate() {
   const { t } = useTranslation(['common']);
-  const { rtlValue } = useRtl();
   const router = useRouter();
   const params = useParams();
   const searchParams = useSearchParams();
@@ -37,13 +33,9 @@ export default function PageLoginValidate() {
     mode: 'onBlur',
     resolver: zodResolver(zFormFieldsVerificationCode()),
     defaultValues: {
-      code: '',
+      code: [],
     },
   });
-
-  const onSubmit: SubmitHandler<FormFieldsVerificationCode> = (values) => {
-    validate.mutate({ ...values, token });
-  };
 
   const onVerificationCodeError = useOnVerificationCodeError({
     onError: (error) =>
@@ -66,33 +58,30 @@ export default function PageLoginValidate() {
         return;
       }
 
-      if (data.account.authorizations.includes('ADMIN')) {
-        router.replace(ROUTES_ADMIN.root());
-        return;
-      }
-
       router.replace(ROUTES_APP.root());
     },
     onError: onVerificationCodeError,
   });
 
+  const onSubmit = form.handleSubmit((data) =>
+    validate.mutate({ ...data, token })
+  );
+
   return (
     <Stack gap={6}>
-      <Button
-        me="auto"
-        size="sm"
-        leftIcon={rtlValue(<LuArrowLeft />, <LuArrowRight />)}
-        onClick={() => router.back()}
-      >
+      <Button me="auto" size="sm" onClick={() => router.back()}>
+        <LuArrowLeft />
         {t('common:actions.back')}
       </Button>
 
-      <Form {...form} onSubmit={onSubmit}>
-        <VerificationCodeForm
-          email={email ?? ''}
-          isLoading={validate.isLoading || validate.isSuccess}
-        />
-      </Form>
+      <form onSubmit={onSubmit}>
+        <FormProvider {...form}>
+          <VerificationCodeForm
+            email={email ?? ''}
+            isLoading={validate.isLoading || validate.isSuccess}
+          />
+        </FormProvider>
+      </form>
     </Stack>
   );
 }

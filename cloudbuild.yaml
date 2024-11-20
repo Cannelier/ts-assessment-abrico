@@ -3,6 +3,7 @@ steps:
     script: |
       #!/usr/bin/env bash
       echo "DATABASE_URL=$$DATABASE_URL" > .env
+      echo "SENDGRID_API_KEY=$$SENDGRID_API_KEY" >> .env
       echo "NEXT_PUBLIC_BASE_URL=https://beta.abrico.eco" >> .env
       echo "EMAIL_FROM=support@abrico.eco" >> .env
     secretEnv: ['DATABASE_URL']
@@ -38,6 +39,8 @@ availableSecrets:
   secretManager:
     - versionName: projects/abrico-418714/secrets/abrico-db-prod-rw-uri/versions/1
       env: 'DATABASE_URL'
+    - versionName: projects/abrico-418714/secrets/abrico-sendgrid-api-key/versions/1
+      env: 'SENDGRID_API_KEY'
 
 images:
   - 'gcr.io/$PROJECT_ID/abrico-app-prod:$COMMIT_SHA'

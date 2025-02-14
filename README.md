@@ -1,11 +1,12 @@
 
-## Abrico app 
-🚀 This app enables artisan & clients to manage their site financing
-
-## Info
+## Abrico assessment 
+🚀 This repo is the nutshell of our actual technical stack. 
 
 This repo is based on  the frontend starter repo Start UI: see the [documentation](https://docs.web.start-ui.com). The documentation contains all the necessary information on installation, usage, and some guides.
 
+## Goal
+
+The goal of this assessment is to get a sense of how quickly you adapt your skills to our tech stack and how to define and implement a technical solution given a product requirement. 
 
 ## Technologies
 
@@ -20,12 +21,6 @@ This repo is based on  the frontend starter repo Start UI: see the [documentatio
 - [NodeJS](https://nodejs.org/) >=20
 - [Pnpm](https://pnpm.io/)
 - [Docker](https://www.docker.com/) (or a [PostgreSQL](https://www.postgresql.org/) database)
-
-
-
-> [!NOTE]
-> **Quick advices for local development**
-> - **DON'T update** the **EMAIL_SERVER** variable, because the default value will be used to catch the emails during the development.
 
 
 2. Install dependencies
@@ -48,77 +43,7 @@ pnpm dk:start
 pnpm dev
 ```
 
-### Emails in development
 
-#### Maildev to catch emails
-
-In development, the emails will not be sent and will be catched by [maildev](https://github.com/maildev/maildev).
-
-The maildev UI is available at [0.0.0.0:1080](http://0.0.0.0:1080).
-
-#### Preview emails
-
-Emails templates are built with `react-email` components in the `src/emails` folder.
-
-You can preview an email template at `http://localhost:3000/devtools/email/{template}` where `{template}` is the name of the template file in the `src/emails/templates` folder.
-
-Example: [Login Code](http://localhost:3000/devtools/email/login-code)
-
-##### Email translation preview
-
-Add the language in the preview url like `http://localhost:3000/devtools/email/{template}/{language}` where `{language}` is the language key (`en`, `fr`, ...)
-
-#### Email props preview
-
-You can add search params to the preview url to pass as props to the template.
-`http://localhost:3000/devtools/email/{template}/?{propsName}={propsValue}`
-
-### Storybook
-
-```bash
-pnpm storybook
-```
-
-### Update theme typing
-
-When adding or updating theme components, component variations, sizes, colors and other theme foundations, you can extend the internal theme typings to provide nice autocomplete.
-
-Just run the following command after updating the theme:
-
-```bash
-pnpm theme:generate-typing
-```
-
-### Generate custom icons components from svg files
-
-Put the custom svg files into the `src/components/Icons/svg-sources` folder and then run the following command:
-
-```bash
-pnpm theme:generate-icons
-```
-
-> [!WARNING]
-> All svg icons should be svg files prefixed by `icon-` (example: `icon-externel-link`) with **24x24px** size, only **one shape** and **filled with `#000` color** (will be replaced by `currentColor`).
-
-
-### Update color mode storage key
-
-You can update the storage key used to detect the color mode by updating this constant in the `src/theme/config.ts` file:
-
-```tsx
-export const COLOR_MODE_STORAGE_KEY = 'start-ui-color-mode'; // Update the key according to your needs
-```
-
-### E2E Tests
-
-E2E tests are setup with Playwright.
-
-```sh
-pnpm e2e     # Run tests in headless mode, this is the command executed in CI
-pnpm e2e:ui  # Open a UI which allow you to run specific tests and see test execution
-```
-
-Tests are written in the `e2e` folder; there is also a `e2e/utils` folder which contains some utils to help writing tests.
 
 ## Show hint on development environments
 
@@ -150,24 +75,3 @@ Create or edit the `.vscode/settings.json` file with the following settings:
 }
 ```
 
-## Production
-
-```bash
-pnpm install
-pnpm storybook:build # Optional: Will expose the Storybook at `/storybook`
-pnpm build
-pnpm start
-```
-
-### Deploy with Docker
-
-1. Build the Docker image (replace `start-ui-web` with your project name)
-```
-docker build -t start-ui-web .
-```
-
-2. Run the Docker image (replace `start-ui-web` with your project name)
-```
-docker run -p 80:3000 start-ui-web
-```
-Application will be exposed on port 80 ([http://localhost](http://localhost))

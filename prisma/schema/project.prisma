@@ -1,0 +1,19 @@
+enum ProjectStatus {
+  DRAFT
+  PUBLISHED
+}
+
+model Project {
+  id              String         @id @default(cuid())
+  createdAt       DateTime       @default(now())
+  updatedAt       DateTime       @updatedAt
+
+  status          ProjectStatus
+  // Quote was signed on date signedAt
+  signedAt        DateTime?
+
+  operations      Operation[]
+  documents       Document[]
+  company         Company        @relation(fields: [companyId], references: [id])
+  companyId       String
+}

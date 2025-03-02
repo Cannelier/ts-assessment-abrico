@@ -26,4 +26,8 @@ model User {
   lastLoginAt     DateTime?
   session         Session[]
   oauth           OAuthAccount[]
+  
+  company         Company?          @relation(fields: [companyId], references: [id])      // Only one company per user
+  companyId       String?
+  uploadedDocuments  Document[]
 }

@@ -1,0 +1,25 @@
+enum DocType {
+  // Qualification attestation
+  ATTESTATION_RGE
+  // Quote
+  DEVIS
+}
+
+model Document {
+  id              String         @id @default(cuid())
+  createdAt       DateTime       @default(now())
+  updatedAt       DateTime       @updatedAt
+
+  uri             String?
+  fileName        String?
+  startDate       DateTime?
+  endDate         DateTime?
+
+  docType         DocType
+
+  operations      Operation[]
+  uploadedBy      User?         @relation(fields:[uploadedById], references: [id])
+  uploadedById    String
+  project         Project?      @relation(fields: [projectId], references: [id])
+  projectId       String
+}

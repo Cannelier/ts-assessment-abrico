@@ -1,0 +1,9 @@
+model Company {
+  id              String         @id @default(cuid())
+  createdAt       DateTime       @default(now())
+  updatedAt       DateTime       @updatedAt
+
+  siret           String
+  name            String
+  users           User[]         // TODO: Check if Admin status = Company admin. If so, add a field companyAdmin
+}

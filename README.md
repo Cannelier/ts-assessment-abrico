@@ -25,6 +25,7 @@ The goal of this assessment is to get a sense of how quickly you adapt your skil
 
 2. Install dependencies
 ```bash
+nvm use 22
 pnpm install
 ```
 
@@ -56,6 +57,8 @@ pnpm dk:init
 ```bash
 # Run the database in Docker (if not already started)
 pnpm dk:start
+# Seed the database
+npx prisma db seed
 # Run the development server
 pnpm dev
 ```

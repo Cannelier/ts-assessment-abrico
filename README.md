@@ -29,6 +29,23 @@ pnpm install
 ```
 
 3. Setup and start the db with docker
+### Run DB in docker
+```bash
+docker run -d \
+  --name postgres-db \
+  -e POSTGRES_USER=postgres \
+  -e POSTGRES_PASSWORD=postgres \
+  -e POSTGRES_DB=postgres \
+  -p 5432:5432 \
+  postgres
+```
+
+### Connect Prisma to the DB
+```bash
+pnpm prisma db push
+```
+
+### Initialize docker
 ```bash
 pnpm dk:init
 ```

@@ -3,6 +3,7 @@ model Operation {
   createdAt       DateTime       @default(now())
   updatedAt       DateTime       @updatedAt
   
+  name            String?
   project         Project        @relation(fields: [projectId], references: [id])
   projectId       String
   documents       Document[]

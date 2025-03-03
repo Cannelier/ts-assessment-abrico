@@ -29,10 +29,14 @@ export const projectsRouter = createTRPCRouter({
       const company = await ctx.db.company.findFirst({
         where: { id: user?.companyId },
       })
-      const projects = await ctx.db.project.findMany({
-        where: { companyId: company?.id }
-      })
 
+      const projects = await ctx.db.project.findMany({
+        where: { companyId: company?.id },
+        include: {
+          operations: true,
+        }
+      })
+      
       return projects?.map((project) => zProject.parse(project));
     }),
 });

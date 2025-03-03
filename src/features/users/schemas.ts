@@ -45,6 +45,7 @@ export const zUser = () =>
     language: zu.string
       .nonEmpty(z.string().min(2))
       .default(DEFAULT_LANGUAGE_KEY),
+    companyId: z.string().cuid(),
   });
 
 export type UserWithEmail = z.infer<ReturnType<typeof zUserWithEmail>>;

@@ -6,6 +6,7 @@ export async function createUsers() {
 
   let createdCounter = 0;
   const existingCount = await prisma.user.count();
+  const company = await prisma.company.findUnique({ where: { siret: '53918535500010' } })
 
   await Promise.all(
     Array.from({ length: Math.max(0, 98 - existingCount) }, async () => {
@@ -14,6 +15,7 @@ export async function createUsers() {
           name: faker.person.fullName(),
           email: faker.internet.email().toLowerCase(),
           accountStatus: 'ENABLED',
+          companyId: company?.id,
         },
       });
       createdCounter += 1;
@@ -26,6 +28,7 @@ export async function createUsers() {
         name: 'User',
         email: 'user@user.com',
         accountStatus: 'ENABLED',
+        companyId: company?.id,
       },
     });
     createdCounter += 1;
@@ -40,6 +43,7 @@ export async function createUsers() {
         email: 'admin@admin.com',
         authorizations: ['APP', 'ADMIN'],
         accountStatus: 'ENABLED',
+        companyId: company?.id,
       },
     });
     createdCounter += 1;

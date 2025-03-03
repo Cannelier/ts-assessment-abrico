@@ -1,6 +1,7 @@
 import { z } from 'zod';
 import { zDocument } from '@/features/documents/schemas';
 
+export type Operation = z.infer<typeof zOperation>;
 export const zOperation = z.object({
   id: z.string().cuid(),
   createdAt: z.date(),

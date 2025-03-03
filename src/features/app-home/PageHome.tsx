@@ -17,30 +17,24 @@ export default function PageHome() {
   const { t } = useTranslation(['appHome', 'account']);
 
   const { data: projects, isLoading: areProjectsLoading, isError: areProjectsError } = trpc.projects.getProjectsForCurrentUser.useQuery();
-  const { data: documentOptions, isLoading: areDocumentsLoading, isError: areDocumentsError } = trpc.documents.getDocumentsForCurrentUser.useQuery();
-  
+  const { data: documentOptions, isLoading: areDocumentsLoading, isError:areDocumentsError } = trpc.documents.getDocumentsForCurrentUser.useQuery();
+  const linkOperationsToDocuments = trpc.operations.linkOperationsToDocuments.useMutation();
+
   const isLoading = areProjectsLoading || areDocumentsLoading;
   const isError = areProjectsError || areDocumentsError;
 
   const currentProject = projects? projects[0] : null;  // TODO: Implement Select project
   
   // We build the mapping between an Operation and its Document
-
-  const [selectedDocuments, setSelectedDocuments] = useState(currentProject?.operations?.reduce(
+  const initialOperationsToDocuments : Record<string, Document> | undefined = currentProject?.operations?.reduce(
     (acc, operation) => { 
-      acc[operation.id] = getAttestationRgeForOperation(operation);
+      const document = getAttestationRgeForOperation(operation);
+      acc[operation.id] = document || null;
       return acc;
-    }, {}
-  ));
+    }, {} as Record<string, Document>
+  );
 
-  // Handle selection change
-  const handleChange = (operationId: string, documentId: string) => {
-    const selectedDocument = documentOptions.find((document) => document.id === documentId);
-    setSelectedDocuments((prev) => ({
-      ...prev,
-      [operationId]: selectedDocument,
-    }));
-  };
+  const [operationToDocumentIds, setOperationToDocumentIds] = useState(undefined);
   
 
   if (isLoading) {
@@ -67,6 +61,7 @@ export default function PageHome() {
           <Heading fontSize="4xl">{t('appHome:projectTab:title')}</Heading>
           <Spacer/>
           {/* OPERATIONS TABLE */}
+          {JSON.stringify(operationToDocumentIds)}
           <Table.Root>
             <Table.Header>
               <Table.Row>
@@ -106,10 +101,12 @@ export default function PageHome() {
                       <Table.Cell>
                         <NativeSelect.Root>
                           <NativeSelect.Field
-                            value={selectedDocuments ? selectedDocuments[operation?.id]?.id : ""}
-                            onChange={(e) => handleChange(operation.id, e.target.value)}
+                            value={initialOperationsToDocuments ? initialOperationsToDocuments[operation?.id]?.uri : ""}
+                            onChange={(e) => setOperationToDocumentIds({
+                              operationId: operation.id,
+                              documentId: e.target.value})}
                           >
-                            { documentOptions.map((documentOption) => {
+                            { documentOptions?.map((documentOption) => {
                               return (<option value={documentOption.id}>{documentOption.uri}</option>)
                             })}
                           </NativeSelect.Field>
@@ -118,9 +115,16 @@ export default function PageHome() {
 
                       {/* PREVIEW */}
                       <Table.Cell>
-                        <Button onClick={()=> {/* TODO: Preview PDF */}}>
-                          Voir
-                        </Button>
+        
+                        <Button 
+                            size="sm"
+                            onClick={ async ()  => {
+                              await linkOperationsToDocuments.mutateAsync(operationToDocumentIds);
+                            }
+                          }
+                        >
+                          Valider
+                          </Button>
                       </Table.Cell>
                     </Table.Row>)
                 })}
@@ -133,6 +137,6 @@ export default function PageHome() {
   );
 }
 
-function getAttestationRgeForOperation(operation: Operation) {
+export function getAttestationRgeForOperation(operation: Operation) {
   return operation.documents?.find((document: Document) => document.docType === 'ATTESTATION_RGE');
 }

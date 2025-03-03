@@ -8,5 +8,14 @@
     "author": "— Par l'<strong>équipe BearStudio</strong>",
     "description": "Un démarreur d'interface utilisateur avisé avec React, Chakra UI, React Query",
     "title": "Bienvenue dans 🚀 Start UI [web]"
+  },
+  "projectTab": {
+    "title": "Mes Projets",
+    "operationsTable": {
+      "nameHeader": "Opération",
+      "ademeCodeHeader": "Code Ademe",
+      "statusHeader": "Statut",
+      "attestationRgeHeader": "Attestation RGE"
+    }
   }
 }

@@ -101,7 +101,8 @@ export default function PageHome() {
                       <Table.Cell>
                         <NativeSelect.Root>
                           <NativeSelect.Field
-                            placeholder={initialOperationsToDocuments[operation?.id]?.uri ?? "Aucun"}
+                            placeholder={initialOperationsToDocuments[operation?.id]?.uri ?? 
+                              t('appHome:projectTab:operationsTable.optionNone')}
                             onChange={(e) => setOperationToDocumentIds({
                               operationId: operation.id,
                               documentId: e.target.value})}
@@ -112,7 +113,7 @@ export default function PageHome() {
                             }
                             {
                             initialOperationsToDocuments[operation?.id] ?
-                              <option value="">Aucun</option>
+                              <option value="">{t('appHome:projectTab:operationsTable.optionNone')}</option>
                               : null}
                           </NativeSelect.Field>
                         </NativeSelect.Root>
@@ -130,7 +131,7 @@ export default function PageHome() {
                               }
                             }
                           >
-                            Valider
+                            {t('appHome:projectTab:operationsTable.edit')}
                           </Button>)
                           : null
                         }

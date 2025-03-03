@@ -15,7 +15,9 @@
       "nameHeader": "Opération",
       "ademeCodeHeader": "Code Ademe",
       "statusHeader": "Statut",
-      "attestationRgeHeader": "Attestation RGE"
+      "attestationRgeHeader": "Attestation RGE",
+      "edit": "Modifier",
+      "optionNone": "Aucun"
     }
   }
 }

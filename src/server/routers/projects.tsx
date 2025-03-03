@@ -33,7 +33,11 @@ export const projectsRouter = createTRPCRouter({
       const projects = await ctx.db.project.findMany({
         where: { companyId: company?.id },
         include: {
-          operations: true,
+          operations: {
+            include: {
+              documents: true
+            }
+          },
         }
       })
       

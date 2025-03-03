@@ -53,6 +53,9 @@ export default function PageHome() {
             <Table.Body>
               {
                 currentProject?.operations?.map((operation) => {
+                  
+                  const attestationRge = operation.documents?.find((document) => document.docType === 'ATTESTATION_RGE');
+                  
                   return (
                     <Table.Row>
 
@@ -68,7 +71,7 @@ export default function PageHome() {
 
                       {/* STATUT */}
                       <Table.Cell>
-                        {/* TODO: {operation.documents.any((document) => document.docType == 'ATTESTATION_RGE')} */}
+                        {attestationRge ? "✅" : "❌"}
                       </Table.Cell>
 
                       {/* ATTESTATION */}

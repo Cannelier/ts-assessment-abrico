@@ -115,16 +115,20 @@ export default function PageHome() {
 
                       {/* PREVIEW */}
                       <Table.Cell>
-        
-                        <Button 
-                            size="sm"
-                            onClick={ async ()  => {
-                              await linkOperationsToDocuments.mutateAsync(operationToDocumentIds);
+                        {/* Only display if an attestation was selected */}
+                        {
+                          (operationToDocumentIds !== undefined && operationToDocumentIds["operationId"] === operation.id) ?
+                            (<Button 
+                              size="sm"
+                              onClick={ async ()  => {
+                                await linkOperationsToDocuments.mutateAsync(operationToDocumentIds);
+                              }
                             }
-                          }
-                        >
-                          Valider
-                          </Button>
+                          >
+                            Valider
+                          </Button>)
+                          : null
+                        }
                       </Table.Cell>
                     </Table.Row>)
                 })}

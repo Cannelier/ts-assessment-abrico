@@ -61,7 +61,6 @@ export default function PageHome() {
           <Heading fontSize="4xl">{t('appHome:projectTab:title')}</Heading>
           <Spacer/>
           {/* OPERATIONS TABLE */}
-          {JSON.stringify(operationToDocumentIds)}
           <Table.Root>
             <Table.Header>
               <Table.Row>
@@ -101,14 +100,16 @@ export default function PageHome() {
                       <Table.Cell>
                         <NativeSelect.Root>
                           <NativeSelect.Field
-                            value={initialOperationsToDocuments ? initialOperationsToDocuments[operation?.id]?.uri : ""}
+                            value={initialOperationsToDocuments[operation?.id]?.uri ?? ""}
                             onChange={(e) => setOperationToDocumentIds({
                               operationId: operation.id,
                               documentId: e.target.value})}
                           >
                             { documentOptions?.map((documentOption) => {
                               return (<option value={documentOption.id}>{documentOption.uri}</option>)
-                            })}
+                            })
+                            }
+                            <option value="">Aucun</option>
                           </NativeSelect.Field>
                         </NativeSelect.Root>
                       </Table.Cell>

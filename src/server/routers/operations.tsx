@@ -23,15 +23,27 @@ export const operationsRouter = createTRPCRouter({
 
     // Replace document or add new link
     if (oldDocument) {
+      // Disconnect old document
       await ctx.db.operation.update({
         where: { id: operationId },
         data: {
           documents: {
-            disconnect: { id: oldDocument.id }, // Disconnect the old document by its ID
-            connect: { id: documentId }, // Connect the new document
+            disconnect: { id: oldDocument.id }
           },
         },
       });
+      
+       // Connect the new document
+      if (documentId !== "") {
+        await ctx.db.operation.update({
+          where: { id: operationId },
+          data: {
+            documents: {    
+              connect: { id: documentId }
+            },
+          },
+        });
+      }
     } else {
       // If no existing document was found with docType "ATTESTATION_RGE", just link the new document
       await ctx.db.operation.update({

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import { Flex, Heading, NativeSelect, Select, Spacer, Stack, Table, Text } from '@chakra-ui/react';
+import { Box, Flex, Heading, NativeSelect, Select, Spacer, Stack, Table, Text } from '@chakra-ui/react';
 import { useTranslation } from 'react-i18next';
 
 import { Logo } from '@/components/Logo';
@@ -59,7 +59,8 @@ export default function PageHome() {
 
         <Stack>
           <Heading fontSize="4xl">{t('appHome:projectTab:title')}</Heading>
-          <Spacer/>
+          <Box padding="4" />
+
           {/* OPERATIONS TABLE */}
           <Table.Root>
             <Table.Header>
@@ -100,7 +101,7 @@ export default function PageHome() {
                       <Table.Cell>
                         <NativeSelect.Root>
                           <NativeSelect.Field
-                            value={initialOperationsToDocuments[operation?.id]?.uri ?? ""}
+                            placeholder={initialOperationsToDocuments[operation?.id]?.uri ?? "Aucun"}
                             onChange={(e) => setOperationToDocumentIds({
                               operationId: operation.id,
                               documentId: e.target.value})}
@@ -109,7 +110,10 @@ export default function PageHome() {
                               return (<option value={documentOption.id}>{documentOption.uri}</option>)
                             })
                             }
-                            <option value="">Aucun</option>
+                            {
+                            initialOperationsToDocuments[operation?.id] ?
+                              <option value="">Aucun</option>
+                              : null}
                           </NativeSelect.Field>
                         </NativeSelect.Root>
                       </Table.Cell>

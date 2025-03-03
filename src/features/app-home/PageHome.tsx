@@ -16,7 +16,12 @@ import { Document } from '../documents/schemas';
 export default function PageHome() {
   const { t } = useTranslation(['appHome', 'account']);
 
-  const { data: projects, isLoading, isError } = trpc.projects.getProjectsForCurrentUser.useQuery()
+  const { data: projects, isLoading: areProjectsLoading, isError: areProjectsError } = trpc.projects.getProjectsForCurrentUser.useQuery();
+  const { data: documentOptions, isLoading: areDocumentsLoading, isError: areDocumentsError } = trpc.documents.getDocumentsForCurrentUser.useQuery();
+  
+  const isLoading = areProjectsLoading || areDocumentsLoading;
+  const isError = areProjectsError || areDocumentsError;
+
   const currentProject = projects? projects[0] : null;  // TODO: Implement Select project
   
   // We build the mapping between an Operation and its Document
@@ -27,22 +32,6 @@ export default function PageHome() {
       return acc;
     }, {}
   ));
-
-  const documentOptions: Document[] = [
-    {
-      id: 'cm7t2ul6i00ba42jtaeavjb8a',
-      createdAt: new Date('2022-01-01'),
-      updatedAt:new Date('2022-01-01'),
-      uri: 'https://entreprise.api.gouv.fr/files/exemple-ademe-rge-certificat_qualibat.pdf',
-      docType: 'ATTESTATION_RGE'
-    },
-    {
-      id: 'cm7t2ul6l00bc42jtej1ky7es',
-      createdAt: new Date('2022-01-01'),
-      updatedAt:new Date('2022-01-01'),
-      uri: 'https://entreprise.api.gouv.fr/files/exemple-ademe-rge-certificat_qualibat.pdf',
-      docType: 'ATTESTATION_RGE'
-    }];
 
   // Handle selection change
   const handleChange = (operationId: string, documentId: string) => {
